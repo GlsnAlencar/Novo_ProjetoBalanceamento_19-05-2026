@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teste Drawflow</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/drawflow@0.0.59/dist/drawflow.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/drawflow@0.0.59/dist/drawflow.min.js"></script>
+    <style>
+        body { margin: 0; font-family: Arial; background: #f0f0f0; }
+        #container { width: 100vw; height: 100vh; display: flex; }
+        #drawflow { flex: 1; background: white; }
+        .info { 
+            position: absolute; 
+            top: 10px; 
+            left: 10px; 
+            background: white; 
+            padding: 15px; 
+            border: 2px solid #007bff; 
+            border-radius: 4px; 
+            z-index: 1000;
+            max-width: 400px;
+            font-size: 12px;
+            font-family: monospace;
+            line-height: 1.6;
+        }
+        .success { color: green; }
+        .error { color: red; }
+        button {
+            margin: 5px 0;
+            padding: 8px 12px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="drawflow"></div>
+    </div>
+    <div class="info" id="info">
+        <div>Testando Drawflow v0.0.59...</div>
+        <div id="messages"></div>
+        <button onclick="testAddNode()">Adicionar Node de Teste</button>
+        <button onclick="testClear()">Limpar</button>
+    </div>
+
+    <script>
+        var messages = [];
+        var editor = null;
+        var nodeIds = [];
+        
+        function addMessage(msg, type = 'normal') {
+            messages.push('<div class="' + type + '">' + msg + '</div>');
+            updateMessages();
+            console.log('[' + type + ']', msg);
+        }
+        
+        function updateMessages() {
+            document.getElementById('messages').innerHTML = messages.join('');
+            if (messages.length > 15) {
+                messages = messages.slice(-15);
+            }
+        }
+        
+        try {
+            addMessage('🔄 Inicializando Drawflow...', 'normal');
+            
+            var container = document.getElementById('drawflow');
+            addMessage('✓ Container encontrado: ' + container.offsetWidth + 'x' + container.offsetHeight, 'success');
+            
+            editor = new Drawflow(container);
+            addMessage('✓ Editor criado', 'success');
+            
+            editor.start();
+            addMessage('✓ Editor iniciado', 'success');
+            
+            // Teste: adicionar um node manualmente
+            testAddNode();
+            
+        } catch(e) {
+            addMessage('✗ Erro: ' + e.message, 'error');
+            addMessage('Stack: ' + e.stack.substring(0, 200), 'error');
+        }
+        
+        function testAddNode() {
+            try {
+                if (!editor) {
+                    addMessage('✗ Editor não inicializado', 'error');
+                    return;
+                }
+                
+                var x = 100 + nodeIds.length * 300;
+                var y = 100;
+                var html = '<div style="padding: 20px; text-align: center;"><strong>Node ' + (nodeIds.length + 1) + '</strong></div>';
+                
+                var nodeId = editor.addNode('test', 1, 1, x, y, 'test', {id: nodeIds.length}, html);
+                nodeIds.push(nodeId);
+                
+                addMessage('✓ Node criado! ID: ' + nodeId + ' (Total: ' + nodeIds.length + ')', 'success');
+                
+            } catch(e) {
+                addMessage('✗ Erro ao criar node: ' + e.message, 'error');
+            }
+        }
+        
+        function testClear() {
+            try {
+                if (!editor) return;
+                editor.clear();
+                nodeIds = [];
+                addMessage('✓ Canvas limpo', 'success');
+            } catch(e) {
+                addMessage('✗ Erro ao limpar: ' + e.message, 'error');
+            }
+        }
+    </script>
+</body>
+</html>

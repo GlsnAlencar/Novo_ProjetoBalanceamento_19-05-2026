@@ -1,0 +1,45 @@
+{
+    "version": 2,
+    "module_context": {
+        "scope": "REFORMULACAO_ARVORE_ESTRUTURA",
+        "storage": "data\/reformulacao\/arvore_estrutura.json",
+        "isolated_from": [
+            "fluxo",
+            "postos",
+            "balanceamento",
+            "cronoanalise"
+        ],
+        "future_ready_for": [
+            "mrp",
+            "cronoanalise",
+            "fluxo",
+            "postos",
+            "balanceamento"
+        ]
+    },
+    "updated_at": "2026-05-17 19:45:12",
+    "tabela_itens": [],
+    "tabela_arvores": [],
+    "tabela_arvore_composicao": [],
+    "tabela_item_parametros": [],
+    "tabela_item_conversoes": [],
+    "cadastro_tipos_item": [
+        "Produto",
+        "Embalagem",
+        "Insumo",
+        "Servico",
+        "Recurso",
+        "Componente"
+    ],
+    "cadastro_unidades_base": [
+        "un",
+        "kg",
+        "g",
+        "l",
+        "ml",
+        "ctt",
+        "pallet",
+        "operacao"
+    ],
+    "historico": []
+}

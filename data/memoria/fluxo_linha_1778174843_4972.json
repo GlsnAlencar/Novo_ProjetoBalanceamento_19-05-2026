@@ -1,0 +1,100 @@
+{
+    "drawflow": {
+        "Home": {
+            "data": {
+                "1": {
+                    "id": 1,
+                    "name": "node",
+                    "data": {
+                        "id": "posto_6a0379998379e",
+                        "name": "Posto 1: Início",
+                        "tc": 10
+                    },
+                    "class": "node",
+                    "html": "\n                    <div class=\"node-content\" id=\"node-content-posto_6a0379998379e\">\n                        <div class=\"node-icon\">\n                            <i class=\"fa-solid fa-industry\"><\/i>\n                        <\/div>\n                        <strong>Posto 1: Início<\/strong>\n                        <div style=\"font-size: 11px; margin-top: 4px;\">\n                            ⏱️ <span class=\"tc-value\">10<\/span>s\n                        <\/div>\n                        <div class=\"node-actions\">\n                            <button class=\"edit-btn\" onclick=\"editNodeInFlow('posto_6a0379998379e')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                            <button class=\"delete-btn\" onclick=\"removeNodeFromFlow('posto_6a0379998379e')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                            <button class=\"add-derived-btn\" onclick=\"showDeriveOptions('posto_6a0379998379e')\" title=\"Derivar\"><i class=\"fa-solid fa-sitemap\"><\/i><\/button>\n                        <\/div>\n                    <\/div>\n                ",
+                    "typenode": false,
+                    "inputs": {
+                        "input_1": {
+                            "connections": []
+                        }
+                    },
+                    "outputs": {
+                        "output_1": {
+                            "connections": [
+                                {
+                                    "node": "2",
+                                    "output": "input_1"
+                                }
+                            ]
+                        }
+                    },
+                    "pos_x": 100,
+                    "pos_y": 150
+                },
+                "2": {
+                    "id": 2,
+                    "name": "node",
+                    "data": {
+                        "id": "posto_6a037999868c9",
+                        "name": "Posto 2: Processamento",
+                        "tc": 8
+                    },
+                    "class": "node",
+                    "html": "\n                    <div class=\"node-content\" id=\"node-content-posto_6a037999868c9\">\n                        <div class=\"node-icon\">\n                            <i class=\"fa-solid fa-industry\"><\/i>\n                        <\/div>\n                        <strong>Posto 2: Processamento<\/strong>\n                        <div style=\"font-size: 11px; margin-top: 4px;\">\n                            ⏱️ <span class=\"tc-value\">8<\/span>s\n                        <\/div>\n                        <div class=\"node-actions\">\n                            <button class=\"edit-btn\" onclick=\"editNodeInFlow('posto_6a037999868c9')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                            <button class=\"delete-btn\" onclick=\"removeNodeFromFlow('posto_6a037999868c9')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                            <button class=\"add-derived-btn\" onclick=\"showDeriveOptions('posto_6a037999868c9')\" title=\"Derivar\"><i class=\"fa-solid fa-sitemap\"><\/i><\/button>\n                        <\/div>\n                    <\/div>\n                ",
+                    "typenode": false,
+                    "inputs": {
+                        "input_1": {
+                            "connections": [
+                                {
+                                    "node": "1",
+                                    "input": "output_1"
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {
+                        "output_1": {
+                            "connections": [
+                                {
+                                    "node": "3",
+                                    "output": "input_1"
+                                }
+                            ]
+                        }
+                    },
+                    "pos_x": 318,
+                    "pos_y": 140
+                },
+                "3": {
+                    "id": 3,
+                    "name": "node",
+                    "data": {
+                        "id": "posto_6a03799988252",
+                        "name": "Posto 3: Conclusão",
+                        "tc": 7
+                    },
+                    "class": "node",
+                    "html": "\n                    <div class=\"node-content\" id=\"node-content-posto_6a03799988252\">\n                        <div class=\"node-icon\">\n                            <i class=\"fa-solid fa-industry\"><\/i>\n                        <\/div>\n                        <strong>Posto 3: Conclusão<\/strong>\n                        <div style=\"font-size: 11px; margin-top: 4px;\">\n                            ⏱️ <span class=\"tc-value\">7<\/span>s\n                        <\/div>\n                        <div class=\"node-actions\">\n                            <button class=\"edit-btn\" onclick=\"editNodeInFlow('posto_6a03799988252')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                            <button class=\"delete-btn\" onclick=\"removeNodeFromFlow('posto_6a03799988252')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                            <button class=\"add-derived-btn\" onclick=\"showDeriveOptions('posto_6a03799988252')\" title=\"Derivar\"><i class=\"fa-solid fa-sitemap\"><\/i><\/button>\n                        <\/div>\n                    <\/div>\n                ",
+                    "typenode": false,
+                    "inputs": {
+                        "input_1": {
+                            "connections": [
+                                {
+                                    "node": "2",
+                                    "input": "output_1"
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {
+                        "output_1": {
+                            "connections": []
+                        }
+                    },
+                    "pos_x": 532,
+                    "pos_y": 150
+                }
+            }
+        }
+    }
+}

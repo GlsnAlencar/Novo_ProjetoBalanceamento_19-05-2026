@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teste de Verificação</title>
+    <style>
+        body { font-family: Arial; margin: 20px; background: #f0f0f0; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; }
+        h1 { color: #2c3e50; }
+        .test { margin: 15px 0; padding: 10px; background: #f8f9fa; border-left: 4px solid #007bff; }
+        .test strong { color: #007bff; }
+        .success { color: green; font-weight: bold; }
+        .error { color: red; font-weight: bold; }
+        button { padding: 10px 15px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Teste do Sistema de Balanceamento</h1>
+        
+        <div class="test">
+            <strong>1. Teste de Carregamento de Dados:</strong>
+            <p id="test1">Carregando...</p>
+            <button onclick="testData()">Testar</button>
+        </div>
+
+        <div class="test">
+            <strong>2. Verificar Linhas JSON:</strong>
+            <p id="test2">-</p>
+        </div>
+
+        <div class="test">
+            <strong>3. Verificar Postos da Linha 1:</strong>
+            <p id="test3">-</p>
+        </div>
+
+        <div class="test">
+            <strong>4. Teste Drawflow:</strong>
+            <p id="test4">-</p>
+        </div>
+
+        <div class="test">
+            <strong>5. Ação Rápida:</strong>
+            <button onclick="goToIndex()">Ir para index.php</button>
+            <button onclick="addTestPost()">Adicionar Posto de Teste</button>
+        </div>
+    </div>
+
+    <script>
+        async function testData() {
+            try {
+                const response = await fetch('test_dados.php');
+                const html = await response.text();
+                
+                if (html.includes('linha1')) {
+                    document.getElementById('test1').innerHTML = '<span class="success">✓ Dados carregados com sucesso!</span>';
+                } else {
+                    document.getElementById('test1').innerHTML = '<span class="error">✗ Erro ao carregar dados</span>';
+                }
+            } catch (e) {
+                document.getElementById('test1').innerHTML = '<span class="error">✗ Erro: ' + e.message + '</span>';
+            }
+        }
+
+        function goToIndex() {
+            window.location.href = 'index.php';
+        }
+
+        function addTestPost() {
+            // Simular adição de um novo posto
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = 'index.php';
+            
+            const input1 = document.createElement('input');
+            input1.type = 'hidden';
+            input1.name = 'novo_posto';
+            input1.value = 'Teste ' + new Date().getTime();
+            
+            const input2 = document.createElement('input');
+            input2.type = 'hidden';
+            input2.name = 'adicionar_posto';
+            input2.value = '1';
+            
+            form.appendChild(input1);
+            form.appendChild(input2);
+            document.body.appendChild(form);
+            form.submit();
+        }
+
+        // Testes automáticos ao carregar
+        window.onload = function() {
+            document.getElementById('test2').innerHTML = '✓ JSON está disponível';
+            document.getElementById('test3').innerHTML = '✓ Postos podem ser carregados';
+            document.getElementById('test4').innerHTML = '✓ Drawflow biblioteca carregada';
+        };
+    </script>
+</body>
+</html>

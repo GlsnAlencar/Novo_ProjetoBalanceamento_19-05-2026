@@ -1,0 +1,139 @@
+@import url("memoria/styles.css");
+
+/* Estilos Engenharia Industrial - Cronoanálise */
+:root {
+    --industrial-blue: #007bff;
+    --industrial-green: #28a745;
+    --industrial-purple: #6f42c1;
+    --industrial-yellow: #fff9e6;
+    --border-soft: #e0e6ed;
+}
+
+.main-container {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #2c3e50;
+}
+
+.header-grid {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.fields-left { flex: 1; }
+.header-row { display: flex; gap: 1rem; }
+
+.input-group-custom label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #64748b;
+    margin-bottom: 4px;
+}
+
+.highlight-unit input {
+    background-color: #eef2ff;
+    color: var(--industrial-blue) !important;
+    border: 1.5px solid var(--industrial-blue);
+}
+
+.input-group-custom input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--border-soft);
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.input-group-custom input:focus {
+    border-color: var(--industrial-blue);
+}
+
+.factors-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.5fr;
+    gap: 1.5rem;
+}
+
+.calc-card { 
+    border-radius: 12px; 
+    padding: 1.5rem; 
+    height: 100%; 
+    border-left: 6px solid #ccc; 
+    background: #fff; 
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+}
+
+.tr-block { border-left-color: var(--industrial-blue); background: #f0f7ff; }
+.tn-block { border-left-color: var(--industrial-green); background: #f4faf6; }
+.tp-block { border-left-color: var(--industrial-purple); background: #f8f5fe; }
+
+.result-box { background: #fff; padding: 12px; border-radius: 8px; margin-top: 10px; border: 1px solid rgba(0,0,0,0.05); }
+.result-box .label { display: block; font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+.result-box .value { font-size: 1.6rem; font-weight: 800; color: #333; }
+
+.formula-box { font-size: 0.75rem; color: #666; margin-top: 10px; border-top: 1px solid #ddd; padding-top: 5px; text-align: right; font-style: italic; }
+
+.time-selector-card {
+    background: #f8fafc;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    min-width: 280px;
+}
+
+.radio-ticagem { display: flex; gap: 8px; }
+.ticagem-item { flex: 1; cursor: pointer; }
+.ticagem-item input { display: none; }
+.ticagem-content { 
+    border: 1px solid #cbd5e1; 
+    padding: 8px; 
+    border-radius: 8px; 
+    text-align: center; 
+    background: #fff; 
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+.ticagem-content strong { font-size: 1.1rem; }
+.ticagem-content span { font-size: 0.7rem; color: #64748b; }
+.ticagem-item input:checked + .ticagem-content { 
+    background: var(--industrial-blue); 
+    color: #fff; 
+    border-color: var(--industrial-blue); 
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+}
+.ticagem-item input:checked + .ticagem-content span { color: rgba(255,255,255,0.8); }
+
+.icon-crono-blue { color: var(--industrial-blue); }
+
+.table-tolerancia {
+    width: 100%;
+    font-size: 0.85rem;
+}
+
+.table-tolerancia input[type="number"] {
+    width: 50px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.kpi-row {
+    display: flex;
+    gap: 10px;
+}
+
+.kpi-mini {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    background: #fff;
+    border: 1px solid var(--border-soft);
+}
+
+.memory-card { background: var(--industrial-yellow); border: 1px solid #ffeeba; padding: 1.5rem; border-radius: 12px; }

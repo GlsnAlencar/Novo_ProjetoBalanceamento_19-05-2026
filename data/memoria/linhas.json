@@ -1,0 +1,129 @@
+[
+    {
+        "id": "linha_recuperacao",
+        "nome": "Linha Recuperação",
+        "setor_id": "setor_recuperacao",
+        "conexoes": [],
+        "postos": [
+            {
+                "id": "posto_rec_1",
+                "tipo": "node",
+                "paralelo": false,
+                "postos_origem": [],
+                "postos_destino": [],
+                "nome": "Posto 1",
+                "configs": [],
+                "detalhes": [],
+                "recursos": {
+                    "num_pessoas": 1
+                }
+            },
+            {
+                "id": "posto_rec_2",
+                "tipo": "node",
+                "paralelo": false,
+                "postos_origem": [],
+                "postos_destino": [],
+                "nome": "Posto 2",
+                "configs": [],
+                "detalhes": [],
+                "recursos": {
+                    "num_pessoas": 1
+                }
+            },
+            {
+                "id": "posto_rec_3",
+                "tipo": "node",
+                "paralelo": false,
+                "postos_origem": [],
+                "postos_destino": [],
+                "nome": "Posto 3",
+                "configs": [],
+                "detalhes": [],
+                "recursos": {
+                    "num_pessoas": 1
+                }
+            }
+        ],
+        "unidade_basica": null
+    },
+    {
+        "id": "linha_1777904347_4576",
+        "nome": "Recuperação de postos",
+        "setor_id": "setor_recuperacao",
+        "postos": [],
+        "conexoes": [],
+        "unidade_basica": null
+    },
+    {
+        "id": "linha_1777985897_7437",
+        "nome": "áereo",
+        "setor_id": "setor_1777985897_1755",
+        "postos": [],
+        "conexoes": [],
+        "unidade_basica": null
+    },
+    {
+        "id": "linha_1778174843_4972",
+        "nome": "Linha01",
+        "setor_id": "setor_1778174816_6214",
+        "postos": [],
+        "conexoes": [],
+        "unidade_basica": null,
+        "drawflow_data": null
+    },
+    {
+        "id": "linha_1778601876_9313",
+        "nome": "wrew",
+        "setor_id": "setor_1",
+        "postos": [],
+        "conexoes": [],
+        "unidade_basica": null,
+        "drawflow_data": null
+    },
+    {
+        "id": "linha_1778601879_6478",
+        "nome": "werwer",
+        "setor_id": "setor_1",
+        "postos": [],
+        "conexoes": [],
+        "unidade_basica": null,
+        "drawflow_data": null
+    },
+    {
+        "id": "linha_1778601884_9406",
+        "nome": "ewrrwe",
+        "setor_id": "setor_1777985897_1755",
+        "postos": [],
+        "conexoes": [],
+        "unidade_basica": null,
+        "drawflow_data": null
+    },
+    {
+        "id": "linha_1778612168_2409",
+        "nome": "Linha02",
+        "setor_id": "setor_1",
+        "postos": [],
+        "conexoes": [],
+        "unidade_basica": null,
+        "drawflow_data": null
+    },
+    {
+        "id": "linha_1778612174_3102",
+        "nome": "Linha03",
+        "setor_id": "setor_1",
+        "postos": [],
+        "conexoes": [],
+        "unidade_basica": null,
+        "drawflow_data": null
+    },
+    {
+        "id": "linha_1778612182_9446",
+        "nome": "dfsdfsd",
+        "setor_id": "setor_1777985897_1755",
+        "postos": [],
+        "conexoes": [],
+        "unidade_basica": null,
+        "drawflow_data": null
+    }
+]

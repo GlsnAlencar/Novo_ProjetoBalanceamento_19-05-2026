@@ -1,0 +1,107 @@
+{
+    "version": 1,
+    "module_context": {
+        "scope": "CADASTROS_BASICOS_COMPARTILHADOS",
+        "storage": "data\/reformulacao\/cadastros_basicos.json",
+        "shared_with": [
+            "editor_bpm",
+            "arvore_estrutura"
+        ],
+        "future_ready_for": [
+            "calibradora",
+            "cronoanalise",
+            "balanceamento"
+        ]
+    },
+    "updated_at": "2026-05-17 19:45:12",
+    "setores": [],
+    "linhas": [],
+    "postos": [],
+    "maquinas": [],
+    "tipos_embalagem": [],
+    "unidades": [
+        {
+            "codigo": "ctt",
+            "nome": "ctt",
+            "ativo": 1,
+            "origem": "arvore_estrutura",
+            "id": "un_20260517194512_1250",
+            "descricao": "ctt",
+            "created_at": "2026-05-17 19:45:12",
+            "updated_at": "2026-05-17 19:45:12"
+        },
+        {
+            "codigo": "g",
+            "nome": "g",
+            "ativo": 1,
+            "origem": "arvore_estrutura",
+            "id": "un_20260517194512_1175",
+            "descricao": "g",
+            "created_at": "2026-05-17 19:45:12",
+            "updated_at": "2026-05-17 19:45:12"
+        },
+        {
+            "codigo": "kg",
+            "nome": "kg",
+            "ativo": 1,
+            "origem": "arvore_estrutura",
+            "id": "un_20260517194512_5083",
+            "descricao": "kg",
+            "created_at": "2026-05-17 19:45:12",
+            "updated_at": "2026-05-17 19:45:12"
+        },
+        {
+            "codigo": "l",
+            "nome": "l",
+            "ativo": 1,
+            "origem": "arvore_estrutura",
+            "id": "un_20260517194512_6858",
+            "descricao": "l",
+            "created_at": "2026-05-17 19:45:12",
+            "updated_at": "2026-05-17 19:45:12"
+        },
+        {
+            "codigo": "ml",
+            "nome": "ml",
+            "ativo": 1,
+            "origem": "arvore_estrutura",
+            "id": "un_20260517194512_1751",
+            "descricao": "ml",
+            "created_at": "2026-05-17 19:45:12",
+            "updated_at": "2026-05-17 19:45:12"
+        },
+        {
+            "codigo": "operacao",
+            "nome": "operacao",
+            "ativo": 1,
+            "origem": "arvore_estrutura",
+            "id": "un_20260517194512_5399",
+            "descricao": "operacao",
+            "created_at": "2026-05-17 19:45:12",
+            "updated_at": "2026-05-17 19:45:12"
+        },
+        {
+            "codigo": "pallet",
+            "nome": "pallet",
+            "ativo": 1,
+            "origem": "arvore_estrutura",
+            "id": "un_20260517194512_3237",
+            "descricao": "pallet",
+            "created_at": "2026-05-17 19:45:12",
+            "updated_at": "2026-05-17 19:45:12"
+        },
+        {
+            "codigo": "un",
+            "nome": "un",
+            "ativo": 1,
+            "origem": "arvore_estrutura",
+            "id": "un_20260517194512_7044",
+            "descricao": "un",
+            "created_at": "2026-05-17 19:45:12",
+            "updated_at": "2026-05-17 19:45:12"
+        }
+    ],
+    "produtos_itens": [],
+    "faixas_calibradora": [],
+    "atividades_padrao": []
+}

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Independente - Fluxo</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/drawflow@0.0.59/dist/drawflow.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/drawflow@0.0.59/dist/drawflow.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        .controls {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        #drawflow {
+            width: 100%;
+            height: 500px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: white;
+            background-image: 
+                linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            background: #f0f0f0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .node-simple {
+            background: #e0f7fa;
+            border: 1px solid #00bcd4;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            color: #00838f;
+            min-width: 150px;
+            min-height: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Teste Independente - Drawflow</h1>
+        
+        <div class="controls">
+            <button onclick="testAddNode()">➕ Adicionar Nó</button>
+            <button onclick="testSave()">💾 Salvar Estado</button>
+            <button onclick="testExport()">📤 Exportar</button>
+            <button onclick="testAPI()">🔌 Testar API</button>
+            <button onclick="clearLog()">🗑️ Limpar Log</button>
+        </div>
+
+        <div id="drawflow"></div>
+
+        <div class="status">
+            <strong>📋 Log de Eventos:</strong>
+            <div id="log"></div>
+        </div>
+    </div>
+
+    <script>
+        let editor = null;
+        let nodeCount = 1;
+        
+        function log(message) {
+            const logDiv = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            logDiv.innerHTML += `[${timestamp}] ${message}\n`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log(message);
+        }
+
+        function clearLog() {
+            document.getElementById('log').innerHTML = '';
+        }
+
+        function initDrawflow() {
+            const container = document.getElementById('drawflow');
+            editor = new Drawflow(container);
+            editor.reroute = true;
+            editor.zoom_max = 2;
+            editor.zoom_min = 0.3;
+            editor.start();
+
+            log('✅ Drawflow inicializado');
+            
+            // Adicionar nó de teste inicial
+            testAddNode();
+        }
+
+        function testAddNode() {
+            if (!editor) {
+                log('❌ Editor não inicializado');
+                return;
+            }
+
+            const id = editor.addNode(
+                'node',
+                1, 1,
+                100 + (nodeCount * 150), 150,
+                'node',
+                { name: `Nó ${nodeCount}` },
+                `<div class="node-simple">Nó ${nodeCount}</div>`
+            );
+
+            log(`✅ Nó ${nodeCount} adicionado com ID: ${id}`);
+            nodeCount++;
+        }
+
+        function testExport() {
+            if (!editor) {
+                log('❌ Editor não inicializado');
+                return;
+            }
+
+            const data = editor.export();
+            log(`📊 Estado exportado: ${JSON.stringify(data, null, 2)}`);
+        }
+
+        function testSave() {
+            if (!editor) {
+                log('❌ Editor não inicializado');
+                return;
+            }
+
+            const data = editor.export();
+            
+            // Salvar no localStorage como backup
+            localStorage.setItem('test_drawflow_state', JSON.stringify(data));
+            log('✅ Estado salvo no localStorage');
+
+            // Tentar salvar na API
+            const formData = new FormData();
+            formData.append('action', 'save_drawflow_data');
+            formData.append('linha_id', 'test_linha_001');
+            formData.append('drawflow_data', JSON.stringify(data));
+
+            fetch('api_drawflow.php', { method: 'POST', body: formData })
+                .then(res => res.json())
+                .then(result => {
+                    if (result.status === 'success') {
+                        log('✅ Dados salvos na API com sucesso');
+                    } else {
+                        log(`❌ Erro ao salvar na API: ${result.message}`);
+                    }
+                })
+                .catch(err => {
+                    log(`❌ Erro na requisição: ${err.message}`);
+                });
+        }
+
+        function testAPI() {
+            log('🔌 Testando API...');
+
+            // Teste 1: Gerar ID
+            fetch('api_drawflow.php?action=generate_id')
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        log(`✅ ID gerado pela API: ${data.id}`);
+                    } else {
+                        log(`❌ Erro ao gerar ID: ${data.message}`);
+                    }
+                })
+                .catch(err => log(`❌ Erro ao chamar API: ${err.message}`));
+
+            // Teste 2: Carregar fluxo de teste
+            fetch('api_drawflow.php?action=load_drawflow_data&linha_id=test_linha_001')
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        log(`✅ Fluxo carregado da API: ${data.drawflow_data ? 'com dados' : 'vazio'}`);
+                        if (data.drawflow_data) {
+                            log(`📊 Tipo de drawflow_data: ${typeof data.drawflow_data}`);
+                        }
+                    } else {
+                        log(`❌ Erro ao carregar fluxo: ${data.message}`);
+                    }
+                })
+                .catch(err => log(`❌ Erro ao chamar API: ${err.message}`));
+        }
+
+        // Inicializar ao carregar
+        window.onload = initDrawflow;
+    </script>
+</body>
+</html>

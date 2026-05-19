@@ -1,0 +1,27 @@
+[
+    {
+        "id": "setor_recuperacao",
+        "nome": "Recuperação de postos",
+        "descricao": "Setor para postos recuperados",
+        "linhas_ids": [
+            "linha_recuperacao",
+            "linha_1777904347_4576"
+        ]
+    },
+    {
+        "id": "setor_1777985897_1755",
+        "nome": "áereo",
+        "descricao": "",
+        "data_criacao": "2026-05-05 12:58:17",
+        "linhas_ids": [
+            "linha_1777985897_7437"
+        ]
+    },
+    {
+        "id": "setor_1778174816_6214",
+        "nome": "Setor01",
+        "descricao": "",
+        "data_criacao": "2026-05-07 17:26:56",
+        "linhas_ids": []
+    }
+]

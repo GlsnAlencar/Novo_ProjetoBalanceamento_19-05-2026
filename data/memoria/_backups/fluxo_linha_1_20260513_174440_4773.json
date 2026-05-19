@@ -1,0 +1,202 @@
+{
+    "drawflow": {
+        "Home": {
+            "data": {
+                "1": {
+                    "id": 1,
+                    "name": "node",
+                    "data": {
+                        "id": "posto_6a034f8f2c1ed",
+                        "name": "Posto 1: Início",
+                        "tc": 10
+                    },
+                    "class": "node",
+                    "html": "\n                    <div class=\"node-content\" id=\"node-content-posto_6a034f8f2c1ed\">\n                        <div class=\"node-icon\">\n                            <i class=\"fa-solid fa-industry\"><\/i>\n                        <\/div>\n                        <strong>Posto 1: Início<\/strong>\n                        <div style=\"font-size: 11px; margin-top: 4px;\">\n                            ⏱️ <span class=\"tc-value\">10<\/span>s\n                        <\/div>\n                        <div class=\"node-actions\">\n                            <button class=\"edit-btn\" onclick=\"editNodeInFlow('posto_6a034f8f2c1ed')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                            <button class=\"delete-btn\" onclick=\"removeNodeFromFlow('posto_6a034f8f2c1ed')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                            <button class=\"add-derived-btn\" onclick=\"showDeriveOptions('posto_6a034f8f2c1ed')\" title=\"Derivar\"><i class=\"fa-solid fa-sitemap\"><\/i><\/button>\n                        <\/div>\n                    <\/div>\n                ",
+                    "typenode": false,
+                    "inputs": {
+                        "input_1": {
+                            "connections": []
+                        }
+                    },
+                    "outputs": {
+                        "output_1": {
+                            "connections": [
+                                {
+                                    "node": "6",
+                                    "output": "input_1"
+                                }
+                            ]
+                        }
+                    },
+                    "pos_x": 96.33333333333333,
+                    "pos_y": null
+                },
+                "2": {
+                    "id": 2,
+                    "name": "node",
+                    "data": {
+                        "id": "posto_6a034f8f2fb4a",
+                        "name": "Posto 2: Processamento",
+                        "tc": 8
+                    },
+                    "class": "node",
+                    "html": "\n                    <div class=\"node-content\" id=\"node-content-posto_6a034f8f2fb4a\">\n                        <div class=\"node-icon\">\n                            <i class=\"fa-solid fa-industry\"><\/i>\n                        <\/div>\n                        <strong>Posto 2: Processamento<\/strong>\n                        <div style=\"font-size: 11px; margin-top: 4px;\">\n                            ⏱️ <span class=\"tc-value\">8<\/span>s\n                        <\/div>\n                        <div class=\"node-actions\">\n                            <button class=\"edit-btn\" onclick=\"editNodeInFlow('posto_6a034f8f2fb4a')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                            <button class=\"delete-btn\" onclick=\"removeNodeFromFlow('posto_6a034f8f2fb4a')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                            <button class=\"add-derived-btn\" onclick=\"showDeriveOptions('posto_6a034f8f2fb4a')\" title=\"Derivar\"><i class=\"fa-solid fa-sitemap\"><\/i><\/button>\n                        <\/div>\n                    <\/div>\n                ",
+                    "typenode": false,
+                    "inputs": {
+                        "input_1": {
+                            "connections": [
+                                {
+                                    "node": "6",
+                                    "input": "output_1"
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {
+                        "output_1": {
+                            "connections": [
+                                {
+                                    "node": "3",
+                                    "output": "input_1"
+                                }
+                            ]
+                        }
+                    },
+                    "pos_x": 708,
+                    "pos_y": -101
+                },
+                "3": {
+                    "id": 3,
+                    "name": "node",
+                    "data": {
+                        "id": "posto_6a034f8f360aa",
+                        "name": "Posto 3: Conclusão",
+                        "tc": 7
+                    },
+                    "class": "node",
+                    "html": "\n                    <div class=\"node-content\" id=\"node-content-posto_6a034f8f360aa\">\n                        <div class=\"node-icon\">\n                            <i class=\"fa-solid fa-industry\"><\/i>\n                        <\/div>\n                        <strong>Posto 3: Conclusão<\/strong>\n                        <div style=\"font-size: 11px; margin-top: 4px;\">\n                            ⏱️ <span class=\"tc-value\">7<\/span>s\n                        <\/div>\n                        <div class=\"node-actions\">\n                            <button class=\"edit-btn\" onclick=\"editNodeInFlow('posto_6a034f8f360aa')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                            <button class=\"delete-btn\" onclick=\"removeNodeFromFlow('posto_6a034f8f360aa')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                            <button class=\"add-derived-btn\" onclick=\"showDeriveOptions('posto_6a034f8f360aa')\" title=\"Derivar\"><i class=\"fa-solid fa-sitemap\"><\/i><\/button>\n                        <\/div>\n                    <\/div>\n                ",
+                    "typenode": false,
+                    "inputs": {
+                        "input_1": {
+                            "connections": [
+                                {
+                                    "node": "2",
+                                    "input": "output_1"
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {
+                        "output_1": {
+                            "connections": [
+                                {
+                                    "node": "5",
+                                    "output": "input_1"
+                                }
+                            ]
+                        }
+                    },
+                    "pos_x": 1015,
+                    "pos_y": -11
+                },
+                "4": {
+                    "id": 4,
+                    "name": "node",
+                    "data": {
+                        "id": "posto_6a03556725e83",
+                        "name": "wqwqe",
+                        "tc": 9
+                    },
+                    "class": "node",
+                    "html": "\n                    <div class=\"node-content\" id=\"node-content-posto_6a03556725e83\">\n                        <div class=\"node-icon\">\n                            <i class=\"fa-solid fa-industry\"><\/i>\n                        <\/div>\n                        <strong>wqwqe<\/strong>\n                        <div style=\"font-size: 11px; margin-top: 4px;\">\n                            ⏱️ <span class=\"tc-value\">9<\/span>s\n                        <\/div>\n                        <div class=\"node-actions\">\n                            <button class=\"edit-btn\" onclick=\"editNodeInFlow('posto_6a03556725e83')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                            <button class=\"delete-btn\" onclick=\"removeNodeFromFlow('posto_6a03556725e83')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                            <button class=\"add-derived-btn\" onclick=\"showDeriveOptions('posto_6a03556725e83')\" title=\"Derivar\"><i class=\"fa-solid fa-sitemap\"><\/i><\/button>\n                        <\/div>\n                    <\/div>\n                ",
+                    "typenode": false,
+                    "inputs": {
+                        "input_1": {
+                            "connections": [
+                                {
+                                    "node": "5",
+                                    "input": "output_1"
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {
+                        "output_1": {
+                            "connections": []
+                        }
+                    },
+                    "pos_x": 1735.6666666666667,
+                    "pos_y": 0
+                },
+                "5": {
+                    "id": 5,
+                    "name": "node",
+                    "data": {
+                        "id": "posto_6a036249f40cb",
+                        "name": "eqweqw",
+                        "tc": 10
+                    },
+                    "class": "node",
+                    "html": "\n                    <div class=\"node-content\" id=\"node-content-posto_6a036249f40cb\">\n                        <div class=\"node-icon\">\n                            <i class=\"fa-solid fa-industry\"><\/i>\n                        <\/div>\n                        <strong>eqweqw<\/strong>\n                        <div style=\"font-size: 11px; margin-top: 4px;\">\n                            ⏱️ <span class=\"tc-value\">10<\/span>s\n                        <\/div>\n                        <div class=\"node-actions\">\n                            <button class=\"edit-btn\" onclick=\"editNodeInFlow('posto_6a036249f40cb')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                            <button class=\"delete-btn\" onclick=\"removeNodeFromFlow('posto_6a036249f40cb')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                            <button class=\"add-derived-btn\" onclick=\"showDeriveOptions('posto_6a036249f40cb')\" title=\"Derivar\"><i class=\"fa-solid fa-sitemap\"><\/i><\/button>\n                        <\/div>\n                    <\/div>\n                ",
+                    "typenode": false,
+                    "inputs": {
+                        "input_1": {
+                            "connections": [
+                                {
+                                    "node": "3",
+                                    "input": "output_1"
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {
+                        "output_1": {
+                            "connections": [
+                                {
+                                    "node": "4",
+                                    "output": "input_1"
+                                }
+                            ]
+                        }
+                    },
+                    "pos_x": 1468.6666666666667,
+                    "pos_y": 0
+                },
+                "6": {
+                    "id": 6,
+                    "name": "node",
+                    "data": {
+                        "id": "posto_6a03625576f3f",
+                        "name": "1wwww",
+                        "tc": 10
+                    },
+                    "class": "node",
+                    "html": "\n                    <div class=\"node-content\" id=\"node-content-posto_6a03625576f3f\">\n                        <div class=\"node-icon\">\n                            <i class=\"fa-solid fa-industry\"><\/i>\n                        <\/div>\n                        <strong>1wwww<\/strong>\n                        <div style=\"font-size: 11px; margin-top: 4px;\">\n                            ⏱️ <span class=\"tc-value\">10<\/span>s\n                        <\/div>\n                        <div class=\"node-actions\">\n                            <button class=\"edit-btn\" onclick=\"editNodeInFlow('posto_6a03625576f3f')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                            <button class=\"delete-btn\" onclick=\"removeNodeFromFlow('posto_6a03625576f3f')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                            <button class=\"add-derived-btn\" onclick=\"showDeriveOptions('posto_6a03625576f3f')\" title=\"Derivar\"><i class=\"fa-solid fa-sitemap\"><\/i><\/button>\n                        <\/div>\n                    <\/div>\n                ",
+                    "typenode": false,
+                    "inputs": {
+                        "input_1": {
+                            "connections": [
+                                {
+                                    "node": "1",
+                                    "input": "output_1"
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {
+                        "output_1": {
+                            "connections": [
+                                {
+                                    "node": "2",
+                                    "output": "input_1"
+                                }
+                            ]
+                        }
+                    },
+                    "pos_x": 413,
+                    "pos_y": null
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,1796 @@
+{
+    "version": 1,
+    "module_context": {
+        "scope": "REFORMULACAO_COD_12_05",
+        "label": "REFORMULACAO",
+        "legacy_label": "MEMORIA",
+        "storage": "data\/reformulacao\/fluxo_teste02.json",
+        "isolated_from": [
+            "public\/memoria\/FLUXO_TESTE02.php",
+            "data\/memoria\/linhas.json",
+            "data\/memoria\/setores.json"
+        ]
+    },
+    "updated_at": "2026-05-15 02:37:44",
+    "setores": [
+        {
+            "id": "cod_12_05_setor_1",
+            "nome": "Setor 1",
+            "linhas": [
+                {
+                    "id": "cod_12_05_linha_fluxo_packing_completo",
+                    "nome": "Fluxo Packing - Completo",
+                    "drawflow_data": {
+                        "drawflow": {
+                            "Home": {
+                                "data": {
+                                    "1": {
+                                        "id": 1,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_1",
+                                            "name": "Puxar fruta",
+                                            "type": "node",
+                                            "tc": 177,
+                                            "icon": "fa-hand",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-hand\"><\/i><\/div>\n                    <strong>Puxar fruta<\/strong>\n                    <div>TC: <span class=\"tc-value\">177<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_1')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_1')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_1')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": []
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "2",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": -1103.75,
+                                        "pos_y": 171
+                                    },
+                                    "2": {
+                                        "id": 2,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_2",
+                                            "name": "Posicionar contentor",
+                                            "type": "node",
+                                            "tc": 4.64,
+                                            "icon": "fa-box",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-box\"><\/i><\/div>\n                    <strong>Posicionar contentor<\/strong>\n                    <div>TC: <span class=\"tc-value\">4.64<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_2')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_2')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_2')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "1",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "3",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": -825,
+                                        "pos_y": 171
+                                    },
+                                    "3": {
+                                        "id": 3,
+                                        "name": "decision_parallel",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_3",
+                                            "name": "Paralelo: saida contentor",
+                                            "type": "decision_parallel",
+                                            "tc": 0,
+                                            "icon": "fa-plus",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "decision_parallel",
+                                        "html": "\n                    <div class=\"gateway-container\">\n                        <div class=\"gateway-diamond\"><i class=\"fa-solid fa-plus\"><\/i><\/div>\n                        <div class=\"gateway-label\"><strong>Paralelo: saida contentor<\/strong><\/div>\n                        <div class=\"node-actions\">\n                            <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_3')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                            <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_3')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                            <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_3')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                        <\/div>\n                    <\/div>\n                ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "2",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "4",
+                                                        "output": "input_1"
+                                                    },
+                                                    {
+                                                        "node": "5",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": -518,
+                                        "pos_y": 177.66666666666666
+                                    },
+                                    "4": {
+                                        "id": 4,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_4",
+                                            "name": "Remover Papel",
+                                            "type": "node",
+                                            "tc": 0,
+                                            "icon": "fa-scissors",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-scissors\"><\/i><\/div>\n                    <strong>Remover Papel<\/strong>\n                    <div>TC: <span class=\"tc-value\">0<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_4')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_4')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_4')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "3",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "6",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": -278.3333333333333,
+                                        "pos_y": -41
+                                    },
+                                    "5": {
+                                        "id": 5,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_5",
+                                            "name": "Agrupar",
+                                            "type": "node",
+                                            "tc": 8.62,
+                                            "icon": "fa-layer-group",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-layer-group\"><\/i><\/div>\n                    <strong>Agrupar<\/strong>\n                    <div>TC: <span class=\"tc-value\">8.62<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_5')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_5')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_5')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "3",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "29",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 477,
+                                        "pos_y": 747
+                                    },
+                                    "6": {
+                                        "id": 6,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_6",
+                                            "name": "Maquina Grande",
+                                            "type": "node",
+                                            "tc": 0,
+                                            "icon": "fa-gears",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-gears\"><\/i><\/div>\n                    <strong>Maquina Grande<\/strong>\n                    <div>TC: <span class=\"tc-value\">0<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_6')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_6')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_6')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "4",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "7",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 20,
+                                        "pos_y": -40
+                                    },
+                                    "7": {
+                                        "id": 7,
+                                        "name": "decision_parallel",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_7",
+                                            "name": "Paralelo: linhas",
+                                            "type": "decision_parallel",
+                                            "tc": 0,
+                                            "icon": "fa-plus",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "decision_parallel",
+                                        "html": "\n                    <div class=\"gateway-container\">\n                        <div class=\"gateway-diamond\"><i class=\"fa-solid fa-plus\"><\/i><\/div>\n                        <div class=\"gateway-label\"><strong>Paralelo: linhas<\/strong><\/div>\n                        <div class=\"node-actions\">\n                            <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_7')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                            <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_7')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                            <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_7')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                        <\/div>\n                    <\/div>\n                ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "6",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "8",
+                                                        "output": "input_1"
+                                                    },
+                                                    {
+                                                        "node": "9",
+                                                        "output": "input_1"
+                                                    },
+                                                    {
+                                                        "node": "10",
+                                                        "output": "input_1"
+                                                    },
+                                                    {
+                                                        "node": "11",
+                                                        "output": "input_1"
+                                                    },
+                                                    {
+                                                        "node": "12",
+                                                        "output": "input_1"
+                                                    },
+                                                    {
+                                                        "node": "13",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 300,
+                                        "pos_y": -25
+                                    },
+                                    "8": {
+                                        "id": 8,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_8",
+                                            "name": "Linha 1",
+                                            "type": "node",
+                                            "tc": 0,
+                                            "icon": "fa-code-branch",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-code-branch\"><\/i><\/div>\n                    <strong>Linha 1<\/strong>\n                    <div>TC: <span class=\"tc-value\">0<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_8')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_8')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_8')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "7",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "14",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 554,
+                                        "pos_y": -498
+                                    },
+                                    "9": {
+                                        "id": 9,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_9",
+                                            "name": "Linha 2",
+                                            "type": "node",
+                                            "tc": 0,
+                                            "icon": "fa-code-branch",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-code-branch\"><\/i><\/div>\n                    <strong>Linha 2<\/strong>\n                    <div>TC: <span class=\"tc-value\">0<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_9')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_9')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_9')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "7",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "14",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 554,
+                                        "pos_y": -285.85714285714283
+                                    },
+                                    "10": {
+                                        "id": 10,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_10",
+                                            "name": "Linha 3",
+                                            "type": "node",
+                                            "tc": 0,
+                                            "icon": "fa-code-branch",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-code-branch\"><\/i><\/div>\n                    <strong>Linha 3<\/strong>\n                    <div>TC: <span class=\"tc-value\">0<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_10')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_10')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_10')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "7",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "15",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 563,
+                                        "pos_y": -138.57142857142858
+                                    },
+                                    "11": {
+                                        "id": 11,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_11",
+                                            "name": "Linha 4",
+                                            "type": "node",
+                                            "tc": 0,
+                                            "icon": "fa-code-branch",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-code-branch\"><\/i><\/div>\n                    <strong>Linha 4<\/strong>\n                    <div>TC: <span class=\"tc-value\">0<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_11')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_11')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_11')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "7",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "15",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 560.1428571428571,
+                                        "pos_y": 19
+                                    },
+                                    "12": {
+                                        "id": 12,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_12",
+                                            "name": "Linha 5",
+                                            "type": "node",
+                                            "tc": 0,
+                                            "icon": "fa-code-branch",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-code-branch\"><\/i><\/div>\n                    <strong>Linha 5<\/strong>\n                    <div>TC: <span class=\"tc-value\">0<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_12')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_12')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_12')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "7",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "18",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 565,
+                                        "pos_y": 171
+                                    },
+                                    "13": {
+                                        "id": 13,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_13",
+                                            "name": "Repasse",
+                                            "type": "node",
+                                            "tc": 0,
+                                            "icon": "fa-recycle",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-recycle\"><\/i><\/div>\n                    <strong>Repasse<\/strong>\n                    <div>TC: <span class=\"tc-value\">0<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_13')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_13')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_13')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "7",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "28",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 554,
+                                        "pos_y": 410.3333333333333
+                                    },
+                                    "14": {
+                                        "id": 14,
+                                        "name": "decision_parallel",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_14",
+                                            "name": "Paralelo: Selo 01",
+                                            "type": "decision_parallel",
+                                            "tc": 0,
+                                            "icon": "fa-plus",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "decision_parallel",
+                                        "html": "\n                    <div class=\"gateway-container\">\n                        <div class=\"gateway-diamond\"><i class=\"fa-solid fa-plus\"><\/i><\/div>\n                        <div class=\"gateway-label\"><strong>Paralelo: Selo 01<\/strong><\/div>\n                        <div class=\"node-actions\">\n                            <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_14')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                            <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_14')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                            <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_14')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                        <\/div>\n                    <\/div>\n                ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "8",
+                                                        "input": "output_1"
+                                                    },
+                                                    {
+                                                        "node": "9",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "16",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 840,
+                                        "pos_y": -375
+                                    },
+                                    "15": {
+                                        "id": 15,
+                                        "name": "decision_parallel",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_15",
+                                            "name": "Paralelo: Selo 02",
+                                            "type": "decision_parallel",
+                                            "tc": 0,
+                                            "icon": "fa-plus",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "decision_parallel",
+                                        "html": "\n                    <div class=\"gateway-container\">\n                        <div class=\"gateway-diamond\"><i class=\"fa-solid fa-plus\"><\/i><\/div>\n                        <div class=\"gateway-label\"><strong>Paralelo: Selo 02<\/strong><\/div>\n                        <div class=\"node-actions\">\n                            <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_15')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                            <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_15')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                            <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_15')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                        <\/div>\n                    <\/div>\n                ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "10",
+                                                        "input": "output_1"
+                                                    },
+                                                    {
+                                                        "node": "11",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "17",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 845,
+                                        "pos_y": -50
+                                    },
+                                    "16": {
+                                        "id": 16,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_16",
+                                            "name": "Selo 01",
+                                            "type": "node",
+                                            "tc": 0,
+                                            "icon": "fa-certificate",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-certificate\"><\/i><\/div>\n                    <strong>Selo 01<\/strong>\n                    <div>TC: <span class=\"tc-value\">0<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_16')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_16')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_16')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "14",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "19",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 1120,
+                                        "pos_y": -290
+                                    },
+                                    "17": {
+                                        "id": 17,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_17",
+                                            "name": "Selo 02",
+                                            "type": "node",
+                                            "tc": 0,
+                                            "icon": "fa-certificate",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-certificate\"><\/i><\/div>\n                    <strong>Selo 02<\/strong>\n                    <div>TC: <span class=\"tc-value\">0<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_17')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_17')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_17')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "15",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "19",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 1120,
+                                        "pos_y": -10
+                                    },
+                                    "18": {
+                                        "id": 18,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_18",
+                                            "name": "Selo 03",
+                                            "type": "node",
+                                            "tc": 0,
+                                            "icon": "fa-certificate",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-certificate\"><\/i><\/div>\n                    <strong>Selo 03<\/strong>\n                    <div>TC: <span class=\"tc-value\">0<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_18')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_18')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_18')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "12",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "19",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 1120,
+                                        "pos_y": 200
+                                    },
+                                    "19": {
+                                        "id": 19,
+                                        "name": "decision_parallel",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_19",
+                                            "name": "Paralelo: etiquetas",
+                                            "type": "decision_parallel",
+                                            "tc": 0,
+                                            "icon": "fa-plus",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "decision_parallel",
+                                        "html": "\n                    <div class=\"gateway-container\">\n                        <div class=\"gateway-diamond\"><i class=\"fa-solid fa-plus\"><\/i><\/div>\n                        <div class=\"gateway-label\"><strong>Paralelo: etiquetas<\/strong><\/div>\n                        <div class=\"node-actions\">\n                            <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_19')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                            <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_19')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                            <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_19')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                        <\/div>\n                    <\/div>\n                ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "16",
+                                                        "input": "output_1"
+                                                    },
+                                                    {
+                                                        "node": "17",
+                                                        "input": "output_1"
+                                                    },
+                                                    {
+                                                        "node": "18",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "20",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 1449,
+                                        "pos_y": 2.3333333333333335
+                                    },
+                                    "20": {
+                                        "id": 20,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_20",
+                                            "name": "Etiquetar",
+                                            "type": "node",
+                                            "tc": 2,
+                                            "icon": "fa-tag",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-tag\"><\/i><\/div>\n                    <strong>Etiquetar<\/strong>\n                    <div>TC: <span class=\"tc-value\">2<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_20')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_20')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_20')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "19",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "21",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 1652,
+                                        "pos_y": -14.222222222222221
+                                    },
+                                    "21": {
+                                        "id": 21,
+                                        "name": "decision_parallel",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_21",
+                                            "name": "Paralelo: paletizacao",
+                                            "type": "decision_parallel",
+                                            "tc": 0,
+                                            "icon": "fa-plus",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "decision_parallel",
+                                        "html": "\n                    <div class=\"gateway-container\">\n                        <div class=\"gateway-diamond\"><i class=\"fa-solid fa-plus\"><\/i><\/div>\n                        <div class=\"gateway-label\"><strong>Paralelo: paletizacao<\/strong><\/div>\n                        <div class=\"node-actions\">\n                            <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_21')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                            <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_21')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                            <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_21')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                        <\/div>\n                    <\/div>\n                ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "20",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "22",
+                                                        "output": "input_1"
+                                                    },
+                                                    {
+                                                        "node": "23",
+                                                        "output": "input_1"
+                                                    },
+                                                    {
+                                                        "node": "24",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 1950,
+                                        "pos_y": -5
+                                    },
+                                    "22": {
+                                        "id": 22,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_22",
+                                            "name": "Paletizacao 1",
+                                            "type": "node",
+                                            "tc": 59,
+                                            "icon": "fa-boxes-stacked",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-boxes-stacked\"><\/i><\/div>\n                    <strong>Paletizacao 1<\/strong>\n                    <div>TC: <span class=\"tc-value\">59<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_22')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_22')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_22')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "21",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "25",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 2220,
+                                        "pos_y": -250
+                                    },
+                                    "23": {
+                                        "id": 23,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_23",
+                                            "name": "Paletizacao 2",
+                                            "type": "node",
+                                            "tc": 416.5,
+                                            "icon": "fa-boxes-stacked",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-boxes-stacked\"><\/i><\/div>\n                    <strong>Paletizacao 2<\/strong>\n                    <div>TC: <span class=\"tc-value\">416.5<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_23')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_23')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_23')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "21",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "25",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 2220,
+                                        "pos_y": -20
+                                    },
+                                    "24": {
+                                        "id": 24,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_24",
+                                            "name": "Paletizacao 3",
+                                            "type": "node",
+                                            "tc": 312,
+                                            "icon": "fa-boxes-stacked",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-boxes-stacked\"><\/i><\/div>\n                    <strong>Paletizacao 3<\/strong>\n                    <div>TC: <span class=\"tc-value\">312<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_24')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_24')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_24')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "21",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "25",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 2220,
+                                        "pos_y": 210
+                                    },
+                                    "25": {
+                                        "id": 25,
+                                        "name": "decision_parallel",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_25",
+                                            "name": "Paralelo: fechar paletes",
+                                            "type": "decision_parallel",
+                                            "tc": 0,
+                                            "icon": "fa-plus",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "decision_parallel",
+                                        "html": "\n                    <div class=\"gateway-container\">\n                        <div class=\"gateway-diamond\"><i class=\"fa-solid fa-plus\"><\/i><\/div>\n                        <div class=\"gateway-label\"><strong>Paralelo: fechar paletes<\/strong><\/div>\n                        <div class=\"node-actions\">\n                            <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_25')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                            <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_25')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                            <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_25')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                        <\/div>\n                    <\/div>\n                ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "22",
+                                                        "input": "output_1"
+                                                    },
+                                                    {
+                                                        "node": "23",
+                                                        "input": "output_1"
+                                                    },
+                                                    {
+                                                        "node": "24",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "26",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 2532.1428571428573,
+                                        "pos_y": -11
+                                    },
+                                    "26": {
+                                        "id": 26,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_26",
+                                            "name": "Arquear palete",
+                                            "type": "node",
+                                            "tc": 0,
+                                            "icon": "fa-compress",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-compress\"><\/i><\/div>\n                    <strong>Arquear palete<\/strong>\n                    <div>TC: <span class=\"tc-value\">0<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_26')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_26')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_26')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "25",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "27",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 2780,
+                                        "pos_y": -20
+                                    },
+                                    "27": {
+                                        "id": 27,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_27",
+                                            "name": "Transportar palete",
+                                            "type": "node",
+                                            "tc": 297.43,
+                                            "icon": "fa-truck",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-truck\"><\/i><\/div>\n                    <strong>Transportar palete<\/strong>\n                    <div>TC: <span class=\"tc-value\">297.43<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_27')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_27')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_27')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "26",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": []
+                                            }
+                                        },
+                                        "pos_x": 3070,
+                                        "pos_y": -20
+                                    },
+                                    "28": {
+                                        "id": 28,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_28",
+                                            "name": "Transportar repasse",
+                                            "type": "node",
+                                            "tc": 0,
+                                            "icon": "fa-truck-ramp-box",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-truck-ramp-box\"><\/i><\/div>\n                    <strong>Transportar repasse<\/strong>\n                    <div>TC: <span class=\"tc-value\">0<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_28')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_28')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_28')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "13",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": []
+                                            }
+                                        },
+                                        "pos_x": 1105,
+                                        "pos_y": 416.85714285714283
+                                    },
+                                    "29": {
+                                        "id": 29,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_29",
+                                            "name": "Paletizar contentor",
+                                            "type": "node",
+                                            "tc": 15.86,
+                                            "icon": "fa-boxes-stacked",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-boxes-stacked\"><\/i><\/div>\n                    <strong>Paletizar contentor<\/strong>\n                    <div>TC: <span class=\"tc-value\">15.86<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_29')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_29')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_29')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "5",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "30",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 771,
+                                        "pos_y": 747
+                                    },
+                                    "30": {
+                                        "id": 30,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_fluxo_completo_30",
+                                            "name": "Transportar",
+                                            "type": "node",
+                                            "tc": 140,
+                                            "icon": "fa-truck",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-truck\"><\/i><\/div>\n                    <strong>Transportar<\/strong>\n                    <div>TC: <span class=\"tc-value\">140<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_30')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_30')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_30')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "29",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": []
+                                            }
+                                        },
+                                        "pos_x": 1097,
+                                        "pos_y": 749
+                                    }
+                                }
+                            }
+                        },
+                        "viewport_state": {
+                            "zoom": 0.5,
+                            "x": 615.0323812663946,
+                            "y": -60.206705551027895
+                        },
+                        "module_context": {
+                            "scope": "REFORMULACAO_COD_12_05",
+                            "label": "REFORMULACAO",
+                            "legacy_label": "MEMORIA",
+                            "storage": "data\/reformulacao\/fluxo_teste02.json",
+                            "isolated_from": [
+                                "public\/memoria\/FLUXO_TESTE02.php",
+                                "data\/memoria\/linhas.json",
+                                "data\/memoria\/setores.json"
+                            ]
+                        }
+                    },
+                    "created_at": "2026-05-13 12:57:33",
+                    "updated_at": "2026-05-15 02:37:44"
+                },
+                {
+                    "id": "cod_12_05_linha_20260515021527_6300",
+                    "nome": "Fluxo 02",
+                    "drawflow_data": null,
+                    "created_at": "2026-05-15 02:15:27",
+                    "updated_at": "2026-05-15 02:15:27"
+                }
+            ],
+            "created_at": "2026-05-12 22:52:00",
+            "updated_at": "2026-05-15 02:37:44"
+        },
+        {
+            "id": "cod_12_05_setor_20260513041753_1674",
+            "nome": "cod_12_05_TESTE_BPMN_COMBINACOES",
+            "linhas": [
+                {
+                    "id": "cod_12_05_linha_20260513041753_9066",
+                    "nome": "Teste serie paralelo simetrico",
+                    "drawflow_data": {
+                        "drawflow": {
+                            "Home": {
+                                "data": {
+                                    "1": {
+                                        "id": 1,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_test_start",
+                                            "name": "Inicio",
+                                            "type": "node",
+                                            "tc": 5,
+                                            "icon": "fa-industry",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Inicio<\/strong>\n                    <div>TC: <span class=\"tc-value\">5<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_test_start')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_test_start')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_test_start')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": []
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "2",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": -395,
+                                        "pos_y": 55
+                                    },
+                                    "2": {
+                                        "id": 2,
+                                        "name": "decision_exclusive",
+                                        "data": {
+                                            "id": "cod_12_05_test_xor_split",
+                                            "name": "Escolha",
+                                            "type": "decision_exclusive",
+                                            "tc": 0,
+                                            "icon": "fa-industry",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "decision_exclusive",
+                                        "html": "\n                    <div class=\"gateway-container\">\n                        <div class=\"gateway-diamond\"><i class=\"fa-solid fa-xmark\"><\/i><\/div>\n                        <div class=\"gateway-label\"><strong>Escolha<\/strong><\/div>\n                        <div class=\"node-actions\">\n                            <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_test_xor_split')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                            <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_test_xor_split')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                            <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_test_xor_split')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                        <\/div>\n                    <\/div>\n                ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "1",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "3",
+                                                        "output": "input_1"
+                                                    },
+                                                    {
+                                                        "node": "4",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 55,
+                                        "pos_y": 50
+                                    },
+                                    "3": {
+                                        "id": 3,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_test_alt_a",
+                                            "name": "Alternativa A",
+                                            "type": "node",
+                                            "tc": 12,
+                                            "icon": "fa-industry",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Alternativa A<\/strong>\n                    <div>TC: <span class=\"tc-value\">12<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_test_alt_a')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_test_alt_a')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_test_alt_a')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "2",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "5",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 423,
+                                        "pos_y": -191
+                                    },
+                                    "4": {
+                                        "id": 4,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_test_alt_b",
+                                            "name": "Alternativa B",
+                                            "type": "node",
+                                            "tc": 9,
+                                            "icon": "fa-industry",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Alternativa B<\/strong>\n                    <div>TC: <span class=\"tc-value\">9<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_test_alt_b')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_test_alt_b')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_test_alt_b')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "2",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "5",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 420,
+                                        "pos_y": 275
+                                    },
+                                    "5": {
+                                        "id": 5,
+                                        "name": "decision_exclusive",
+                                        "data": {
+                                            "id": "cod_12_05_test_xor_merge",
+                                            "name": "Merge XOR",
+                                            "type": "decision_exclusive",
+                                            "tc": 0,
+                                            "icon": "fa-industry",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "decision_exclusive",
+                                        "html": "\n                    <div class=\"gateway-container\">\n                        <div class=\"gateway-diamond\"><i class=\"fa-solid fa-xmark\"><\/i><\/div>\n                        <div class=\"gateway-label\"><strong>Merge XOR<\/strong><\/div>\n                        <div class=\"node-actions\">\n                            <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_test_xor_merge')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                            <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_test_xor_merge')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                            <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_test_xor_merge')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                        <\/div>\n                    <\/div>\n                ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "3",
+                                                        "input": "output_1"
+                                                    },
+                                                    {
+                                                        "node": "4",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "6",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 870,
+                                        "pos_y": 20
+                                    },
+                                    "6": {
+                                        "id": 6,
+                                        "name": "decision_parallel",
+                                        "data": {
+                                            "id": "cod_12_05_test_and_split",
+                                            "name": "Paralelo",
+                                            "type": "decision_parallel",
+                                            "tc": 0,
+                                            "icon": "fa-industry",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "decision_parallel",
+                                        "html": "\n                    <div class=\"gateway-container\">\n                        <div class=\"gateway-diamond\"><i class=\"fa-solid fa-plus\"><\/i><\/div>\n                        <div class=\"gateway-label\"><strong>Paralelo<\/strong><\/div>\n                        <div class=\"node-actions\">\n                            <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_test_and_split')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                            <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_test_and_split')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                            <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_test_and_split')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                        <\/div>\n                    <\/div>\n                ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "5",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "7",
+                                                        "output": "input_1"
+                                                    },
+                                                    {
+                                                        "node": "8",
+                                                        "output": "input_1"
+                                                    },
+                                                    {
+                                                        "node": "9",
+                                                        "output": "input_1"
+                                                    },
+                                                    {
+                                                        "node": "10",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 1090,
+                                        "pos_y": 15
+                                    },
+                                    "7": {
+                                        "id": 7,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_test_par_1",
+                                            "name": "Par 1",
+                                            "type": "node",
+                                            "tc": 6,
+                                            "icon": "fa-industry",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Par 1<\/strong>\n                    <div>TC: <span class=\"tc-value\">6<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_test_par_1')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_test_par_1')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_test_par_1')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "6",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "11",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 1775,
+                                        "pos_y": -210
+                                    },
+                                    "8": {
+                                        "id": 8,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_test_par_2",
+                                            "name": "Par 2",
+                                            "type": "node",
+                                            "tc": 7,
+                                            "icon": "fa-industry",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Par 2<\/strong>\n                    <div>TC: <span class=\"tc-value\">7<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_test_par_2')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_test_par_2')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_test_par_2')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "6",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "11",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 1790,
+                                        "pos_y": -54
+                                    },
+                                    "9": {
+                                        "id": 9,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_test_par_3",
+                                            "name": "Par 3",
+                                            "type": "node",
+                                            "tc": 8,
+                                            "icon": "fa-industry",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Par 3<\/strong>\n                    <div>TC: <span class=\"tc-value\">8<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_test_par_3')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_test_par_3')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_test_par_3')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "6",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "11",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 1805,
+                                        "pos_y": 95
+                                    },
+                                    "10": {
+                                        "id": 10,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_test_par_4",
+                                            "name": "Par 4",
+                                            "type": "node",
+                                            "tc": 9,
+                                            "icon": "fa-industry",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Par 4<\/strong>\n                    <div>TC: <span class=\"tc-value\">9<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_test_par_4')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_test_par_4')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_test_par_4')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "6",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "11",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 1810,
+                                        "pos_y": 235
+                                    },
+                                    "11": {
+                                        "id": 11,
+                                        "name": "decision_parallel",
+                                        "data": {
+                                            "id": "cod_12_05_test_and_join",
+                                            "name": "Join",
+                                            "type": "decision_parallel",
+                                            "tc": 0,
+                                            "icon": "fa-industry",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "decision_parallel",
+                                        "html": "\n                    <div class=\"gateway-container\">\n                        <div class=\"gateway-diamond\"><i class=\"fa-solid fa-plus\"><\/i><\/div>\n                        <div class=\"gateway-label\"><strong>Join<\/strong><\/div>\n                        <div class=\"node-actions\">\n                            <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_test_and_join')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                            <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_test_and_join')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                            <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_test_and_join')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                        <\/div>\n                    <\/div>\n                ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "7",
+                                                        "input": "output_1"
+                                                    },
+                                                    {
+                                                        "node": "8",
+                                                        "input": "output_1"
+                                                    },
+                                                    {
+                                                        "node": "9",
+                                                        "input": "output_1"
+                                                    },
+                                                    {
+                                                        "node": "10",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "12",
+                                                        "output": "input_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "pos_x": 2325,
+                                        "pos_y": -24.999999999999993
+                                    },
+                                    "12": {
+                                        "id": 12,
+                                        "name": "node",
+                                        "data": {
+                                            "id": "cod_12_05_test_end",
+                                            "name": "Saida",
+                                            "type": "node",
+                                            "tc": 4,
+                                            "icon": "fa-industry",
+                                            "module_scope": "REFORMULACAO_COD_12_05",
+                                            "module_label": "REFORMULACAO",
+                                            "autoPlace": false
+                                        },
+                                        "class": "node",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Saida<\/strong>\n                    <div>TC: <span class=\"tc-value\">4<\/span>s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_test_end')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_test_end')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_test_end')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "typenode": false,
+                                        "inputs": {
+                                            "input_1": {
+                                                "connections": [
+                                                    {
+                                                        "node": "11",
+                                                        "input": "output_1"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "outputs": {
+                                            "output_1": {
+                                                "connections": []
+                                            }
+                                        },
+                                        "pos_x": 2605,
+                                        "pos_y": -5
+                                    }
+                                }
+                            }
+                        },
+                        "viewport_state": {
+                            "zoom": 0.3,
+                            "x": -195.2,
+                            "y": 48.60000000000001
+                        },
+                        "module_context": {
+                            "scope": "REFORMULACAO_COD_12_05",
+                            "label": "REFORMULACAO",
+                            "legacy_label": "MEMORIA",
+                            "storage": "data\/reformulacao\/fluxo_teste02.json",
+                            "isolated_from": [
+                                "public\/memoria\/FLUXO_TESTE02.php",
+                                "data\/memoria\/linhas.json",
+                                "data\/memoria\/setores.json"
+                            ]
+                        }
+                    },
+                    "created_at": "2026-05-13 04:17:53",
+                    "updated_at": "2026-05-15 02:05:24"
+                }
+            ],
+            "created_at": "2026-05-13 04:17:53",
+            "updated_at": "2026-05-15 02:05:24"
+        }
+    ]
+}

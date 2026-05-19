@@ -1,0 +1,620 @@
+{
+    "version": 1,
+    "module_context": {
+        "scope": "CADASTROS_BASICOS_COMPARTILHADOS",
+        "storage": "data\/reformulacao\/cadastros_basicos.json",
+        "shared_with": [
+            "editor_bpm",
+            "arvore_estrutura"
+        ],
+        "future_ready_for": [
+            "calibradora",
+            "cronoanalise",
+            "balanceamento"
+        ]
+    },
+    "updated_at": "2026-05-18 10:33:09",
+    "setores": [
+        {
+            "id": "cod_12_05_setor_1",
+            "codigo": "SETOR-44975",
+            "nome": "Setor 1",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "descricao": "Setor 1",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_setor_20260513041753_1674",
+            "codigo": "SETOR-06354",
+            "nome": "cod_12_05_TESTE_BPMN_COMBINACOES",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "descricao": "cod_12_05_TESTE_BPMN_COMBINACOES",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        }
+    ],
+    "linhas": [
+        {
+            "id": "cod_12_05_linha_fluxo_packing_completo",
+            "codigo": "LINHA-82932",
+            "nome": "Fluxo Packing - Completo",
+            "setor_id": "cod_12_05_setor_1",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "descricao": "Fluxo Packing - Completo",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_linha_20260515021527_6300",
+            "codigo": "LINHA-84021",
+            "nome": "Alimentação",
+            "setor_id": "cod_12_05_setor_1",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "descricao": "Alimentação",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_linha_20260513041753_9066",
+            "codigo": "LINHA-69639",
+            "nome": "Teste serie paralelo simetrico",
+            "setor_id": "cod_12_05_setor_20260513041753_1674",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "descricao": "Teste serie paralelo simetrico",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        }
+    ],
+    "postos": [
+        {
+            "id": "cod_12_05_fluxo_completo_1",
+            "nome": "Puxar fruta",
+            "tempo_ciclo": 177,
+            "icone": "fa-hand",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-30874",
+            "descricao": "Puxar fruta",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_fluxo_completo_2",
+            "nome": "Posicionar contentor",
+            "tempo_ciclo": 4.64,
+            "icone": "fa-box",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-51423",
+            "descricao": "Posicionar contentor",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_fluxo_completo_4",
+            "nome": "Remover Papel",
+            "tempo_ciclo": 0,
+            "icone": "fa-scissors",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-04884",
+            "descricao": "Remover Papel",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_fluxo_completo_5",
+            "nome": "Agrupar",
+            "tempo_ciclo": 8.62,
+            "icone": "fa-layer-group",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-75473",
+            "descricao": "Agrupar",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_fluxo_completo_6",
+            "nome": "Maquina Grande",
+            "tempo_ciclo": 0,
+            "icone": "fa-gears",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-45290",
+            "descricao": "Maquina Grande",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_fluxo_completo_8",
+            "nome": "Linha 1",
+            "tempo_ciclo": 0,
+            "icone": "fa-code-branch",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-72616",
+            "descricao": "Linha 1",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_fluxo_completo_9",
+            "nome": "Linha 2",
+            "tempo_ciclo": 0,
+            "icone": "fa-code-branch",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-75407",
+            "descricao": "Linha 2",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_fluxo_completo_10",
+            "nome": "Linha 3",
+            "tempo_ciclo": 0,
+            "icone": "fa-code-branch",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-89212",
+            "descricao": "Linha 3",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_fluxo_completo_11",
+            "nome": "Linha 4",
+            "tempo_ciclo": 0,
+            "icone": "fa-code-branch",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-03638",
+            "descricao": "Linha 4",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_fluxo_completo_12",
+            "nome": "Linha 5",
+            "tempo_ciclo": 0,
+            "icone": "fa-code-branch",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-74298",
+            "descricao": "Linha 5",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_fluxo_completo_13",
+            "nome": "Repasse",
+            "tempo_ciclo": 0,
+            "icone": "fa-recycle",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-96888",
+            "descricao": "Repasse",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_fluxo_completo_16",
+            "nome": "Selo 01",
+            "tempo_ciclo": 0,
+            "icone": "fa-certificate",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-62868",
+            "descricao": "Selo 01",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_fluxo_completo_17",
+            "nome": "Selo 02",
+            "tempo_ciclo": 0,
+            "icone": "fa-certificate",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-20903",
+            "descricao": "Selo 02",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_fluxo_completo_18",
+            "nome": "Selo 03",
+            "tempo_ciclo": 0,
+            "icone": "fa-certificate",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-81397",
+            "descricao": "Selo 03",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_fluxo_completo_20",
+            "nome": "Etiquetar",
+            "tempo_ciclo": 2,
+            "icone": "fa-tag",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-51055",
+            "descricao": "Etiquetar",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_fluxo_completo_22",
+            "nome": "Paletizacao 1",
+            "tempo_ciclo": 59,
+            "icone": "fa-boxes-stacked",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-99968",
+            "descricao": "Paletizacao 1",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_fluxo_completo_23",
+            "nome": "Paletizacao 2",
+            "tempo_ciclo": 416.5,
+            "icone": "fa-boxes-stacked",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-17716",
+            "descricao": "Paletizacao 2",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_fluxo_completo_24",
+            "nome": "Paletizacao 3",
+            "tempo_ciclo": 312,
+            "icone": "fa-boxes-stacked",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-99661",
+            "descricao": "Paletizacao 3",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_fluxo_completo_26",
+            "nome": "Arquear palete",
+            "tempo_ciclo": 0,
+            "icone": "fa-compress",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-27085",
+            "descricao": "Arquear palete",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_fluxo_completo_27",
+            "nome": "Transportar palete",
+            "tempo_ciclo": 297.43,
+            "icone": "fa-truck",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-06043",
+            "descricao": "Transportar palete",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_fluxo_completo_28",
+            "nome": "Transportar repasse",
+            "tempo_ciclo": 0,
+            "icone": "fa-truck-ramp-box",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-00177",
+            "descricao": "Transportar repasse",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_fluxo_completo_29",
+            "nome": "Paletizar contentor",
+            "tempo_ciclo": 15.86,
+            "icone": "fa-boxes-stacked",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-18809",
+            "descricao": "Paletizar contentor",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_fluxo_completo_30",
+            "nome": "Transportar",
+            "tempo_ciclo": 140,
+            "icone": "fa-truck",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-80346",
+            "descricao": "Transportar",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_node_20260515142250_3968",
+            "nome": "Puxat pallet",
+            "tempo_ciclo": 10,
+            "icone": "fa-industry",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-06810",
+            "descricao": "Puxat pallet",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_node_20260515142302_2748",
+            "nome": "Virar CTT",
+            "tempo_ciclo": 10,
+            "icone": "fa-industry",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-52139",
+            "descricao": "Virar CTT",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_test_start",
+            "nome": "Inicio",
+            "tempo_ciclo": 5,
+            "icone": "fa-industry",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-68107",
+            "descricao": "Inicio",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_test_alt_a",
+            "nome": "Alternativa A",
+            "tempo_ciclo": 12,
+            "icone": "fa-industry",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-18747",
+            "descricao": "Alternativa A",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_test_alt_b",
+            "nome": "Alternativa B",
+            "tempo_ciclo": 9,
+            "icone": "fa-industry",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-98856",
+            "descricao": "Alternativa B",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_test_par_1",
+            "nome": "Par 1",
+            "tempo_ciclo": 6,
+            "icone": "fa-industry",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-41556",
+            "descricao": "Par 1",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_test_par_2",
+            "nome": "Par 2",
+            "tempo_ciclo": 7,
+            "icone": "fa-industry",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-97778",
+            "descricao": "Par 2",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_test_par_3",
+            "nome": "Par 3",
+            "tempo_ciclo": 8,
+            "icone": "fa-industry",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-69923",
+            "descricao": "Par 3",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_test_par_4",
+            "nome": "Par 4",
+            "tempo_ciclo": 9,
+            "icone": "fa-industry",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-74774",
+            "descricao": "Par 4",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "id": "cod_12_05_test_end",
+            "nome": "Saida",
+            "tempo_ciclo": 4,
+            "icone": "fa-industry",
+            "ativo": 1,
+            "origem": "editor_bpm",
+            "codigo": "POSTO-24788",
+            "descricao": "Saida",
+            "created_at": "2026-05-18 10:33:09",
+            "updated_at": "2026-05-18 10:33:09"
+        }
+    ],
+    "maquinas": [],
+    "tipos_embalagem": [
+        {
+            "codigo": "Componente",
+            "nome": "Componente",
+            "ativo": 1,
+            "origem": "arvore_estrutura",
+            "id": "emb_20260517194512_2880",
+            "descricao": "Componente",
+            "created_at": "2026-05-17 19:45:12",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "codigo": "Embalagem",
+            "nome": "Embalagem",
+            "ativo": 1,
+            "origem": "arvore_estrutura",
+            "id": "emb_20260517194512_3282",
+            "descricao": "Embalagem",
+            "created_at": "2026-05-17 19:45:12",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "codigo": "Insumo",
+            "nome": "Insumo",
+            "ativo": 1,
+            "origem": "arvore_estrutura",
+            "id": "emb_20260517194512_1502",
+            "descricao": "Insumo",
+            "created_at": "2026-05-17 19:45:12",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "codigo": "Produto",
+            "nome": "Produto",
+            "ativo": 1,
+            "origem": "arvore_estrutura",
+            "id": "emb_20260517194512_7831",
+            "descricao": "Produto",
+            "created_at": "2026-05-17 19:45:12",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "codigo": "Recurso",
+            "nome": "Recurso",
+            "ativo": 1,
+            "origem": "arvore_estrutura",
+            "id": "emb_20260517194512_2852",
+            "descricao": "Recurso",
+            "created_at": "2026-05-17 19:45:12",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "codigo": "Servico",
+            "nome": "Servico",
+            "ativo": 1,
+            "origem": "arvore_estrutura",
+            "id": "emb_20260517194512_5723",
+            "descricao": "Servico",
+            "created_at": "2026-05-17 19:45:12",
+            "updated_at": "2026-05-18 10:33:09"
+        }
+    ],
+    "unidades": [
+        {
+            "codigo": "ctt",
+            "nome": "ctt",
+            "ativo": 1,
+            "origem": "arvore_estrutura",
+            "id": "un_20260517194512_1250",
+            "descricao": "ctt",
+            "created_at": "2026-05-17 19:45:12",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "codigo": "g",
+            "nome": "g",
+            "ativo": 1,
+            "origem": "arvore_estrutura",
+            "id": "un_20260517194512_1175",
+            "descricao": "g",
+            "created_at": "2026-05-17 19:45:12",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "codigo": "kg",
+            "nome": "kg",
+            "ativo": 1,
+            "origem": "arvore_estrutura",
+            "id": "un_20260517194512_5083",
+            "descricao": "kg",
+            "created_at": "2026-05-17 19:45:12",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "codigo": "l",
+            "nome": "l",
+            "ativo": 1,
+            "origem": "arvore_estrutura",
+            "id": "un_20260517194512_6858",
+            "descricao": "l",
+            "created_at": "2026-05-17 19:45:12",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "codigo": "ml",
+            "nome": "ml",
+            "ativo": 1,
+            "origem": "arvore_estrutura",
+            "id": "un_20260517194512_1751",
+            "descricao": "ml",
+            "created_at": "2026-05-17 19:45:12",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "codigo": "operacao",
+            "nome": "operacao",
+            "ativo": 1,
+            "origem": "arvore_estrutura",
+            "id": "un_20260517194512_5399",
+            "descricao": "operacao",
+            "created_at": "2026-05-17 19:45:12",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "codigo": "pallet",
+            "nome": "pallet",
+            "ativo": 1,
+            "origem": "arvore_estrutura",
+            "id": "un_20260517194512_3237",
+            "descricao": "pallet",
+            "created_at": "2026-05-17 19:45:12",
+            "updated_at": "2026-05-18 10:33:09"
+        },
+        {
+            "codigo": "un",
+            "nome": "un",
+            "ativo": 1,
+            "origem": "arvore_estrutura",
+            "id": "un_20260517194512_7044",
+            "descricao": "un",
+            "created_at": "2026-05-17 19:45:12",
+            "updated_at": "2026-05-18 10:33:09"
+        }
+    ],
+    "produtos_itens": [],
+    "faixas_calibradora": [],
+    "atividades_padrao": []
+}

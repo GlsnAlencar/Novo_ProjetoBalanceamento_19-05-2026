@@ -1,0 +1,134 @@
+{
+    "version": 1,
+    "updated_at": "2026-05-13 05:05:23",
+    "partida": {
+        "nome": "A NG TESTE (EXP)",
+        "fruta": "Manga",
+        "programa": "MANGO PALMER",
+        "data_partida": "2026-05-13",
+        "duracao_minutos": 60,
+        "observacao": "Tabela inicial baseada na tela da calibradora."
+    },
+    "linhas": [
+        {
+            "descricao": "REFUGO",
+            "faixa_min": 50,
+            "faixa_max": 150,
+            "saida": "1",
+            "embalagem": "Refugo",
+            "processo": "Descarte",
+            "posto": "Refugo",
+            "gramas": 65639,
+            "capacidade_pessoa_kg_h": 180,
+            "pessoas_alocadas": 1
+        },
+        {
+            "descricao": "14 (DESCARTE POLPA BIRITA)",
+            "faixa_min": 150,
+            "faixa_max": 270,
+            "saida": "2",
+            "embalagem": "Polpa",
+            "processo": "Descarte polpa",
+            "posto": "Polpa",
+            "gramas": 172664,
+            "capacidade_pessoa_kg_h": 180,
+            "pessoas_alocadas": 1
+        },
+        {
+            "descricao": "12",
+            "faixa_min": 270,
+            "faixa_max": 385,
+            "saida": "3",
+            "embalagem": "Caixa 12",
+            "processo": "Embalagem",
+            "posto": "Posto 12",
+            "gramas": 2069841,
+            "capacidade_pessoa_kg_h": 220,
+            "pessoas_alocadas": 2
+        },
+        {
+            "descricao": "10",
+            "faixa_min": 385,
+            "faixa_max": 445,
+            "saida": "4",
+            "embalagem": "Caixa 10",
+            "processo": "Embalagem",
+            "posto": "Posto 10",
+            "gramas": 3273654,
+            "capacidade_pessoa_kg_h": 220,
+            "pessoas_alocadas": 3
+        },
+        {
+            "descricao": "09",
+            "faixa_min": 445,
+            "faixa_max": 495,
+            "saida": "5",
+            "embalagem": "Caixa 09",
+            "processo": "Embalagem",
+            "posto": "Posto 09",
+            "gramas": 3214806,
+            "capacidade_pessoa_kg_h": 220,
+            "pessoas_alocadas": 3
+        },
+        {
+            "descricao": "08",
+            "faixa_min": 495,
+            "faixa_max": 560,
+            "saida": "6",
+            "embalagem": "Caixa 08",
+            "processo": "Embalagem",
+            "posto": "Posto 08",
+            "gramas": 3199618,
+            "capacidade_pessoa_kg_h": 220,
+            "pessoas_alocadas": 3
+        },
+        {
+            "descricao": "07",
+            "faixa_min": 560,
+            "faixa_max": 650,
+            "saida": "7",
+            "embalagem": "Caixa 07",
+            "processo": "Embalagem",
+            "posto": "Posto 07",
+            "gramas": 1922020,
+            "capacidade_pessoa_kg_h": 220,
+            "pessoas_alocadas": 2
+        },
+        {
+            "descricao": "06",
+            "faixa_min": 650,
+            "faixa_max": 770,
+            "saida": "8",
+            "embalagem": "Caixa 06",
+            "processo": "Embalagem",
+            "posto": "Posto 06",
+            "gramas": 750031,
+            "capacidade_pessoa_kg_h": 220,
+            "pessoas_alocadas": 1
+        },
+        {
+            "descricao": "05 (EMBALAGEM CALIBRE 8 \/ 6KG M.I)",
+            "faixa_min": 770,
+            "faixa_max": 950,
+            "saida": "9",
+            "embalagem": "6 kg M.I",
+            "processo": "Embalagem especial",
+            "posto": "Posto 05",
+            "gramas": 364860,
+            "capacidade_pessoa_kg_h": 180,
+            "pessoas_alocadas": 1
+        },
+        {
+            "descricao": "REFUGO",
+            "faixa_min": 950,
+            "faixa_max": 7800,
+            "saida": "10",
+            "embalagem": "Refugo grande",
+            "processo": "Descarte",
+            "posto": "Refugo",
+            "gramas": 118458,
+            "capacidade_pessoa_kg_h": 180,
+            "pessoas_alocadas": 1
+        }
+    ]
+}

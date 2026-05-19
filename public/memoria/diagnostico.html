@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Diagnóstico do Sistema CRUD</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 { 
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 28px;
+        }
+        .status-box {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #007bff;
+            background: #f0f7ff;
+        }
+        .status-box.success {
+            border-left-color: #28a745;
+            background: #d4edda;
+            color: #155724;
+        }
+        .status-box.error {
+            border-left-color: #dc3545;
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .status-box.warning {
+            border-left-color: #ffc107;
+            background: #fff3cd;
+            color: #856404;
+        }
+        .status-box strong { 
+            display: block;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+        .test-section h2 {
+            color: #007bff;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        button {
+            padding: 12px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,86,179,0.3);
+        }
+        button.danger {
+            background: #dc3545;
+        }
+        button.danger:hover {
+            background: #c82333;
+        }
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.5;
+            margin: 10px 0;
+        }
+        .data-display {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            font-family: monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+            word-break: break-word;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #dee2e6;
+            color: #6c757d;
+        }
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Diagnóstico do Sistema CRUD de Postos</h1>
+
+        <div class="test-section">
+            <h2>📊 1. Verificação de Dados Atuais</h2>
+            <button onclick="checkCurrentData()">Verificar Dados Atuais</button>
+            <div id="currentData" class="data-display" style="display: none; margin-top: 10px;"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>✏️ 2. Testes de CRUD</h2>
+            <div class="action-buttons">
+                <button onclick="testAdd()">➕ Adicionar Teste 1</button>
+                <button onclick="testAdd2()">➕ Adicionar Teste 2</button>
+                <button onclick="testAdd3()">➕ Adicionar Teste 3</button>
+            </div>
+            <div id="testResult" class="status-box" style="display: none; margin-top: 10px;"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🗑️ 3. Testar Remoção</h2>
+            <p>Após adicionar postos, use estes links para remover:</p>
+            <div class="action-buttons">
+                <button onclick="testRemove(0)">Remover Índice 0</button>
+                <button onclick="testRemove(1)">Remover Índice 1</button>
+                <button onclick="testRemove(2)">Remover Índice 2</button>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🔄 4. Ações Rápidas</h2>
+            <div class="action-buttons">
+                <button onclick="goToIndex()">Ir para o Fluxo Principal</button>
+                <button onclick="clearAllData()" class="danger">⚠️  Limpar TODOS os Dados</button>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>📋 5. Relatório de Status</h2>
+            <div id="statusReport"></div>
+        </div>
+
+        <div class="footer">
+            <p>Diagnóstico do Sistema de Balanceamento - Linha 1</p>
+            <p><a href="index.php">← Voltar ao Fluxo Principal</a></p>
+        </div>
+    </div>
+
+    <script>
+        async function checkCurrentData() {
+            try {
+                const response = await fetch('test_dados.php');
+                const html = await response.text();
+                
+                // Extrair dados JSON do HTML
+                const jsonMatch = html.match(/"postos":\s*\[([\s\S]*?)\]/);
+                if (jsonMatch) {
+                    document.getElementById('currentData').style.display = 'block';
+                    document.getElementById('currentData').textContent = 
+                        'Postos da Linha 1:\n\n' + JSON.stringify(JSON.parse('[' + jsonMatch[1] + ']'), null, 2);
+                }
+            } catch (e) {
+                alert('Erro ao carregar dados: ' + e.message);
+            }
+        }
+
+        function createTestForm(nome) {
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = 'index.php?linha=linha1';
+            form.style.display = 'none';
+
+            const input1 = document.createElement('input');
+            input1.type = 'hidden';
+            input1.name = 'novo_posto';
+            input1.value = nome;
+
+            const input2 = document.createElement('input');
+            input2.type = 'hidden';
+            input2.name = 'adicionar_posto';
+            input2.value = '1';
+
+            form.appendChild(input1);
+            form.appendChild(input2);
+            document.body.appendChild(form);
+            
+            console.log('Submetendo posto:', nome);
+            form.submit();
+        }
+
+        function testAdd() {
+            createTestForm('Posto Teste 1');
+        }
+
+        function testAdd2() {
+            createTestForm('Posto Teste 2');
+        }
+
+        function testAdd3() {
+            createTestForm('Posto Teste 3');
+        }
+
+        function testRemove(index) {
+            if (confirm('Remover posto no índice ' + index + '?')) {
+                window.location.href = 'index.php?remover_posto=' + index + '&linha=linha1';
+            }
+        }
+
+        function goToIndex() {
+            window.location.href = 'index.php';
+        }
+
+        function clearAllData() {
+            if (confirm('⚠️  ATENÇÃO! Você está prestes a limpar TODOS os dados de postos de TODAS as linhas!\n\nTem certeza? Esta ação NÃO pode ser desfeita!')) {
+                if (confirm('Confirme novamente para continuar...')) {
+                    // Criar arquivo vazio
+                    window.location.href = 'clear_all.php';
+                }
+            }
+        }
+
+        // Gerar relatório na carga da página
+        window.onload = function() {
+            var report = '<div class="status-box success">' +
+                        '<strong>✓ Página de Diagnóstico Carregada com Sucesso</strong>' +
+                        'Sistema pronto para testes. Clique em "Verificar Dados Atuais" para ver os dados salvos em linhas.json' +
+                        '</div>';
+            document.getElementById('statusReport').innerHTML = report;
+        };
+    </script>
+</body>
+</html>

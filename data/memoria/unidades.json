@@ -1,0 +1,17 @@
+[
+    {
+        "nome": "Caixa 4kg",
+        "peso_padrao": 4,
+        "observacao": ""
+    },
+    {
+        "nome": "Ciaxa 6kg",
+        "peso_padrao": 6,
+        "observacao": ""
+    },
+    {
+        "nome": "Contentor",
+        "peso_padrao": 20,
+        "observacao": ""
+    }
+]

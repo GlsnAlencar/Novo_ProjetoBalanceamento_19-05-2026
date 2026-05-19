@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "module_context": {
+        "scope": "CADASTROS_BASICOS_COMPARTILHADOS",
+        "storage": "data\/reformulacao\/cadastros_basicos.json",
+        "shared_with": [
+            "editor_bpm",
+            "arvore_estrutura"
+        ],
+        "future_ready_for": [
+            "calibradora",
+            "cronoanalise",
+            "balanceamento"
+        ]
+    },
+    "updated_at": "2026-05-17 19:45:12",
+    "setores": [],
+    "linhas": [],
+    "postos": [],
+    "maquinas": [],
+    "tipos_embalagem": [],
+    "unidades": [],
+    "produtos_itens": [],
+    "faixas_calibradora": [],
+    "atividades_padrao": []
+}

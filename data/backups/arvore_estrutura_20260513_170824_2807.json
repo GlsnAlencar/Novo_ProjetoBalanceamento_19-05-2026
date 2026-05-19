@@ -1,0 +1,265 @@
+{
+    "version": 2,
+    "module_context": {
+        "scope": "REFORMULACAO_ARVORE_ESTRUTURA",
+        "storage": "data\/reformulacao\/arvore_estrutura.json",
+        "isolated_from": [
+            "fluxo",
+            "postos",
+            "balanceamento",
+            "cronoanalise"
+        ],
+        "future_ready_for": [
+            "mrp",
+            "cronoanalise",
+            "fluxo",
+            "postos",
+            "balanceamento"
+        ]
+    },
+    "updated_at": "2026-05-13 17:08:24",
+    "tabela_itens": [
+        {
+            "id": "item_20260513170723_7449",
+            "codigo": "PF-001",
+            "nome": "Pallet fruta in natura",
+            "tipo_item": "Produto",
+            "categoria": "Embalagem \/ Unidade de Carga",
+            "grupo": "Pallet",
+            "unidade_base": "un",
+            "fator_conversao_padrao": 1,
+            "ativo": 1,
+            "observacao": "Produto raiz para teste da arvore de estrutura.",
+            "criado_em": "2026-05-13 17:07:23",
+            "atualizado_em": "2026-05-13 17:07:23"
+        },
+        {
+            "id": "item_20260513170822_9309",
+            "codigo": "CTT-001",
+            "nome": "CTT fruta in natura",
+            "tipo_item": "Embalagem",
+            "categoria": "",
+            "grupo": "",
+            "unidade_base": "un",
+            "fator_conversao_padrao": 1,
+            "ativo": 1,
+            "observacao": "",
+            "criado_em": "2026-05-13 17:08:22",
+            "atualizado_em": "2026-05-13 17:08:22"
+        },
+        {
+            "id": "item_20260513170823_5606",
+            "codigo": "PLT-BASE",
+            "nome": "Pallet de colheita\/base",
+            "tipo_item": "Embalagem",
+            "categoria": "",
+            "grupo": "",
+            "unidade_base": "un",
+            "fator_conversao_padrao": 1,
+            "ativo": 1,
+            "observacao": "",
+            "criado_em": "2026-05-13 17:08:23",
+            "atualizado_em": "2026-05-13 17:08:23"
+        },
+        {
+            "id": "item_20260513170823_8791",
+            "codigo": "FR-001",
+            "nome": "Fruta in natura",
+            "tipo_item": "Produto",
+            "categoria": "",
+            "grupo": "",
+            "unidade_base": "kg",
+            "fator_conversao_padrao": 1,
+            "ativo": 1,
+            "observacao": "",
+            "criado_em": "2026-05-13 17:08:23",
+            "atualizado_em": "2026-05-13 17:08:23"
+        },
+        {
+            "id": "item_20260513170824_3983",
+            "codigo": "PC-001",
+            "nome": "Papel de colheita",
+            "tipo_item": "Insumo",
+            "categoria": "",
+            "grupo": "",
+            "unidade_base": "un",
+            "fator_conversao_padrao": 1,
+            "ativo": 1,
+            "observacao": "",
+            "criado_em": "2026-05-13 17:08:24",
+            "atualizado_em": "2026-05-13 17:08:24"
+        }
+    ],
+    "tabela_arvores": [
+        {
+            "id": "arvore_20260513170723_3841",
+            "criado_em": "2026-05-13 17:07:23",
+            "codigo": "ARV-PF-001",
+            "nome": "Estrutura Pallet fruta in natura",
+            "item_raiz_id": "item_20260513170723_7449",
+            "descricao": "Teste completo com filhos e niveis inferiores.",
+            "ativo": 1,
+            "atualizado_em": "2026-05-13 17:07:23"
+        }
+    ],
+    "tabela_arvore_composicao": [
+        {
+            "id": "comp_20260513170822_3080",
+            "arvore_id": "arvore_20260513170723_3841",
+            "item_pai_id": "item_20260513170723_7449",
+            "item_filho_id": "item_20260513170822_9309",
+            "quantidade": 42,
+            "unidade": "un",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 1,
+            "ordem_exibicao": 1,
+            "observacao": "Filho direto do pallet",
+            "ativo": 1,
+            "criado_em": "2026-05-13 17:08:22",
+            "atualizado_em": "2026-05-13 17:08:22"
+        },
+        {
+            "id": "comp_20260513170823_8235",
+            "arvore_id": "arvore_20260513170723_3841",
+            "item_pai_id": "item_20260513170723_7449",
+            "item_filho_id": "item_20260513170823_5606",
+            "quantidade": 1,
+            "unidade": "un",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 1,
+            "ordem_exibicao": 2,
+            "observacao": "Base reutilizavel",
+            "ativo": 1,
+            "criado_em": "2026-05-13 17:08:23",
+            "atualizado_em": "2026-05-13 17:08:23"
+        },
+        {
+            "id": "comp_20260513170823_2795",
+            "arvore_id": "arvore_20260513170723_3841",
+            "item_pai_id": "item_20260513170822_9309",
+            "item_filho_id": "item_20260513170823_8791",
+            "quantidade": 20,
+            "unidade": "kg",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 2,
+            "ordem_exibicao": 1,
+            "observacao": "Materia prima por CTT",
+            "ativo": 1,
+            "criado_em": "2026-05-13 17:08:23",
+            "atualizado_em": "2026-05-13 17:08:23"
+        },
+        {
+            "id": "comp_20260513170824_1397",
+            "arvore_id": "arvore_20260513170723_3841",
+            "item_pai_id": "item_20260513170822_9309",
+            "item_filho_id": "item_20260513170824_3983",
+            "quantidade": 1,
+            "unidade": "un",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 2,
+            "ordem_exibicao": 2,
+            "observacao": "Papel por CTT",
+            "ativo": 1,
+            "criado_em": "2026-05-13 17:08:24",
+            "atualizado_em": "2026-05-13 17:08:24"
+        }
+    ],
+    "tabela_item_parametros": [],
+    "tabela_item_conversoes": [],
+    "historico": [
+        {
+            "id": "hist_20260513170723_3137",
+            "acao": "item criado",
+            "item_id": "item_20260513170723_7449",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Item cadastrado.",
+            "criado_em": "2026-05-13 17:07:23"
+        },
+        {
+            "id": "hist_20260513170723_8539",
+            "acao": "arvore criada",
+            "item_id": "item_20260513170723_7449",
+            "arvore_id": "arvore_20260513170723_3841",
+            "composicao_id": "",
+            "detalhe": "Arvore criada com item raiz.",
+            "criado_em": "2026-05-13 17:07:23"
+        },
+        {
+            "id": "hist_20260513170822_6923",
+            "acao": "item criado",
+            "item_id": "item_20260513170822_9309",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Item cadastrado.",
+            "criado_em": "2026-05-13 17:08:22"
+        },
+        {
+            "id": "hist_20260513170822_3910",
+            "acao": "vinculo criado",
+            "item_id": "item_20260513170822_9309",
+            "arvore_id": "arvore_20260513170723_3841",
+            "composicao_id": "comp_20260513170822_3080",
+            "detalhe": "Filho adicionado a arvore.",
+            "criado_em": "2026-05-13 17:08:22"
+        },
+        {
+            "id": "hist_20260513170823_3450",
+            "acao": "item criado",
+            "item_id": "item_20260513170823_5606",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Item cadastrado.",
+            "criado_em": "2026-05-13 17:08:23"
+        },
+        {
+            "id": "hist_20260513170823_2170",
+            "acao": "vinculo criado",
+            "item_id": "item_20260513170823_5606",
+            "arvore_id": "arvore_20260513170723_3841",
+            "composicao_id": "comp_20260513170823_8235",
+            "detalhe": "Filho adicionado a arvore.",
+            "criado_em": "2026-05-13 17:08:23"
+        },
+        {
+            "id": "hist_20260513170823_1214",
+            "acao": "item criado",
+            "item_id": "item_20260513170823_8791",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Item cadastrado.",
+            "criado_em": "2026-05-13 17:08:23"
+        },
+        {
+            "id": "hist_20260513170823_2666",
+            "acao": "vinculo criado",
+            "item_id": "item_20260513170823_8791",
+            "arvore_id": "arvore_20260513170723_3841",
+            "composicao_id": "comp_20260513170823_2795",
+            "detalhe": "Filho adicionado a arvore.",
+            "criado_em": "2026-05-13 17:08:23"
+        },
+        {
+            "id": "hist_20260513170824_7885",
+            "acao": "item criado",
+            "item_id": "item_20260513170824_3983",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Item cadastrado.",
+            "criado_em": "2026-05-13 17:08:24"
+        },
+        {
+            "id": "hist_20260513170824_9095",
+            "acao": "vinculo criado",
+            "item_id": "item_20260513170824_3983",
+            "arvore_id": "arvore_20260513170723_3841",
+            "composicao_id": "comp_20260513170824_1397",
+            "detalhe": "Filho adicionado a arvore.",
+            "criado_em": "2026-05-13 17:08:24"
+        }
+    ]
+}

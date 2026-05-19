@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teste Simples Drawflow</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/drawflow@0.0.59/dist/drawflow.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/drawflow@0.0.59/dist/drawflow.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial; background: #f0f0f0; }
+        .container { display: flex; height: 100vh; }
+        #drawflow { flex: 1; background: white; }
+        .sidebar {
+            width: 300px;
+            background: white;
+            border-left: 1px solid #ddd;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .sidebar h2 { margin-bottom: 15px; }
+        .control { margin-bottom: 10px; }
+        button { padding: 8px 12px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; margin: 2px; }
+        button:hover { background: #0056b3; }
+        .log { background: #f5f5f5; padding: 10px; margin: 10px 0; border-radius: 4px; font-size: 12px; font-family: monospace; max-height: 200px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="drawflow"></div>
+        <div class="sidebar">
+            <h2>Teste Drawflow</h2>
+            <div class="control">
+                <button onclick="addNode()">+ Adicionar Node</button>
+                <button onclick="clearAll()">Limpar</button>
+            </div>
+            <div class="log" id="log"></div>
+            <div id="stats"></div>
+        </div>
+    </div>
+
+    <script>
+        var nodeCount = 0;
+        var editor = null;
+        var logs = [];
+
+        function log(msg) {
+            console.log(msg);
+            logs.push(msg);
+            if (logs.length > 20) logs.shift();
+            document.getElementById('log').innerHTML = logs.map(l => '<div>' + l + '</div>').join('');
+            document.getElementById('log').scrollTop = document.getElementById('log').scrollHeight;
+        }
+
+        function updateStats() {
+            var stats = 'Nodes: ' + nodeCount;
+            document.getElementById('stats').innerHTML = '<strong>' + stats + '</strong>';
+        }
+
+        try {
+            log('🔄 Inicializando Drawflow...');
+            
+            var container = document.getElementById('drawflow');
+            log('✓ Container: ' + container.offsetWidth + 'x' + container.offsetHeight);
+            
+            editor = new Drawflow(container);
+            log('✓ Editor criado');
+            
+            editor.start();
+            log('✓ Editor iniciado');
+            
+            // Adicionar um node de teste
+            addNode();
+            
+        } catch(e) {
+            log('✗ ERRO: ' + e.message);
+            log('Stack: ' + e.stack.substring(0, 100));
+        }
+
+        function addNode() {
+            try {
+                if (!editor) {
+                    log('✗ Editor não inicializado');
+                    return;
+                }
+                
+                var nodeId = editor.addNode('node_type', 1, 1, 100 + nodeCount * 250, 100, 'node_class', {}, 
+                    '<strong>Node ' + (nodeCount + 1) + '</strong>');
+                
+                nodeCount++;
+                log('✓ Node adicionado! ID: ' + nodeId);
+                updateStats();
+                
+            } catch(e) {
+                log('✗ Erro ao adicionar node: ' + e.message);
+            }
+        }
+
+        function clearAll() {
+            try {
+                if (editor) {
+                    editor.clear();
+                    nodeCount = 0;
+                    log('✓ Canvas limpo');
+                    updateStats();
+                }
+            } catch(e) {
+                log('✗ Erro ao limpar: ' + e.message);
+            }
+        }
+
+        updateStats();
+    </script>
+</body>
+</html>
