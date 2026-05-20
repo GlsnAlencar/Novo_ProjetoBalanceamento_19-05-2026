@@ -14,6 +14,8 @@ require_once __DIR__ . '/models/FaixaPeso.php';
 require_once __DIR__ . '/models/ConfiguracaoEmbalamento.php';
 require_once __DIR__ . '/models/RegistroLote.php';
 require_once __DIR__ . '/models/DistribuicaoLote.php';
+require_once __DIR__ . '/models/ConfiguracaoCalibradora.php';
+require_once __DIR__ . '/models/ConfiguracaoCalbradoraFaixa.php';
 
 // Inclusão de repositories
 require_once __DIR__ . '/repositories/BaseRepository.php';
@@ -21,6 +23,8 @@ require_once __DIR__ . '/repositories/FaixaPesoRepository.php';
 require_once __DIR__ . '/repositories/ConfiguracaoEmbalamentoRepository.php';
 require_once __DIR__ . '/repositories/RegistroLoteRepository.php';
 require_once __DIR__ . '/repositories/DistribuicaoLoteRepository.php';
+require_once __DIR__ . '/repositories/ConfiguracaoCalbradoraRepository.php';
+require_once __DIR__ . '/repositories/ConfiguracaoCalbradoraFaixaRepository.php';
 
 // Inclusão de services
 require_once __DIR__ . '/services/CalbradoraService.php';

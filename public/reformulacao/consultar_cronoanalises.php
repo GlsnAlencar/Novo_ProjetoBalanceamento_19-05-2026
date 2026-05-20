@@ -41,6 +41,11 @@ function cc_taxa_label(array $row): string {
     return $taxa !== '' ? $taxa . ' s/contentor' : '';
 }
 
+function cc_taxa_memoria_label(array $row): string {
+    $memoria = trim((string)($row['taxa_base_memoria'] ?? ''));
+    return $memoria !== '' ? $memoria : cc_fmt($row['taxa_base_quantidade'] ?? 0);
+}
+
 function cc_text($value, string $fallback = ''): string {
     $text = trim((string)$value);
     return $text !== '' ? $text : $fallback;
@@ -269,7 +274,29 @@ function cc_contentores_equivalentes_item(array $data, array $itemsById, array $
         $data['tabela_arvores'] ?? [],
         fn($tree) => (int)($tree['ativo'] ?? 1) === 1 && (string)($tree['item_raiz_id'] ?? '') === $itemId
     ));
-    if (empty($trees)) {
+
+    $parentTrees = array_values(array_filter(
+        $data['tabela_arvore_composicao'] ?? [],
+        fn($comp) => (int)($comp['ativo'] ?? 1) === 1 && (string)($comp['item_pai_id'] ?? '') === $itemId
+    ));
+    if (empty($trees) && empty($parentTrees)) {
+        return cc_contentores_equivalentes_contexto_item($data, $itemsById, $childrenByTreeParent, $itemId);
+    }
+
+    if (empty($trees) && !empty($parentTrees)) {
+        $seenTrees = [];
+        foreach ($parentTrees as $comp) {
+            $treeId = (string)($comp['arvore_id'] ?? '');
+            if ($treeId === '' || isset($seenTrees[$treeId])) {
+                continue;
+            }
+            $seenTrees[$treeId] = true;
+            $base = cc_contentores_equivalentes_subarvore($treeId, $itemId, $data, $itemsById, $childrenByTreeParent);
+            if (cc_num($base['quantidade'] ?? 0) > 0) {
+                return $base + ['contexto_item_id' => $itemId];
+            }
+        }
+
         return cc_contentores_equivalentes_contexto_item($data, $itemsById, $childrenByTreeParent, $itemId);
     }
 
@@ -524,6 +551,54 @@ function cc_tipo_atividade(array $row): string {
     return 'operacao';
 }
 
+function cc_hibrida_componentes(array $row): array {
+    $componentes = $row['componentes_hibridos'] ?? $row['componentes_hibrida'] ?? [];
+    if (is_string($componentes)) {
+        $decoded = json_decode($componentes, true);
+        $componentes = is_array($decoded) ? $decoded : [];
+    }
+    return is_array($componentes) ? array_values(array_filter($componentes, 'is_array')) : [];
+}
+
+function cc_hibrida_ritmo_componentes(array $row): array {
+    $componentes = cc_hibrida_componentes($row);
+    if (empty($componentes)) {
+        return ['ritmo' => 0.0, 'memoria' => '', 'equivalencias' => []];
+    }
+
+    $ritmoTotal = 0.0;
+    $memorias = [];
+    $equivalencias = [];
+    foreach ($componentes as $componente) {
+        $tipo = cc_tipo_atividade($componente);
+        $tempo = 0.0;
+        if ($tipo === 'transporte') {
+            $tempo = cc_num($componente['tempo_total_s'] ?? $componente['tempo_total'] ?? $componente['tempo_s'] ?? $componente['tempo_deslocamento_s'] ?? 0);
+        } else {
+            $tempo = cc_num($componente['tempo_unitario_utilizado'] ?? $componente['tp'] ?? $componente['TP'] ?? $componente['tempo_operacao_s'] ?? $componente['tempo_total_s'] ?? $componente['tempo_total'] ?? 0);
+        }
+
+        $base = cc_contentores_equivalentes($componente);
+        $equivalencia = cc_num($base['quantidade'] ?? 0);
+        if ($tempo <= 0 || $equivalencia <= 0) {
+            continue;
+        }
+
+        $ritmo = $tempo / $equivalencia;
+        $ritmoTotal += $ritmo;
+        $equivalencias[] = $equivalencia;
+
+        $nome = cc_text($componente['atividade'] ?? $componente['descricao'] ?? '', $tipo);
+        $memorias[] = $nome . ': ' . cc_fmt($tempo) . '/' . cc_fmt($equivalencia, 0) . ' = ' . cc_fmt($ritmo);
+    }
+
+    return [
+        'ritmo' => $ritmoTotal,
+        'memoria' => implode(' | ', $memorias),
+        'equivalencias' => $equivalencias,
+    ];
+}
+
 function cc_status(array $row): string {
     if (array_key_exists('status', $row)) {
         return cc_text($row['status'], 'Ativa');
@@ -593,6 +668,15 @@ function cc_normalizar(array $row): array {
         $tempoAtivo = $tempoHibrido;
     }
     $ritmoContentor = $taxaQuantidade > 0 && $tempoAtivo > 0 ? $tempoAtivo / $taxaQuantidade : 0.0;
+    $taxaBaseMemoria = '';
+    if ($tipo === 'hibrida') {
+        $ritmoComponentes = cc_hibrida_ritmo_componentes($row);
+        if (cc_num($ritmoComponentes['ritmo'] ?? 0) > 0) {
+            $ritmoContentor = cc_num($ritmoComponentes['ritmo']);
+            $taxaBaseMemoria = implode(' + ', array_map(fn($value) => cc_fmt($value, 0), $ritmoComponentes['equivalencias'] ?? []));
+            $taxaQuantidade = 0.0;
+        }
+    }
 
     $tempoOperacaoPrincipal = $tp > 0 ? $tp : ($tempoUnitario > 0 ? $tempoUnitario : $tempoTotal);
     $capacidadeBase = $tipo === 'hibrida' ? $tempoHibrido : $tempoOperacaoPrincipal;
@@ -646,6 +730,7 @@ function cc_normalizar(array $row): array {
         'unidade_carga' => cc_text($row['unidade_carga'] ?? $row['unidade_base'] ?? $row['unidade_ref'] ?? ''),
         'qtd_ref' => $qtdRef,
         'taxa_base_quantidade' => cc_num($taxaBase['quantidade'] ?? 0),
+        'taxa_base_memoria' => $taxaBaseMemoria,
         'taxa_base_unidade' => $taxaBaseAplicada ? 'contentor' : '',
         'taxa_base_codigo' => cc_text($taxaBase['codigo'] ?? ''),
         'taxa_base_kg_manga' => cc_num($taxaBase['kg_manga'] ?? 0),
@@ -785,7 +870,7 @@ if (($_GET['export'] ?? '') === 'excel') {
         fputcsv($out, [
             $row['tipo_label'], $row['atividade'], $row['setor'], $row['linha'], $row['item'], $row['calibre'],
             cc_fmt($row['tempo_operacao_principal']), $row['unidade'], cc_fmt($row['qtd_ref']), cc_fmt($row['tr']), cc_fmt($row['tn']), cc_fmt($row['tp']),
-            cc_fmt($row['capacidade']), cc_taxa_label($row), cc_fmt($row['taxa_base_quantidade']), cc_fmt($row['ritmo_contentor']), cc_fmt($row['distancia']), cc_fmt($row['tempo_deslocamento']), cc_fmt($row['tempo_operacao']),
+            cc_fmt($row['capacidade']), cc_taxa_label($row), cc_taxa_memoria_label($row), cc_fmt($row['ritmo_contentor']), cc_fmt($row['distancia']), cc_fmt($row['tempo_deslocamento']), cc_fmt($row['tempo_operacao']),
             cc_fmt($row['velocidade']), $row['origem'], $row['destino'], $row['meio_transporte'], $row['posto'], $row['status'], $row['observacao']
         ], ';');
     }
@@ -890,7 +975,7 @@ include __DIR__ . '/menu.php';
                     <thead><tr><th>Atividade</th><th>Setor</th><th>Item/Embalagem</th><th>Calibre</th><th>Distancia (m)</th><th>Tempo desloc. (s)</th><th>Tempo operacao (s)</th><th>Tempo total (s)</th><th>Unidade</th><th>Qtd Ref</th><th>Qtdd Eq. CTT</th><th>Ritmo/contentor</th><th>Capacidade</th><th>Posto</th><th>Observacao</th><th>Acoes</th></tr></thead>
                     <tbody>
                         <?php foreach ($groups['hibrida'] as $row): ?>
-                            <tr><td><?php echo cc_h($row['atividade']); ?></td><td><?php echo cc_h($row['setor']); ?></td><td><?php echo cc_h($row['item']); ?></td><td><?php echo cc_h($row['calibre']); ?></td><td><?php echo cc_fmt($row['distancia']); ?></td><td><?php echo cc_fmt($row['tempo_deslocamento']); ?></td><td><?php echo cc_fmt($row['tempo_operacao']); ?></td><td><?php echo cc_fmt($row['tempo_hibrido']); ?></td><td><?php echo cc_h($row['unidade']); ?></td><td><?php echo cc_fmt($row['qtd_ref']); ?></td><td><?php echo cc_fmt($row['taxa_base_quantidade'], 0); ?></td><td><?php echo cc_fmt($row['ritmo_contentor']); ?></td><td><?php echo cc_fmt($row['capacidade'], 0); ?></td><td><?php echo cc_h($row['posto']); ?></td><td><?php echo cc_h($row['observacao']); ?></td><td><?php echo cc_actions($row); ?></td></tr>
+                            <tr><td><?php echo cc_h($row['atividade']); ?></td><td><?php echo cc_h($row['setor']); ?></td><td><?php echo cc_h($row['item']); ?></td><td><?php echo cc_h($row['calibre']); ?></td><td><?php echo cc_fmt($row['distancia']); ?></td><td><?php echo cc_fmt($row['tempo_deslocamento']); ?></td><td><?php echo cc_fmt($row['tempo_operacao']); ?></td><td><?php echo cc_fmt($row['tempo_hibrido']); ?></td><td><?php echo cc_h($row['unidade']); ?></td><td><?php echo cc_fmt($row['qtd_ref']); ?></td><td><?php echo cc_h(cc_taxa_memoria_label($row)); ?></td><td><?php echo cc_fmt($row['ritmo_contentor']); ?></td><td><?php echo cc_fmt($row['capacidade'], 0); ?></td><td><?php echo cc_h($row['posto']); ?></td><td><?php echo cc_h($row['observacao']); ?></td><td><?php echo cc_actions($row); ?></td></tr>
                         <?php endforeach; ?>
                         <?php if (empty($groups['hibrida'])): ?><tr><td colspan="16" class="crono-empty">Nenhum registro hibrido encontrado.</td></tr><?php endif; ?>
                     </tbody>

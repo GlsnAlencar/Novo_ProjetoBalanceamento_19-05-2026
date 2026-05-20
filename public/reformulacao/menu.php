@@ -170,6 +170,7 @@ function rf_menu_href($path) {
         <li class="rf-menu-group" data-rf-menu-group="calibradora-v2">
             <button class="rf-menu-toggle" type="button" aria-expanded="true">Calibradora V2</button>
             <ul class="rf-menu-items">
+                <li><a href="<?php echo rf_menu_href('calibradora/views/etapa0_configuracoes.php'); ?>" style="color: #1f6feb; font-weight: 700;">0. Configurações de Programas</a></li>
                 <li><a href="<?php echo rf_menu_href('calibradora/views/etapa1_faixas.php'); ?>" style="color: #1f6feb; font-weight: 700;">1. Faixas de Peso</a></li>
                 <li><a href="<?php echo rf_menu_href('calibradora/views/etapa2_configuracao.php'); ?>" style="color: #1f6feb; font-weight: 700;">2. Configuração de Embalagem</a></li>
                 <li><a href="<?php echo rf_menu_href('calibradora/views/etapa3_registro_lote.php'); ?>" style="color: #1f6feb; font-weight: 700;">3. Registro do Lote</a></li>

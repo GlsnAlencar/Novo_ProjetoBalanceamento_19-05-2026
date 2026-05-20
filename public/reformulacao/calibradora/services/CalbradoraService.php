@@ -12,22 +12,30 @@ use CalbradoraModule\Models\FaixaPeso;
 use CalbradoraModule\Models\ConfiguracaoEmbalamento;
 use CalbradoraModule\Models\RegistroLote;
 use CalbradoraModule\Models\DistribuicaoLote;
+use CalbradoraModule\Models\ConfiguracaoCalibradora;
+use CalbradoraModule\Models\ConfiguracaoCalbradoraFaixa;
 use CalbradoraModule\Repositories\FaixaPesoRepository;
 use CalbradoraModule\Repositories\ConfiguracaoEmbalamentoRepository;
 use CalbradoraModule\Repositories\RegistroLoteRepository;
 use CalbradoraModule\Repositories\DistribuicaoLoteRepository;
+use CalbradoraModule\Repositories\ConfiguracaoCalbradoraRepository;
+use CalbradoraModule\Repositories\ConfiguracaoCalbradoraFaixaRepository;
 
 class CalbradoraService {
     private FaixaPesoRepository $faixa_repo;
     private ConfiguracaoEmbalamentoRepository $config_repo;
     private RegistroLoteRepository $lote_repo;
     private DistribuicaoLoteRepository $dist_repo;
+    private ConfiguracaoCalbradoraRepository $config_calibradora_repo;
+    private ConfiguracaoCalbradoraFaixaRepository $faixa_config_repo;
 
     public function __construct(string $data_dir) {
         $this->faixa_repo = new FaixaPesoRepository($data_dir);
         $this->config_repo = new ConfiguracaoEmbalamentoRepository($data_dir);
         $this->lote_repo = new RegistroLoteRepository($data_dir);
         $this->dist_repo = new DistribuicaoLoteRepository($data_dir);
+        $this->config_calibradora_repo = new ConfiguracaoCalbradoraRepository($data_dir);
+        $this->faixa_config_repo = new ConfiguracaoCalbradoraFaixaRepository($data_dir);
     }
 
     /**
@@ -372,5 +380,210 @@ class CalbradoraService {
         arsort($resultado);
 
         return $resultado;
+    }
+
+    /**
+     * ========== CONFIGURAÇÃO CALIBRADORA ==========
+     */
+
+    /**
+     * Obter todas as configurações de calibradora
+     */
+    public function getConfiguracoesCalibradora(): array {
+        return $this->config_calibradora_repo->getAll();
+    }
+
+    /**
+     * Obter configurações ativas de calibradora
+     */
+    public function getConfiguracoesCalibradoraAtivas(): array {
+        return $this->config_calibradora_repo->getAllAtivos();
+    }
+
+    /**
+     * Obter configuração de calibradora por ID
+     */
+    public function getConfiguracaoCalbradoraPorId(int $id): ?ConfiguracaoCalibradora {
+        return $this->config_calibradora_repo->getById($id);
+    }
+
+    /**
+     * Obter configuração de calibradora por Nome
+     */
+    public function getConfiguracaoCalbradoraPorNome(string $nome): ?ConfiguracaoCalibradora {
+        return $this->config_calibradora_repo->getByNome($nome);
+    }
+
+    /**
+     * Verificar se existe configuração com este nome
+     */
+    public function existeConfiguracaoCalbradora(string $nome): bool {
+        return $this->config_calibradora_repo->existeNome($nome);
+    }
+
+    /**
+     * Criar nova configuração de calibradora
+     */
+    public function criarConfiguracaoCalibradora(
+        string $nome,
+        string $descricao = '',
+        bool $ativo = true
+    ): ?ConfiguracaoCalibradora {
+        if (empty(trim($nome))) {
+            return null; // Erro: nome obrigatório
+        }
+
+        if ($this->config_calibradora_repo->existeNome($nome)) {
+            return null; // Erro: nome já existe
+        }
+
+        $config = new ConfiguracaoCalibradora(
+            null,
+            trim($nome),
+            trim($descricao),
+            $ativo
+        );
+
+        return $this->config_calibradora_repo->create($config);
+    }
+
+    /**
+     * Atualizar configuração de calibradora
+     */
+    public function atualizarConfiguracaoCalibradora(ConfiguracaoCalibradora $config): bool {
+        $erros = $config->validar();
+        if (!empty($erros)) {
+            return false;
+        }
+
+        return $this->config_calibradora_repo->update($config);
+    }
+
+    /**
+     * Deletar configuração de calibradora
+     */
+    public function deletarConfiguracaoCalibradora(int $id): bool {
+        // Deletar todas as faixas associadas
+        $this->faixa_config_repo->deleteByConfiguracaoId($id);
+        
+        // Deletar a configuração
+        return $this->config_calibradora_repo->delete($id);
+    }
+
+    /**
+     * ========== FAIXA CONFIGURAÇÃO CALIBRADORA ==========
+     */
+
+    /**
+     * Obter todas as faixas de configuração
+     */
+    public function getFaixasConfiguracao(int $configuracao_id): array {
+        return $this->faixa_config_repo->getByConfiguracaoId($configuracao_id);
+    }
+
+    /**
+     * Obter faixa de configuração por ID
+     */
+    public function getFaixaConfiguracaoPorId(int $id): ?ConfiguracaoCalbradoraFaixa {
+        return $this->faixa_config_repo->getById($id);
+    }
+
+    /**
+     * Obter próxima sequência para uma configuração
+     */
+    public function getProxSequenciaFaixa(int $configuracao_id): int {
+        return $this->faixa_config_repo->getProxSequencia($configuracao_id);
+    }
+
+    /**
+     * Criar nova faixa de configuração com validação
+     */
+    public function criarFaixaConfiguracao(
+        int $configuracao_id,
+        int $sequencia_grupo,
+        string $descricao,
+        float $peso_inicial,
+        float $peso_final
+    ): ?ConfiguracaoCalbradoraFaixa {
+        // Validações básicas
+        if ($configuracao_id <= 0) {
+            return null;
+        }
+
+        if (empty(trim($descricao))) {
+            return null;
+        }
+
+        if ($peso_inicial < 0 || $peso_final < 0) {
+            return null;
+        }
+
+        if ($peso_inicial >= $peso_final) {
+            return null;
+        }
+
+        // Se sequência não foi informada, pega a próxima
+        if ($sequencia_grupo <= 0) {
+            $sequencia_grupo = $this->getProxSequenciaFaixa($configuracao_id);
+        }
+
+        $faixa = new ConfiguracaoCalbradoraFaixa(
+            null,
+            $configuracao_id,
+            $sequencia_grupo,
+            trim($descricao),
+            $peso_inicial,
+            $peso_final
+        );
+
+        // Validar sobreposição
+        if ($this->faixa_config_repo->temSobreposicao($configuracao_id)) {
+            // Verificar se a nova faixa causaria sobreposição
+            $faixas_existentes = $this->getFaixasConfiguracao($configuracao_id);
+            foreach ($faixas_existentes as $faixa_existente) {
+                if ($faixa->sobrepoeComFaixa($faixa_existente)) {
+                    return null; // Sobreposição detectada
+                }
+            }
+        }
+
+        return $this->faixa_config_repo->create($faixa);
+    }
+
+    /**
+     * Atualizar faixa de configuração
+     */
+    public function atualizarFaixaConfiguracao(ConfiguracaoCalbradoraFaixa $faixa): bool {
+        $erros = $faixa->validar();
+        if (!empty($erros)) {
+            return false;
+        }
+
+        // Validar sobreposição (excluindo a própria faixa)
+        $faixas_existentes = $this->getFaixasConfiguracao($faixa->configuracao_id);
+        foreach ($faixas_existentes as $faixa_existente) {
+            if ($faixa_existente->id === $faixa->id) {
+                continue; // Ignorar a própria faixa
+            }
+            if ($faixa->sobrepoeComFaixa($faixa_existente)) {
+                return false; // Sobreposição detectada
+            }
+        }
+
+        return $this->faixa_config_repo->update($faixa);
+    }
+
+    /**
+     * Deletar faixa de configuração
+     */
+    public function deletarFaixaConfiguracao(int $id): bool {
+        return $this->faixa_config_repo->delete($id);
+    }
+
+    /**
+     * Atualizar sequências das faixas
+     */
+    public function atualizarSequenciasFaixas(int $configuracao_id, array $sequencias): bool {
+        return $this->faixa_config_repo->atualizarSequencias($configuracao_id, $sequencias);
     }
 }

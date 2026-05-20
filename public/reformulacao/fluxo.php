@@ -314,7 +314,29 @@ function cod_12_05_fluxo_teste02_equivalente_item(array $data, array $itemsById,
         fn($tree) => (int)($tree['ativo'] ?? 1) === 1 && (string)($tree['item_raiz_id'] ?? '') === $itemId
     ));
 
-    if (empty($trees)) {
+    $parentTrees = array_values(array_filter(
+        $data['tabela_arvore_composicao'] ?? [],
+        fn($comp) => (int)($comp['ativo'] ?? 1) === 1 && (string)($comp['item_pai_id'] ?? '') === $itemId
+    ));
+
+    if (empty($trees) && empty($parentTrees)) {
+        return cod_12_05_fluxo_teste02_equivalente_contexto_item($data, $itemsById, $children, $itemId);
+    }
+
+    if (empty($trees) && !empty($parentTrees)) {
+        $seenTrees = [];
+        foreach ($parentTrees as $comp) {
+            $treeId = (string)($comp['arvore_id'] ?? '');
+            if ($treeId === '' || isset($seenTrees[$treeId])) {
+                continue;
+            }
+            $seenTrees[$treeId] = true;
+            $base = cod_12_05_fluxo_teste02_equivalente_subarvore($treeId, $itemId, $data, $itemsById, $children);
+            if (cod_12_05_fluxo_teste02_num($base['quantidade'] ?? 0) > 0) {
+                return $base;
+            }
+        }
+
         return cod_12_05_fluxo_teste02_equivalente_contexto_item($data, $itemsById, $children, $itemId);
     }
 
