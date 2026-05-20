@@ -15,14 +15,9 @@
             "fluxo",
             "postos",
             "balanceamento"
-        ],
-        "shared_catalogs": {
-            "produtos_itens": "cadastros_basicos.produtos_itens",
-            "unidades": "cadastros_basicos.unidades",
-            "tipos_embalagem": "cadastros_basicos.tipos_embalagem"
-        }
+        ]
     },
-    "updated_at": "2026-05-19 08:12:26",
+    "updated_at": "2026-05-20 09:10:38",
     "tabela_itens": [
         {
             "id": "item_20260513170723_7449",
@@ -36,7 +31,7 @@
             "ativo": 1,
             "observacao": "Produto raiz para teste da arvore de estrutura.",
             "criado_em": "2026-05-17 11:04:22",
-            "atualizado_em": "2026-05-19 08:12:26",
+            "atualizado_em": "2026-05-20 09:04:21",
             "codigo_rm": "",
             "produto_rm": "",
             "peso_tara": null
@@ -50,10 +45,10 @@
             "grupo": "",
             "unidade_base": "un",
             "fator_conversao_padrao": 1,
-            "ativo": 1,
+            "ativo": 0,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26",
+            "atualizado_em": "2026-05-20 09:04:21",
             "codigo_rm": "",
             "produto_rm": "",
             "peso_tara": null
@@ -67,10 +62,10 @@
             "grupo": "",
             "unidade_base": "un",
             "fator_conversao_padrao": 1,
-            "ativo": 1,
+            "ativo": 0,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26",
+            "atualizado_em": "2026-05-20 09:04:21",
             "codigo_rm": "",
             "produto_rm": "",
             "peso_tara": null
@@ -84,10 +79,10 @@
             "grupo": "",
             "unidade_base": "kg",
             "fator_conversao_padrao": 1,
-            "ativo": 1,
+            "ativo": 0,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26",
+            "atualizado_em": "2026-05-20 09:04:21",
             "codigo_rm": "",
             "produto_rm": "",
             "peso_tara": null
@@ -101,10 +96,10 @@
             "grupo": "",
             "unidade_base": "un",
             "fator_conversao_padrao": 1,
-            "ativo": 1,
+            "ativo": 0,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26",
+            "atualizado_em": "2026-05-20 09:04:21",
             "codigo_rm": "",
             "produto_rm": "",
             "peso_tara": null
@@ -118,10 +113,10 @@
             "grupo": "",
             "unidade_base": "un",
             "fator_conversao_padrao": 1,
-            "ativo": 1,
+            "ativo": 0,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26",
+            "atualizado_em": "2026-05-20 09:04:21",
             "codigo_rm": "",
             "produto_rm": "",
             "peso_tara": null
@@ -135,10 +130,10 @@
             "grupo": "",
             "unidade_base": "un",
             "fator_conversao_padrao": 1,
-            "ativo": 1,
+            "ativo": 0,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26",
+            "atualizado_em": "2026-05-20 09:04:21",
             "codigo_rm": "",
             "produto_rm": "",
             "peso_tara": null,
@@ -153,10 +148,10 @@
             "grupo": "",
             "unidade_base": "kg",
             "fator_conversao_padrao": 1,
-            "ativo": 1,
+            "ativo": 0,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26",
+            "atualizado_em": "2026-05-20 09:04:21",
             "codigo_rm": "",
             "produto_rm": "",
             "peso_tara": null,
@@ -171,10 +166,10 @@
             "grupo": "",
             "unidade_base": "l",
             "fator_conversao_padrao": 1,
-            "ativo": 1,
+            "ativo": 0,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26",
+            "atualizado_em": "2026-05-20 09:04:21",
             "codigo_rm": "",
             "produto_rm": "",
             "peso_tara": null,
@@ -194,7 +189,7 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26",
+            "atualizado_em": "2026-05-20 09:04:21",
             "peso_tara": null
         },
         {
@@ -211,7 +206,7 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26",
+            "atualizado_em": "2026-05-20 09:04:21",
             "peso_tara": null
         },
         {
@@ -228,7 +223,7 @@
             "ativo": 0,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26",
+            "atualizado_em": "2026-05-20 09:04:21",
             "peso_tara": null
         },
         {
@@ -245,7 +240,7 @@
             "ativo": 0,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26",
+            "atualizado_em": "2026-05-20 09:04:21",
             "peso_tara": null
         },
         {
@@ -263,7 +258,7 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:04:21"
         },
         {
             "id": "item_20260514194817_4876",
@@ -277,10 +272,10 @@
             "grupo": "",
             "unidade_base": "un",
             "fator_conversao_padrao": 1,
-            "ativo": 1,
+            "ativo": 0,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:04:21"
         },
         {
             "id": "item_20260514195955_4232",
@@ -294,10 +289,10 @@
             "grupo": "",
             "unidade_base": "un",
             "fator_conversao_padrao": 1,
-            "ativo": 1,
+            "ativo": 0,
             "observacao": "",
             "criado_em": "2026-05-17 11:04:22",
-            "atualizado_em": "2026-05-17 18:47:39"
+            "atualizado_em": "2026-05-20 11:51:59"
         },
         {
             "id": "item_20260514200023_9022",
@@ -311,10 +306,10 @@
             "grupo": "",
             "unidade_base": "un",
             "fator_conversao_padrao": 1,
-            "ativo": 1,
+            "ativo": 0,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:04:21"
         },
         {
             "id": "item_20260515002539_2041",
@@ -328,10 +323,10 @@
             "grupo": "",
             "unidade_base": "un",
             "fator_conversao_padrao": 1,
-            "ativo": 1,
+            "ativo": 0,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 12:10:26"
         },
         {
             "id": "item_20260515005632_2199",
@@ -362,10 +357,10 @@
             "grupo": "",
             "unidade_base": "un",
             "fator_conversao_padrao": 1,
-            "ativo": 1,
+            "ativo": 0,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 12:10:22"
         },
         {
             "id": "item_20260515012807_3189",
@@ -379,10 +374,10 @@
             "grupo": "",
             "unidade_base": "un",
             "fator_conversao_padrao": 1,
-            "ativo": 1,
+            "ativo": 0,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26",
+            "atualizado_em": "2026-05-20 09:04:21",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
@@ -397,16 +392,16 @@
             "grupo": "",
             "unidade_base": "un",
             "fator_conversao_padrao": 1,
-            "ativo": 1,
+            "ativo": 0,
             "observacao": "",
             "criado_em": "2026-05-17 11:04:22",
-            "atualizado_em": "2026-05-17 18:47:39",
+            "atualizado_em": "2026-05-20 11:52:10",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
             "id": "item_20260515013620_9116",
             "codigo": "ITM-00014",
-            "nome": "Papel",
+            "nome": "Papel de colheita",
             "codigo_rm": "",
             "produto_rm": "",
             "peso_tara": null,
@@ -418,7 +413,7 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:04:21"
         },
         {
             "id": "item_20260515013640_9930",
@@ -435,7 +430,7 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:04:21"
         },
         {
             "id": "item_20260515014044_4816",
@@ -469,7 +464,7 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:04:21"
         },
         {
             "id": "item_20260517134401_3282",
@@ -486,7 +481,7 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-17 13:44:01",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:04:21"
         },
         {
             "id": "item_20260517134506_6791",
@@ -500,10 +495,10 @@
             "grupo": "",
             "unidade_base": "un",
             "fator_conversao_padrao": 1,
-            "ativo": 1,
+            "ativo": 0,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:04:21"
         },
         {
             "id": "item_20260517134739_9801",
@@ -520,7 +515,7 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:04:21"
         },
         {
             "id": "item_20260517134815_9340",
@@ -537,7 +532,7 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:04:21"
         },
         {
             "id": "item_20260517134838_2479",
@@ -554,7 +549,7 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:04:21"
         },
         {
             "id": "item_20260517181452_4205",
@@ -571,7 +566,7 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-17 18:14:52",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:04:21"
         },
         {
             "id": "item_20260517181531_5750",
@@ -588,11 +583,11 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:04:21"
         },
         {
             "id": "item_20260517183802_9060",
-            "codigo": "ITM-00046",
+            "codigo": "ITM-00058",
             "nome": "Caixa 4kg",
             "codigo_rm": "",
             "produto_rm": "",
@@ -605,12 +600,12 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26",
+            "atualizado_em": "2026-05-20 09:10:38",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
             "id": "item_20260517184120_8590",
-            "codigo": "ITM-00045",
+            "codigo": "ITM-00057",
             "nome": "Manga - caixa 4Kg - Sem Papel",
             "codigo_rm": "",
             "produto_rm": "",
@@ -623,7 +618,7 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26",
+            "atualizado_em": "2026-05-20 09:10:38",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
@@ -641,7 +636,7 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:04:21"
         },
         {
             "id": "item_20260517184340_6931",
@@ -658,7 +653,7 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:04:21"
         },
         {
             "id": "item_20260517184710_2150",
@@ -675,7 +670,7 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:04:21"
         },
         {
             "id": "item_20260517184739_8897",
@@ -692,11 +687,11 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 12:41:17",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:04:21"
         },
         {
             "id": "item_20260518102428_7485",
-            "codigo": "ITM-00043",
+            "codigo": "ITM-00055",
             "nome": "Pallet acabado -  Caixa 4kg - Marítimo",
             "codigo_rm": "",
             "produto_rm": "",
@@ -709,11 +704,11 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 10:24:28",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:10:38"
         },
         {
             "id": "item_20260518102732_5653",
-            "codigo": "ITM-00044",
+            "codigo": "ITM-00056",
             "nome": "PALLET MAR EUROPA E 18KG MI - 1,02X1,10",
             "codigo_rm": "",
             "produto_rm": "",
@@ -726,11 +721,11 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 10:27:32",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:10:38"
         },
         {
             "id": "item_20260518102907_1294",
-            "codigo": "ITM-00048",
+            "codigo": "ITM-00060",
             "nome": "CANTONEIRA EXP (2,30M-5MM)",
             "codigo_rm": "",
             "produto_rm": "",
@@ -743,12 +738,12 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 10:29:07",
-            "atualizado_em": "2026-05-19 08:12:26",
+            "atualizado_em": "2026-05-20 09:10:38",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
             "id": "item_20260518103325_5144",
-            "codigo": "ITM-00049",
+            "codigo": "ITM-00061",
             "nome": "TRAVA PALLET",
             "codigo_rm": "",
             "produto_rm": "",
@@ -761,12 +756,12 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 10:33:25",
-            "atualizado_em": "2026-05-19 08:12:26",
+            "atualizado_em": "2026-05-20 09:10:38",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
             "id": "item_20260518105013_2679",
-            "codigo": "ITM-00050",
+            "codigo": "ITM-00062",
             "nome": "Selo",
             "codigo_rm": "",
             "produto_rm": "",
@@ -779,12 +774,12 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 10:50:13",
-            "atualizado_em": "2026-05-19 08:12:26",
+            "atualizado_em": "2026-05-20 09:10:38",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
             "id": "item_20260518105423_5653",
-            "codigo": "ITM-00051",
+            "codigo": "ITM-00063",
             "nome": "FITA PET PARA ARQUEAR 13 MM",
             "codigo_rm": "",
             "produto_rm": "",
@@ -797,7 +792,7 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 10:54:23",
-            "atualizado_em": "2026-05-19 08:12:26",
+            "atualizado_em": "2026-05-20 09:10:38",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
@@ -815,7 +810,7 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 10:54:50",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:04:21"
         },
         {
             "id": "item_20260518110021_3314",
@@ -832,7 +827,7 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 11:00:21",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:04:21"
         },
         {
             "id": "item_20260518110053_5523",
@@ -866,7 +861,7 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 11:05:41",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:04:21"
         },
         {
             "id": "item_20260518110629_6789",
@@ -883,7 +878,7 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 11:06:29",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:04:21"
         },
         {
             "id": "item_20260518110705_1835",
@@ -900,12 +895,12 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 11:07:05",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:04:21"
         },
         {
             "id": "item_20260518121343_9940",
             "codigo": "ITM-00043",
-            "nome": "Pallet acabado -  Caixa 4kg - Marítimo",
+            "nome": "Pallet acabado -  Caixa 4kg - Marítimo - (1)",
             "codigo_rm": "",
             "produto_rm": "",
             "peso_tara": null,
@@ -914,10 +909,10 @@
             "grupo": "",
             "unidade_base": "un",
             "fator_conversao_padrao": 1,
-            "ativo": 1,
+            "ativo": 0,
             "observacao": "",
-            "criado_em": "2026-05-18 12:13:43",
-            "atualizado_em": "2026-05-18 12:13:43"
+            "criado_em": "2026-05-20 08:43:59",
+            "atualizado_em": "2026-05-20 09:04:21"
         },
         {
             "id": "item_20260518121343_9084",
@@ -931,10 +926,10 @@
             "grupo": "",
             "unidade_base": "un",
             "fator_conversao_padrao": 1,
-            "ativo": 1,
+            "ativo": 0,
             "observacao": "",
             "criado_em": "2026-05-18 12:13:43",
-            "atualizado_em": "2026-05-18 12:13:43"
+            "atualizado_em": "2026-05-20 12:03:43"
         },
         {
             "id": "item_20260518121343_3000",
@@ -948,10 +943,10 @@
             "grupo": "",
             "unidade_base": "un",
             "fator_conversao_padrao": 1,
-            "ativo": 1,
+            "ativo": 0,
             "observacao": "",
             "criado_em": "2026-05-18 12:13:43",
-            "atualizado_em": "2026-05-18 12:14:14",
+            "atualizado_em": "2026-05-20 11:59:41",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
@@ -966,25 +961,25 @@
             "grupo": "",
             "unidade_base": "un",
             "fator_conversao_padrao": 1,
-            "ativo": 1,
+            "ativo": 0,
             "observacao": "",
             "criado_em": "2026-05-18 12:13:43",
-            "atualizado_em": "2026-05-18 12:14:14",
+            "atualizado_em": "2026-05-20 11:59:22",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
             "id": "item_20260518121343_9123",
             "codigo": "ITM-00047",
-            "nome": "Manga in natrua",
+            "nome": "Manga in natura",
             "tipo_item": "Produto",
             "categoria": "Embalagem \/ Unidade de Carga",
             "grupo": "Pallet",
             "unidade_base": "kg",
             "fator_conversao_padrao": 1,
-            "ativo": 1,
+            "ativo": 0,
             "observacao": "Produto raiz para teste da arvore de estrutura.",
-            "criado_em": "2026-05-18 12:13:43",
-            "atualizado_em": "2026-05-18 12:14:14",
+            "criado_em": "2026-05-20 11:29:21",
+            "atualizado_em": "2026-05-20 09:04:21",
             "codigo_rm": "",
             "produto_rm": "",
             "peso_tara": null,
@@ -1002,10 +997,10 @@
             "grupo": "",
             "unidade_base": "un",
             "fator_conversao_padrao": 1,
-            "ativo": 1,
+            "ativo": 0,
             "observacao": "",
             "criado_em": "2026-05-18 12:13:43",
-            "atualizado_em": "2026-05-18 12:14:26",
+            "atualizado_em": "2026-05-20 11:59:28",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
@@ -1020,10 +1015,10 @@
             "grupo": "",
             "unidade_base": "un",
             "fator_conversao_padrao": 1,
-            "ativo": 1,
+            "ativo": 0,
             "observacao": "",
             "criado_em": "2026-05-18 12:13:43",
-            "atualizado_em": "2026-05-18 12:14:17",
+            "atualizado_em": "2026-05-20 12:00:09",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
@@ -1038,10 +1033,10 @@
             "grupo": "",
             "unidade_base": "un",
             "fator_conversao_padrao": 1,
-            "ativo": 1,
+            "ativo": 0,
             "observacao": "",
             "criado_em": "2026-05-18 12:13:43",
-            "atualizado_em": "2026-05-18 12:14:20",
+            "atualizado_em": "2026-05-20 12:00:10",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
@@ -1056,10 +1051,10 @@
             "grupo": "",
             "unidade_base": "m",
             "fator_conversao_padrao": 1,
-            "ativo": 1,
+            "ativo": 0,
             "observacao": "",
             "criado_em": "2026-05-18 12:13:43",
-            "atualizado_em": "2026-05-18 12:14:23",
+            "atualizado_em": "2026-05-20 11:59:47",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
@@ -1077,7 +1072,7 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 12:16:07",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:04:21"
         },
         {
             "id": "item_20260518121657_2775",
@@ -1094,7 +1089,7 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 12:16:57",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:04:21"
         },
         {
             "id": "item_20260518121735_8730",
@@ -1111,7 +1106,167 @@
             "ativo": 1,
             "observacao": "",
             "criado_em": "2026-05-18 12:17:35",
-            "atualizado_em": "2026-05-19 08:12:26"
+            "atualizado_em": "2026-05-20 09:04:21"
+        },
+        {
+            "id": "item_20260520082142_7966",
+            "codigo": "ITM-00055",
+            "nome": "Pallet acabado -  Caixa 4kg - Marítimo",
+            "codigo_rm": "",
+            "produto_rm": "",
+            "peso_tara": null,
+            "tipo_item": "Componente",
+            "categoria": "Produto acabado",
+            "grupo": "",
+            "unidade_base": "un",
+            "fator_conversao_padrao": 1,
+            "ativo": 0,
+            "observacao": "",
+            "criado_em": "2026-05-20 08:21:42",
+            "atualizado_em": "2026-05-20 08:58:42"
+        },
+        {
+            "id": "item_20260520082142_1507",
+            "codigo": "ITM-00056",
+            "nome": "PALLET MAR EUROPA E 18KG MI - 1,02X1,10",
+            "codigo_rm": "",
+            "produto_rm": "",
+            "peso_tara": null,
+            "tipo_item": "Componente",
+            "categoria": "",
+            "grupo": "",
+            "unidade_base": "un",
+            "fator_conversao_padrao": 1,
+            "ativo": 0,
+            "observacao": "",
+            "criado_em": "2026-05-20 08:21:42",
+            "atualizado_em": "2026-05-20 08:58:42"
+        },
+        {
+            "id": "item_20260520082142_5909",
+            "codigo": "ITM-00057",
+            "nome": "Manga - caixa 4Kg - Sem Papel",
+            "codigo_rm": "",
+            "produto_rm": "",
+            "peso_tara": null,
+            "tipo_item": "Componente",
+            "categoria": "",
+            "grupo": "",
+            "unidade_base": "un",
+            "fator_conversao_padrao": 1,
+            "ativo": 0,
+            "observacao": "",
+            "criado_em": "2026-05-20 08:21:42",
+            "atualizado_em": "2026-05-20 08:58:42",
+            "updated_at": "2026-05-19 02:47:48"
+        },
+        {
+            "id": "item_20260520082142_7598",
+            "codigo": "ITM-00058",
+            "nome": "Caixa 4kg",
+            "codigo_rm": "",
+            "produto_rm": "",
+            "peso_tara": null,
+            "tipo_item": "Componente",
+            "categoria": "",
+            "grupo": "",
+            "unidade_base": "un",
+            "fator_conversao_padrao": 1,
+            "ativo": 0,
+            "observacao": "",
+            "criado_em": "2026-05-20 08:21:42",
+            "atualizado_em": "2026-05-20 08:58:42",
+            "updated_at": "2026-05-19 02:47:48"
+        },
+        {
+            "id": "item_20260520082142_8442",
+            "codigo": "ITM-00059",
+            "nome": "Manga in natrua",
+            "tipo_item": "Produto",
+            "categoria": "Embalagem \/ Unidade de Carga",
+            "grupo": "Pallet",
+            "unidade_base": "kg",
+            "fator_conversao_padrao": 1,
+            "ativo": 0,
+            "observacao": "Produto raiz para teste da arvore de estrutura.",
+            "criado_em": "2026-05-20 08:21:42",
+            "atualizado_em": "2026-05-20 11:39:05",
+            "codigo_rm": "",
+            "produto_rm": "",
+            "peso_tara": null,
+            "updated_at": "2026-05-19 02:47:48"
+        },
+        {
+            "id": "item_20260520082142_8829",
+            "codigo": "ITM-00060",
+            "nome": "CANTONEIRA EXP (2,30M-5MM)",
+            "codigo_rm": "",
+            "produto_rm": "",
+            "peso_tara": null,
+            "tipo_item": "Componente",
+            "categoria": "",
+            "grupo": "",
+            "unidade_base": "un",
+            "fator_conversao_padrao": 1,
+            "ativo": 0,
+            "observacao": "",
+            "criado_em": "2026-05-20 08:21:42",
+            "atualizado_em": "2026-05-20 08:58:42",
+            "updated_at": "2026-05-19 02:47:48"
+        },
+        {
+            "id": "item_20260520082142_5526",
+            "codigo": "ITM-00061",
+            "nome": "TRAVA PALLET",
+            "codigo_rm": "",
+            "produto_rm": "",
+            "peso_tara": null,
+            "tipo_item": "Componente",
+            "categoria": "",
+            "grupo": "",
+            "unidade_base": "un",
+            "fator_conversao_padrao": 1,
+            "ativo": 0,
+            "observacao": "",
+            "criado_em": "2026-05-20 08:21:42",
+            "atualizado_em": "2026-05-20 08:58:42",
+            "updated_at": "2026-05-19 02:47:48"
+        },
+        {
+            "id": "item_20260520082142_9708",
+            "codigo": "ITM-00062",
+            "nome": "Selo",
+            "codigo_rm": "",
+            "produto_rm": "",
+            "peso_tara": null,
+            "tipo_item": "Componente",
+            "categoria": "",
+            "grupo": "",
+            "unidade_base": "un",
+            "fator_conversao_padrao": 1,
+            "ativo": 0,
+            "observacao": "",
+            "criado_em": "2026-05-20 08:21:42",
+            "atualizado_em": "2026-05-20 08:58:42",
+            "updated_at": "2026-05-19 02:47:48"
+        },
+        {
+            "id": "item_20260520082142_8960",
+            "codigo": "ITM-00063",
+            "nome": "FITA PET PARA ARQUEAR 13 MM",
+            "codigo_rm": "",
+            "produto_rm": "",
+            "peso_tara": null,
+            "tipo_item": "Componente",
+            "categoria": "",
+            "grupo": "",
+            "unidade_base": "m",
+            "fator_conversao_padrao": 1,
+            "ativo": 0,
+            "observacao": "",
+            "criado_em": "2026-05-20 08:21:42",
+            "atualizado_em": "2026-05-20 08:58:42",
+            "updated_at": "2026-05-19 02:47:48"
         }
     ],
     "tabela_arvores": [
@@ -1122,8 +1277,8 @@
             "nome": "Manga in natura",
             "item_raiz_id": "item_20260513170723_7449",
             "descricao": "Teste completo com filhos e niveis inferiores.",
-            "ativo": 1,
-            "atualizado_em": "2026-05-18 12:41:17",
+            "ativo": 0,
+            "atualizado_em": "2026-05-20 08:41:39",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
@@ -1164,8 +1319,8 @@
             "nome": "Pallet Acabado - Aéreo",
             "item_raiz_id": "item_20260514194817_4876",
             "descricao": "",
-            "ativo": 1,
-            "atualizado_em": "2026-05-15 01:46:02",
+            "ativo": 0,
+            "atualizado_em": "2026-05-20 08:13:22",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
@@ -1175,8 +1330,8 @@
             "nome": "Pallet Acabado - Aéreo",
             "item_raiz_id": "item_20260514195955_4232",
             "descricao": "",
-            "ativo": 1,
-            "atualizado_em": "2026-05-15 01:31:27",
+            "ativo": 0,
+            "atualizado_em": "2026-05-20 08:46:35",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
@@ -1217,8 +1372,8 @@
             "nome": "Manga - caixa 4Kg - Com Papel",
             "item_raiz_id": "item_20260517134401_3282",
             "descricao": "",
-            "ativo": 1,
-            "atualizado_em": "2026-05-17 18:29:58",
+            "ativo": 0,
+            "atualizado_em": "2026-05-20 08:17:13",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
@@ -1229,7 +1384,7 @@
             "item_raiz_id": "item_20260517134815_9340",
             "descricao": "",
             "ativo": 1,
-            "atualizado_em": "2026-05-17 18:38:05"
+            "atualizado_em": "2026-05-20 08:48:23"
         },
         {
             "id": "arvore_20260517135128_8447",
@@ -1324,12 +1479,12 @@
         {
             "id": "arvore_20260518121343_6875",
             "codigo": "ITM-00031-COPIA",
-            "nome": "Pallet acabado -  Caixa 4kg - Marítimo - Copia",
+            "nome": "Pallet acabado -  Caixa 4kg - Marítimo - (1)",
             "item_raiz_id": "item_20260518121343_9940",
             "descricao": "",
-            "ativo": 1,
+            "ativo": 0,
             "criado_em": "2026-05-18 12:13:43",
-            "atualizado_em": "2026-05-18 12:15:48",
+            "atualizado_em": "2026-05-20 08:44:37",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
@@ -1350,7 +1505,7 @@
             "item_raiz_id": "item_20260518121657_2775",
             "descricao": "",
             "ativo": 1,
-            "atualizado_em": "2026-05-18 12:16:57"
+            "atualizado_em": "2026-05-20 09:04:21"
         },
         {
             "id": "arvore_20260518121735_4172",
@@ -1361,6 +1516,16 @@
             "descricao": "",
             "ativo": 1,
             "atualizado_em": "2026-05-18 12:17:35"
+        },
+        {
+            "id": "arvore_20260520082142_2955",
+            "codigo": "ITM-00031-COPIA-COPIA",
+            "nome": "Pallet acabado -  Caixa 4kg - Marítimo - Copia - Copia",
+            "item_raiz_id": "item_20260520082142_7966",
+            "descricao": "",
+            "ativo": 0,
+            "criado_em": "2026-05-20 08:21:42",
+            "atualizado_em": "2026-05-20 08:21:48"
         }
     ],
     "tabela_arvore_composicao": [
@@ -1606,9 +1771,9 @@
             "nivel": 1,
             "ordem_exibicao": 1,
             "observacao": "",
-            "ativo": 1,
+            "ativo": 0,
             "criado_em": "2026-05-15 00:56:55",
-            "atualizado_em": "2026-05-15 03:15:38",
+            "atualizado_em": "2026-05-20 08:14:48",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
@@ -1623,9 +1788,9 @@
             "nivel": 2,
             "ordem_exibicao": 1,
             "observacao": "",
-            "ativo": 1,
+            "ativo": 0,
             "criado_em": "2026-05-15 00:56:55",
-            "atualizado_em": "2026-05-15 03:00:10",
+            "atualizado_em": "2026-05-20 08:14:48",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
@@ -1640,9 +1805,9 @@
             "nivel": 3,
             "ordem_exibicao": 1,
             "observacao": "",
-            "ativo": 1,
+            "ativo": 0,
             "criado_em": "2026-05-15 00:56:55",
-            "atualizado_em": "2026-05-15 00:57:55",
+            "atualizado_em": "2026-05-20 08:14:48",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
@@ -1657,9 +1822,9 @@
             "nivel": 2,
             "ordem_exibicao": 2,
             "observacao": "",
-            "ativo": 1,
+            "ativo": 0,
             "criado_em": "2026-05-15 00:58:37",
-            "atualizado_em": "2026-05-15 03:00:20",
+            "atualizado_em": "2026-05-20 08:14:48",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
@@ -1756,9 +1921,9 @@
             "nivel": 1,
             "ordem_exibicao": 2,
             "observacao": "",
-            "ativo": 1,
+            "ativo": 0,
             "criado_em": "2026-05-15 01:43:51",
-            "atualizado_em": "2026-05-15 03:39:15",
+            "atualizado_em": "2026-05-20 08:05:29",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
@@ -1789,9 +1954,9 @@
             "nivel": 1,
             "ordem_exibicao": 2,
             "observacao": "",
-            "ativo": 1,
+            "ativo": 0,
             "criado_em": "2026-05-15 02:59:31",
-            "atualizado_em": "2026-05-15 03:00:20",
+            "atualizado_em": "2026-05-20 08:15:05",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
@@ -1806,9 +1971,9 @@
             "nivel": 3,
             "ordem_exibicao": 1,
             "observacao": "",
-            "ativo": 1,
+            "ativo": 0,
             "criado_em": "2026-05-15 02:59:31",
-            "atualizado_em": "2026-05-15 03:00:10",
+            "atualizado_em": "2026-05-20 08:14:48",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
@@ -1823,9 +1988,9 @@
             "nivel": 3,
             "ordem_exibicao": 2,
             "observacao": "",
-            "ativo": 1,
+            "ativo": 0,
             "criado_em": "2026-05-15 02:59:31",
-            "atualizado_em": "2026-05-15 03:00:10",
+            "atualizado_em": "2026-05-20 08:14:48",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
@@ -1840,9 +2005,9 @@
             "nivel": 3,
             "ordem_exibicao": 3,
             "observacao": "",
-            "ativo": 1,
+            "ativo": 0,
             "criado_em": "2026-05-15 02:59:31",
-            "atualizado_em": "2026-05-15 03:00:10",
+            "atualizado_em": "2026-05-20 08:14:48",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
@@ -1857,9 +2022,9 @@
             "nivel": 2,
             "ordem_exibicao": 3,
             "observacao": "",
-            "ativo": 1,
+            "ativo": 0,
             "criado_em": "2026-05-15 02:59:31",
-            "atualizado_em": "2026-05-15 03:00:20",
+            "atualizado_em": "2026-05-20 08:14:48",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
@@ -1874,9 +2039,9 @@
             "nivel": 1,
             "ordem_exibicao": 1,
             "observacao": "",
-            "ativo": 1,
+            "ativo": 0,
             "criado_em": "2026-05-15 03:16:08",
-            "atualizado_em": "2026-05-15 03:16:08",
+            "atualizado_em": "2026-05-20 08:15:00",
             "reuso_arvore_id": "arvore_20260513173443_3763",
             "reuso_lote_id": "reuso_20260515031608_1156",
             "reuso_modo": "vinculado"
@@ -1893,9 +2058,9 @@
             "nivel": 2,
             "ordem_exibicao": 1,
             "observacao": "",
-            "ativo": 1,
+            "ativo": 0,
             "criado_em": "2026-05-15 03:16:08",
-            "atualizado_em": "2026-05-15 03:16:08",
+            "atualizado_em": "2026-05-20 08:14:48",
             "reuso_arvore_id": "arvore_20260513173443_3763",
             "reuso_lote_id": "reuso_20260515031608_1156",
             "reuso_modo": "vinculado"
@@ -1912,9 +2077,9 @@
             "nivel": 3,
             "ordem_exibicao": 1,
             "observacao": "",
-            "ativo": 1,
+            "ativo": 0,
             "criado_em": "2026-05-15 03:16:08",
-            "atualizado_em": "2026-05-15 03:23:48",
+            "atualizado_em": "2026-05-20 08:14:48",
             "reuso_arvore_id": "arvore_20260513173443_3763",
             "reuso_lote_id": "reuso_20260515031608_1156",
             "reuso_modo": "vinculado"
@@ -1931,9 +2096,9 @@
             "nivel": 3,
             "ordem_exibicao": 2,
             "observacao": "",
-            "ativo": 1,
+            "ativo": 0,
             "criado_em": "2026-05-15 03:16:08",
-            "atualizado_em": "2026-05-15 03:16:08",
+            "atualizado_em": "2026-05-20 08:14:48",
             "reuso_arvore_id": "arvore_20260513173443_3763",
             "reuso_lote_id": "reuso_20260515031608_1156",
             "reuso_modo": "vinculado"
@@ -1950,9 +2115,9 @@
             "nivel": 3,
             "ordem_exibicao": 3,
             "observacao": "",
-            "ativo": 1,
+            "ativo": 0,
             "criado_em": "2026-05-15 03:16:08",
-            "atualizado_em": "2026-05-15 03:16:08",
+            "atualizado_em": "2026-05-20 08:14:48",
             "reuso_arvore_id": "arvore_20260513173443_3763",
             "reuso_lote_id": "reuso_20260515031608_1156",
             "reuso_modo": "vinculado"
@@ -1969,9 +2134,9 @@
             "nivel": 2,
             "ordem_exibicao": 2,
             "observacao": "",
-            "ativo": 1,
+            "ativo": 0,
             "criado_em": "2026-05-15 03:16:08",
-            "atualizado_em": "2026-05-15 03:16:08",
+            "atualizado_em": "2026-05-20 08:14:48",
             "reuso_arvore_id": "arvore_20260513173443_3763",
             "reuso_lote_id": "reuso_20260515031608_1156",
             "reuso_modo": "vinculado"
@@ -2084,9 +2249,9 @@
             "nivel": 1,
             "ordem_exibicao": 1,
             "observacao": "",
-            "ativo": 1,
+            "ativo": 0,
             "criado_em": "2026-05-17 13:48:23",
-            "atualizado_em": "2026-05-17 13:48:23"
+            "atualizado_em": "2026-05-20 08:17:58"
         },
         {
             "id": "comp_20260517134838_9191",
@@ -2100,9 +2265,9 @@
             "nivel": 2,
             "ordem_exibicao": 1,
             "observacao": "",
-            "ativo": 1,
+            "ativo": 0,
             "criado_em": "2026-05-17 13:48:38",
-            "atualizado_em": "2026-05-17 13:51:46",
+            "atualizado_em": "2026-05-20 08:17:45",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
@@ -2117,9 +2282,9 @@
             "nivel": 1,
             "ordem_exibicao": 2,
             "observacao": "",
-            "ativo": 1,
+            "ativo": 0,
             "criado_em": "2026-05-17 13:51:58",
-            "atualizado_em": "2026-05-17 13:51:58",
+            "atualizado_em": "2026-05-20 08:18:01",
             "reuso_arvore_id": "arvore_20260517135128_8447",
             "reuso_lote_id": "reuso_20260517135158_2833",
             "reuso_modo": "vinculado"
@@ -2802,9 +2967,9 @@
             "nivel": 2,
             "ordem_exibicao": 2,
             "observacao": "",
-            "ativo": 1,
+            "ativo": 0,
             "criado_em": "2026-05-18 12:13:43",
-            "atualizado_em": "2026-05-18 12:14:14",
+            "atualizado_em": "2026-05-20 08:39:47",
             "updated_at": "2026-05-19 02:47:48"
         },
         {
@@ -2887,9 +3052,9 @@
             "nivel": 1,
             "ordem_exibicao": 2,
             "observacao": "",
-            "ativo": 1,
+            "ativo": 0,
             "criado_em": "2026-05-18 12:15:33",
-            "atualizado_em": "2026-05-18 12:15:33",
+            "atualizado_em": "2026-05-20 08:20:19",
             "reuso_arvore_id": "arvore_20260518134103_9869",
             "reuso_lote_id": "reuso_20260518121533_7808",
             "reuso_modo": "vinculado"
@@ -2941,9 +3106,9 @@
             "nivel": 1,
             "ordem_exibicao": 1,
             "observacao": "",
-            "ativo": 1,
+            "ativo": 0,
             "criado_em": "2026-05-18 12:17:09",
-            "atualizado_em": "2026-05-18 12:17:09"
+            "atualizado_em": "2026-05-20 09:03:05"
         },
         {
             "id": "comp_20260518121725_5611",
@@ -2992,6 +3157,524 @@
             "ativo": 1,
             "criado_em": "2026-05-18 12:17:57",
             "atualizado_em": "2026-05-18 12:17:57"
+        },
+        {
+            "id": "comp_20260520081517_6849",
+            "arvore_id": "arvore_20260515005632_6864",
+            "item_pai_id": "item_20260515005632_2199",
+            "item_filho_id": "item_20260513173443_6953",
+            "quantidade": 14,
+            "unidade": "un",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 1,
+            "ordem_exibicao": 1,
+            "observacao": "",
+            "ativo": 1,
+            "criado_em": "2026-05-20 08:15:17",
+            "atualizado_em": "2026-05-20 08:15:17",
+            "reuso_arvore_id": "arvore_20260513173443_3763",
+            "reuso_lote_id": "reuso_20260520081517_4974",
+            "reuso_modo": "vinculado"
+        },
+        {
+            "id": "comp_20260520081517_3064",
+            "arvore_id": "arvore_20260515005632_6864",
+            "item_pai_id": "item_20260513173443_6953",
+            "item_filho_id": "item_20260513173527_1517",
+            "quantidade": 42,
+            "unidade": "un",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 2,
+            "ordem_exibicao": 1,
+            "observacao": "",
+            "ativo": 1,
+            "criado_em": "2026-05-20 08:15:17",
+            "atualizado_em": "2026-05-20 08:15:17",
+            "reuso_arvore_id": "arvore_20260513173443_3763",
+            "reuso_lote_id": "reuso_20260520081517_4974",
+            "reuso_modo": "vinculado"
+        },
+        {
+            "id": "comp_20260520081517_4386",
+            "arvore_id": "arvore_20260515005632_6864",
+            "item_pai_id": "item_20260513173527_1517",
+            "item_filho_id": "item_20260513170723_7449",
+            "quantidade": 20,
+            "unidade": "Kg",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 3,
+            "ordem_exibicao": 1,
+            "observacao": "",
+            "ativo": 1,
+            "criado_em": "2026-05-20 08:15:17",
+            "atualizado_em": "2026-05-20 08:15:17",
+            "reuso_arvore_id": "arvore_20260513173443_3763",
+            "reuso_lote_id": "reuso_20260520081517_4974",
+            "reuso_modo": "vinculado"
+        },
+        {
+            "id": "comp_20260520081517_7818",
+            "arvore_id": "arvore_20260515005632_6864",
+            "item_pai_id": "item_20260513173527_1517",
+            "item_filho_id": "item_20260515013620_9116",
+            "quantidade": 3,
+            "unidade": "un",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 3,
+            "ordem_exibicao": 2,
+            "observacao": "",
+            "ativo": 1,
+            "criado_em": "2026-05-20 08:15:17",
+            "atualizado_em": "2026-05-20 08:15:17",
+            "reuso_arvore_id": "arvore_20260513173443_3763",
+            "reuso_lote_id": "reuso_20260520081517_4974",
+            "reuso_modo": "vinculado"
+        },
+        {
+            "id": "comp_20260520081517_4487",
+            "arvore_id": "arvore_20260515005632_6864",
+            "item_pai_id": "item_20260513173527_1517",
+            "item_filho_id": "item_20260515013640_9930",
+            "quantidade": 1,
+            "unidade": "un",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 3,
+            "ordem_exibicao": 3,
+            "observacao": "",
+            "ativo": 1,
+            "criado_em": "2026-05-20 08:15:17",
+            "atualizado_em": "2026-05-20 08:15:17",
+            "reuso_arvore_id": "arvore_20260513173443_3763",
+            "reuso_lote_id": "reuso_20260520081517_4974",
+            "reuso_modo": "vinculado"
+        },
+        {
+            "id": "comp_20260520081517_4903",
+            "arvore_id": "arvore_20260515005632_6864",
+            "item_pai_id": "item_20260513173443_6953",
+            "item_filho_id": "item_20260515014044_4816",
+            "quantidade": 1,
+            "unidade": "un",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 2,
+            "ordem_exibicao": 2,
+            "observacao": "",
+            "ativo": 1,
+            "criado_em": "2026-05-20 08:15:17",
+            "atualizado_em": "2026-05-20 08:15:17",
+            "reuso_arvore_id": "arvore_20260513173443_3763",
+            "reuso_lote_id": "reuso_20260520081517_4974",
+            "reuso_modo": "vinculado"
+        },
+        {
+            "id": "comp_20260520082142_8872",
+            "arvore_id": "arvore_20260520082142_2955",
+            "item_pai_id": "item_20260520082142_7966",
+            "item_filho_id": "item_20260520082142_1507",
+            "quantidade": 1,
+            "unidade": "un",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 1,
+            "ordem_exibicao": 1,
+            "observacao": "",
+            "ativo": 1,
+            "criado_em": "2026-05-20 08:21:42",
+            "atualizado_em": "2026-05-20 08:21:42"
+        },
+        {
+            "id": "comp_20260520082142_6265",
+            "arvore_id": "arvore_20260520082142_2955",
+            "item_pai_id": "item_20260520082142_7966",
+            "item_filho_id": "item_20260520082142_5909",
+            "quantidade": 252,
+            "unidade": "un",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 1,
+            "ordem_exibicao": 2,
+            "observacao": "",
+            "ativo": 1,
+            "criado_em": "2026-05-20 08:21:42",
+            "atualizado_em": "2026-05-20 08:21:42"
+        },
+        {
+            "id": "comp_20260520082142_7664",
+            "arvore_id": "arvore_20260520082142_2955",
+            "item_pai_id": "item_20260520082142_5909",
+            "item_filho_id": "item_20260520082142_7598",
+            "quantidade": 1,
+            "unidade": "un",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 2,
+            "ordem_exibicao": 1,
+            "observacao": "",
+            "ativo": 1,
+            "criado_em": "2026-05-20 08:21:42",
+            "atualizado_em": "2026-05-20 08:21:42"
+        },
+        {
+            "id": "comp_20260520082142_3271",
+            "arvore_id": "arvore_20260520082142_2955",
+            "item_pai_id": "item_20260520082142_5909",
+            "item_filho_id": "item_20260520082142_8442",
+            "quantidade": 4,
+            "unidade": "kg",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 2,
+            "ordem_exibicao": 2,
+            "observacao": "",
+            "ativo": 1,
+            "criado_em": "2026-05-20 08:21:42",
+            "atualizado_em": "2026-05-20 08:21:42"
+        },
+        {
+            "id": "comp_20260520082142_1331",
+            "arvore_id": "arvore_20260520082142_2955",
+            "item_pai_id": "item_20260520082142_7966",
+            "item_filho_id": "item_20260520082142_8829",
+            "quantidade": 4,
+            "unidade": "un",
+            "fator_conversao": 4,
+            "percentual": null,
+            "nivel": 1,
+            "ordem_exibicao": 3,
+            "observacao": "",
+            "ativo": 1,
+            "criado_em": "2026-05-20 08:21:42",
+            "atualizado_em": "2026-05-20 08:21:42"
+        },
+        {
+            "id": "comp_20260520082142_8454",
+            "arvore_id": "arvore_20260520082142_2955",
+            "item_pai_id": "item_20260520082142_7966",
+            "item_filho_id": "item_20260520082142_5526",
+            "quantidade": 1,
+            "unidade": "un",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 1,
+            "ordem_exibicao": 4,
+            "observacao": "",
+            "ativo": 1,
+            "criado_em": "2026-05-20 08:21:42",
+            "atualizado_em": "2026-05-20 08:21:42"
+        },
+        {
+            "id": "comp_20260520082142_3346",
+            "arvore_id": "arvore_20260520082142_2955",
+            "item_pai_id": "item_20260520082142_7966",
+            "item_filho_id": "item_20260520082142_9708",
+            "quantidade": 1512,
+            "unidade": "un",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 1,
+            "ordem_exibicao": 5,
+            "observacao": "",
+            "ativo": 1,
+            "criado_em": "2026-05-20 08:21:42",
+            "atualizado_em": "2026-05-20 08:21:42"
+        },
+        {
+            "id": "comp_20260520082142_7534",
+            "arvore_id": "arvore_20260520082142_2955",
+            "item_pai_id": "item_20260520082142_7966",
+            "item_filho_id": "item_20260520082142_8960",
+            "quantidade": 50.4,
+            "unidade": "m",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 1,
+            "ordem_exibicao": 6,
+            "observacao": "",
+            "ativo": 1,
+            "criado_em": "2026-05-20 08:21:42",
+            "atualizado_em": "2026-05-20 08:21:42"
+        },
+        {
+            "id": "comp_20260520084020_6673",
+            "arvore_id": "arvore_20260518121343_6875",
+            "item_pai_id": "item_20260518121343_3000",
+            "item_filho_id": "item_20260513170723_7449",
+            "quantidade": 4,
+            "unidade": "kg",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 2,
+            "ordem_exibicao": 2,
+            "observacao": "",
+            "ativo": 1,
+            "criado_em": "2026-05-20 08:40:20",
+            "atualizado_em": "2026-05-20 08:40:20",
+            "reuso_arvore_id": "arvore_20260513170723_3841",
+            "reuso_lote_id": "reuso_20260520084020_7459",
+            "reuso_modo": "vinculado"
+        },
+        {
+            "id": "comp_20260520084020_2227",
+            "arvore_id": "arvore_20260518121343_6875",
+            "item_pai_id": "item_20260513170723_7449",
+            "item_filho_id": "item_20260513170822_9309",
+            "quantidade": 42,
+            "unidade": "un",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 3,
+            "ordem_exibicao": 1,
+            "observacao": "Filho direto do pallet",
+            "ativo": 0,
+            "criado_em": "2026-05-20 08:40:20",
+            "atualizado_em": "2026-05-20 08:42:39",
+            "reuso_arvore_id": "arvore_20260513170723_3841",
+            "reuso_lote_id": "reuso_20260520084020_7459",
+            "reuso_modo": "vinculado"
+        },
+        {
+            "id": "comp_20260520084020_9558",
+            "arvore_id": "arvore_20260518121343_6875",
+            "item_pai_id": "item_20260513170822_9309",
+            "item_filho_id": "item_20260513170823_8791",
+            "quantidade": 20,
+            "unidade": "kg",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 4,
+            "ordem_exibicao": 1,
+            "observacao": "Materia prima por CTT",
+            "ativo": 0,
+            "criado_em": "2026-05-20 08:40:20",
+            "atualizado_em": "2026-05-20 08:42:39",
+            "reuso_arvore_id": "arvore_20260513170723_3841",
+            "reuso_lote_id": "reuso_20260520084020_7459",
+            "reuso_modo": "vinculado"
+        },
+        {
+            "id": "comp_20260520084020_3612",
+            "arvore_id": "arvore_20260518121343_6875",
+            "item_pai_id": "item_20260513170822_9309",
+            "item_filho_id": "item_20260513170824_3983",
+            "quantidade": 1,
+            "unidade": "un",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 4,
+            "ordem_exibicao": 2,
+            "observacao": "Papel por CTT",
+            "ativo": 0,
+            "criado_em": "2026-05-20 08:40:20",
+            "atualizado_em": "2026-05-20 08:42:39",
+            "reuso_arvore_id": "arvore_20260513170723_3841",
+            "reuso_lote_id": "reuso_20260520084020_7459",
+            "reuso_modo": "vinculado"
+        },
+        {
+            "id": "comp_20260520084020_8215",
+            "arvore_id": "arvore_20260518121343_6875",
+            "item_pai_id": "item_20260513170822_9309",
+            "item_filho_id": "item_20260513170824_6762",
+            "quantidade": 1,
+            "unidade": "un",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 4,
+            "ordem_exibicao": 3,
+            "observacao": "Caixa vazia",
+            "ativo": 0,
+            "criado_em": "2026-05-20 08:40:20",
+            "atualizado_em": "2026-05-20 08:42:39",
+            "reuso_arvore_id": "arvore_20260513170723_3841",
+            "reuso_lote_id": "reuso_20260520084020_7459",
+            "reuso_modo": "vinculado"
+        },
+        {
+            "id": "comp_20260520084020_9182",
+            "arvore_id": "arvore_20260518121343_6875",
+            "item_pai_id": "item_20260513170723_7449",
+            "item_filho_id": "item_20260513170823_5606",
+            "quantidade": 1,
+            "unidade": "un",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 3,
+            "ordem_exibicao": 2,
+            "observacao": "Base reutilizavel",
+            "ativo": 0,
+            "criado_em": "2026-05-20 08:40:20",
+            "atualizado_em": "2026-05-20 08:43:19",
+            "reuso_arvore_id": "arvore_20260513170723_3841",
+            "reuso_lote_id": "reuso_20260520084020_7459",
+            "reuso_modo": "vinculado"
+        },
+        {
+            "id": "comp_20260520084020_8601",
+            "arvore_id": "arvore_20260518121343_6875",
+            "item_pai_id": "item_20260513170823_5606",
+            "item_filho_id": "item_20260513170825_8273",
+            "quantidade": 5,
+            "unidade": "un",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 4,
+            "ordem_exibicao": 1,
+            "observacao": "Tabuas por pallet",
+            "ativo": 0,
+            "criado_em": "2026-05-20 08:40:20",
+            "atualizado_em": "2026-05-20 08:42:52",
+            "reuso_arvore_id": "arvore_20260513170723_3841",
+            "reuso_lote_id": "reuso_20260520084020_7459",
+            "reuso_modo": "vinculado"
+        },
+        {
+            "id": "comp_20260520084020_6047",
+            "arvore_id": "arvore_20260518121343_6875",
+            "item_pai_id": "item_20260513170823_5606",
+            "item_filho_id": "item_20260515012807_3189",
+            "quantidade": 1,
+            "unidade": "un",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 4,
+            "ordem_exibicao": 2,
+            "observacao": "",
+            "ativo": 0,
+            "criado_em": "2026-05-20 08:40:20",
+            "atualizado_em": "2026-05-20 08:42:55",
+            "reuso_arvore_id": "arvore_20260513170723_3841",
+            "reuso_lote_id": "reuso_20260520084020_7459",
+            "reuso_modo": "vinculado"
+        },
+        {
+            "id": "comp_20260520084020_1153",
+            "arvore_id": "arvore_20260518121343_6875",
+            "item_pai_id": "item_20260515012807_3189",
+            "item_filho_id": "item_20260515012816_5472",
+            "quantidade": 1,
+            "unidade": "un",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 5,
+            "ordem_exibicao": 1,
+            "observacao": "",
+            "ativo": 0,
+            "criado_em": "2026-05-20 08:40:20",
+            "atualizado_em": "2026-05-20 08:42:55",
+            "reuso_arvore_id": "arvore_20260513170723_3841",
+            "reuso_lote_id": "reuso_20260520084020_7459",
+            "reuso_modo": "vinculado"
+        },
+        {
+            "id": "comp_20260520084020_2331",
+            "arvore_id": "arvore_20260518121343_6875",
+            "item_pai_id": "item_20260513170823_5606",
+            "item_filho_id": "item_20260513170825_5330",
+            "quantidade": 0.2,
+            "unidade": "kg",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 4,
+            "ordem_exibicao": 3,
+            "observacao": "Pregos por pallet",
+            "ativo": 0,
+            "criado_em": "2026-05-20 08:40:20",
+            "atualizado_em": "2026-05-20 08:43:11",
+            "reuso_arvore_id": "arvore_20260513170723_3841",
+            "reuso_lote_id": "reuso_20260520084020_7459",
+            "reuso_modo": "vinculado"
+        },
+        {
+            "id": "comp_20260520084020_3027",
+            "arvore_id": "arvore_20260518121343_6875",
+            "item_pai_id": "item_20260513170823_5606",
+            "item_filho_id": "item_20260513170826_9709",
+            "quantidade": 0.1,
+            "unidade": "l",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 4,
+            "ordem_exibicao": 4,
+            "observacao": "Tratamento por pallet",
+            "ativo": 0,
+            "criado_em": "2026-05-20 08:40:20",
+            "atualizado_em": "2026-05-20 08:43:04",
+            "reuso_arvore_id": "arvore_20260513170723_3841",
+            "reuso_lote_id": "reuso_20260520084020_7459",
+            "reuso_modo": "vinculado"
+        },
+        {
+            "id": "comp_20260520084743_4935",
+            "arvore_id": "arvore_20260517134815_8159",
+            "item_pai_id": "item_20260517134815_9340",
+            "item_filho_id": "item_20260513170723_7449",
+            "quantidade": 4,
+            "unidade": "kg",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 1,
+            "ordem_exibicao": 4,
+            "observacao": "",
+            "ativo": 0,
+            "criado_em": "2026-05-20 08:47:43",
+            "atualizado_em": "2026-05-20 08:47:53"
+        },
+        {
+            "id": "comp_20260520084744_8576",
+            "arvore_id": "arvore_20260517134815_8159",
+            "item_pai_id": "item_20260517134815_9340",
+            "item_filho_id": "item_20260513170723_7449",
+            "quantidade": 4,
+            "unidade": "kg",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 1,
+            "ordem_exibicao": 5,
+            "observacao": "",
+            "ativo": 1,
+            "criado_em": "2026-05-20 08:47:44",
+            "atualizado_em": "2026-05-20 08:47:44"
+        },
+        {
+            "id": "comp_20260520084817_2079",
+            "arvore_id": "arvore_20260517134815_8159",
+            "item_pai_id": "item_20260517134815_9340",
+            "item_filho_id": "item_20260517134838_2479",
+            "quantidade": 1,
+            "unidade": "un",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 1,
+            "ordem_exibicao": 6,
+            "observacao": "",
+            "ativo": 1,
+            "criado_em": "2026-05-20 08:48:17",
+            "atualizado_em": "2026-05-20 08:48:17",
+            "reuso_arvore_id": "arvore_20260517135128_8447",
+            "reuso_lote_id": "reuso_20260520084817_9477",
+            "reuso_modo": "vinculado"
+        },
+        {
+            "id": "comp_20260520090326_9860",
+            "arvore_id": "arvore_20260518121657_2725",
+            "item_pai_id": "item_20260518121657_2775",
+            "item_filho_id": "item_20260518102732_5653",
+            "quantidade": 1,
+            "unidade": "un",
+            "fator_conversao": 1,
+            "percentual": null,
+            "nivel": 1,
+            "ordem_exibicao": 3,
+            "observacao": "",
+            "ativo": 1,
+            "criado_em": "2026-05-20 09:03:26",
+            "atualizado_em": "2026-05-20 09:03:26"
         }
     ],
     "tabela_item_parametros": [
@@ -5594,6 +6277,762 @@
             "composicao_id": "comp_20260518110719_1496",
             "detalhe": "Removidos 5 vinculos locais e 0 itens sem uso.",
             "criado_em": "2026-05-19 08:12:26"
+        },
+        {
+            "id": "hist_20260520080529_5557",
+            "acao": "ramificacao excluida localmente",
+            "item_id": "item_20260515013640_9930",
+            "arvore_id": "arvore_20260514165449_3807",
+            "composicao_id": "comp_20260515014351_8199",
+            "detalhe": "Removidos 1 vinculos locais e 0 itens sem uso.",
+            "criado_em": "2026-05-20 08:05:29"
+        },
+        {
+            "id": "hist_20260520081322_1457",
+            "acao": "arvore arquivada",
+            "item_id": "item_20260514194817_4876",
+            "arvore_id": "arvore_20260514194817_6393",
+            "composicao_id": "",
+            "detalhe": "Arvore arquivada sem apagar estrutura.",
+            "criado_em": "2026-05-20 08:13:22"
+        },
+        {
+            "id": "hist_20260520081448_7229",
+            "acao": "ramificacao excluida localmente",
+            "item_id": "item_20260513173443_6953",
+            "arvore_id": "arvore_20260515005632_6864",
+            "composicao_id": "comp_20260515005655_5394",
+            "detalhe": "Removidos 13 vinculos locais e 1 itens sem uso.",
+            "criado_em": "2026-05-20 08:14:48"
+        },
+        {
+            "id": "hist_20260520081500_8102",
+            "acao": "ramificacao excluida localmente",
+            "item_id": "item_20260513173443_6953",
+            "arvore_id": "arvore_20260515005632_6864",
+            "composicao_id": "comp_20260515031608_5435",
+            "detalhe": "Removidos 1 vinculos locais e 0 itens sem uso.",
+            "criado_em": "2026-05-20 08:15:00"
+        },
+        {
+            "id": "hist_20260520081505_9436",
+            "acao": "ramificacao excluida localmente",
+            "item_id": "item_20260513173443_6953",
+            "arvore_id": "arvore_20260515005632_6864",
+            "composicao_id": "comp_20260515025931_5395",
+            "detalhe": "Removidos 1 vinculos locais e 0 itens sem uso.",
+            "criado_em": "2026-05-20 08:15:05"
+        },
+        {
+            "id": "hist_20260520081517_8080",
+            "acao": "vinculo criado",
+            "item_id": "item_20260513173443_6953",
+            "arvore_id": "arvore_20260515005632_6864",
+            "composicao_id": "comp_20260520081517_6849",
+            "detalhe": "Filho adicionado a arvore.",
+            "criado_em": "2026-05-20 08:15:17"
+        },
+        {
+            "id": "hist_20260520081517_5546",
+            "acao": "subarvore importada",
+            "item_id": "item_20260513173443_6953",
+            "arvore_id": "arvore_20260515005632_6864",
+            "composicao_id": "comp_20260520081517_6849",
+            "detalhe": "5 vinculos importados do item existente.",
+            "criado_em": "2026-05-20 08:15:17"
+        },
+        {
+            "id": "hist_20260520081713_6634",
+            "acao": "arvore arquivada",
+            "item_id": "item_20260517134401_3282",
+            "arvore_id": "arvore_20260517134506_5800",
+            "composicao_id": "",
+            "detalhe": "Arvore arquivada sem apagar estrutura.",
+            "criado_em": "2026-05-20 08:17:13"
+        },
+        {
+            "id": "hist_20260520081745_6164",
+            "acao": "ramificacao excluida localmente",
+            "item_id": "item_20260517134838_2479",
+            "arvore_id": "arvore_20260517134815_8159",
+            "composicao_id": "comp_20260517134838_9191",
+            "detalhe": "Removidos 1 vinculos locais e 0 itens sem uso.",
+            "criado_em": "2026-05-20 08:17:45"
+        },
+        {
+            "id": "hist_20260520081758_6956",
+            "acao": "ramificacao excluida localmente",
+            "item_id": "item_20260513170723_7449",
+            "arvore_id": "arvore_20260517134815_8159",
+            "composicao_id": "comp_20260517134823_7892",
+            "detalhe": "Removidos 1 vinculos locais e 0 itens sem uso.",
+            "criado_em": "2026-05-20 08:17:58"
+        },
+        {
+            "id": "hist_20260520081801_7118",
+            "acao": "ramificacao excluida localmente",
+            "item_id": "item_20260517134838_2479",
+            "arvore_id": "arvore_20260517134815_8159",
+            "composicao_id": "comp_20260517135158_8915",
+            "detalhe": "Removidos 1 vinculos locais e 0 itens sem uso.",
+            "criado_em": "2026-05-20 08:18:01"
+        },
+        {
+            "id": "hist_20260520082019_8315",
+            "acao": "ramificacao excluida localmente",
+            "item_id": "item_20260517183802_9060",
+            "arvore_id": "arvore_20260518121343_6875",
+            "composicao_id": "comp_20260518121533_6134",
+            "detalhe": "Removidos 1 vinculos locais e 0 itens sem uso.",
+            "criado_em": "2026-05-20 08:20:19"
+        },
+        {
+            "id": "hist_20260520082142_4229",
+            "acao": "arvore duplicada para edicao",
+            "item_id": "item_20260520082142_7966",
+            "arvore_id": "arvore_20260520082142_2955",
+            "composicao_id": "",
+            "detalhe": "Nova arvore criada a partir de ITM-00031-COPIA com 8 vinculos copiados.",
+            "criado_em": "2026-05-20 08:21:42"
+        },
+        {
+            "id": "hist_20260520082148_9779",
+            "acao": "arvore arquivada",
+            "item_id": "item_20260520082142_7966",
+            "arvore_id": "arvore_20260520082142_2955",
+            "composicao_id": "",
+            "detalhe": "Arvore arquivada sem apagar estrutura.",
+            "criado_em": "2026-05-20 08:21:48"
+        },
+        {
+            "id": "hist_20260520113905_9595",
+            "acao": "item arquivado",
+            "item_id": "item_20260520082142_8442",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Alterado pelo relatorio de itens. Vinculos da arvore foram preservados.",
+            "criado_em": "2026-05-20 11:39:05"
+        },
+        {
+            "id": "hist_20260520083947_3671",
+            "acao": "ramificacao excluida localmente",
+            "item_id": "item_20260518121343_9123",
+            "arvore_id": "arvore_20260518121343_6875",
+            "composicao_id": "comp_20260518121343_2126",
+            "detalhe": "Removidos 1 vinculos locais e 1 itens sem uso.",
+            "criado_em": "2026-05-20 08:39:47"
+        },
+        {
+            "id": "hist_20260520084020_4330",
+            "acao": "vinculo criado",
+            "item_id": "item_20260513170723_7449",
+            "arvore_id": "arvore_20260518121343_6875",
+            "composicao_id": "comp_20260520084020_6673",
+            "detalhe": "Filho adicionado a arvore.",
+            "criado_em": "2026-05-20 08:40:20"
+        },
+        {
+            "id": "hist_20260520084020_6959",
+            "acao": "subarvore importada",
+            "item_id": "item_20260513170723_7449",
+            "arvore_id": "arvore_20260518121343_6875",
+            "composicao_id": "comp_20260520084020_6673",
+            "detalhe": "10 vinculos importados do item existente.",
+            "criado_em": "2026-05-20 08:40:20"
+        },
+        {
+            "id": "hist_20260520084139_5232",
+            "acao": "arvore arquivada",
+            "item_id": "item_20260513170723_7449",
+            "arvore_id": "arvore_20260513170723_3841",
+            "composicao_id": "",
+            "detalhe": "Arvore arquivada sem apagar estrutura.",
+            "criado_em": "2026-05-20 08:41:39"
+        },
+        {
+            "id": "hist_20260520084239_1862",
+            "acao": "ramificacao excluida localmente",
+            "item_id": "item_20260513170822_9309",
+            "arvore_id": "arvore_20260518121343_6875",
+            "composicao_id": "comp_20260520084020_2227",
+            "detalhe": "Removidos 4 vinculos locais e 0 itens sem uso.",
+            "criado_em": "2026-05-20 08:42:39"
+        },
+        {
+            "id": "hist_20260520084252_6068",
+            "acao": "ramificacao excluida localmente",
+            "item_id": "item_20260513170825_8273",
+            "arvore_id": "arvore_20260518121343_6875",
+            "composicao_id": "comp_20260520084020_8601",
+            "detalhe": "Removidos 1 vinculos locais e 0 itens sem uso.",
+            "criado_em": "2026-05-20 08:42:52"
+        },
+        {
+            "id": "hist_20260520084255_5626",
+            "acao": "ramificacao excluida localmente",
+            "item_id": "item_20260515012807_3189",
+            "arvore_id": "arvore_20260518121343_6875",
+            "composicao_id": "comp_20260520084020_6047",
+            "detalhe": "Removidos 2 vinculos locais e 0 itens sem uso.",
+            "criado_em": "2026-05-20 08:42:55"
+        },
+        {
+            "id": "hist_20260520084304_9907",
+            "acao": "ramificacao excluida localmente",
+            "item_id": "item_20260513170826_9709",
+            "arvore_id": "arvore_20260518121343_6875",
+            "composicao_id": "comp_20260520084020_3027",
+            "detalhe": "Removidos 1 vinculos locais e 0 itens sem uso.",
+            "criado_em": "2026-05-20 08:43:04"
+        },
+        {
+            "id": "hist_20260520084307_5894",
+            "acao": "ramificacao excluida localmente",
+            "item_id": "item_20260513170825_5330",
+            "arvore_id": "arvore_20260518121343_6875",
+            "composicao_id": "comp_20260520084020_2331",
+            "detalhe": "Removidos 1 vinculos locais e 0 itens sem uso.",
+            "criado_em": "2026-05-20 08:43:07"
+        },
+        {
+            "id": "hist_20260520084311_6321",
+            "acao": "ramificacao excluida localmente",
+            "item_id": "item_20260513170825_5330",
+            "arvore_id": "arvore_20260518121343_6875",
+            "composicao_id": "comp_20260520084020_2331",
+            "detalhe": "Removidos 1 vinculos locais e 0 itens sem uso.",
+            "criado_em": "2026-05-20 08:43:11"
+        },
+        {
+            "id": "hist_20260520084319_7156",
+            "acao": "ramificacao excluida localmente",
+            "item_id": "item_20260513170823_5606",
+            "arvore_id": "arvore_20260518121343_6875",
+            "composicao_id": "comp_20260520084020_9182",
+            "detalhe": "Removidos 1 vinculos locais e 0 itens sem uso.",
+            "criado_em": "2026-05-20 08:43:19"
+        },
+        {
+            "id": "hist_20260520084359_7059",
+            "acao": "item editado",
+            "item_id": "item_20260518121343_9940",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Item raiz atualizado.",
+            "criado_em": "2026-05-20 08:43:59"
+        },
+        {
+            "id": "hist_20260520084359_2986",
+            "acao": "arvore editada",
+            "item_id": "item_20260518121343_9940",
+            "arvore_id": "arvore_20260518121343_6875",
+            "composicao_id": "",
+            "detalhe": "Dados da arvore atualizados.",
+            "criado_em": "2026-05-20 08:43:59"
+        },
+        {
+            "id": "hist_20260520084437_3043",
+            "acao": "arvore arquivada",
+            "item_id": "item_20260518121343_9940",
+            "arvore_id": "arvore_20260518121343_6875",
+            "composicao_id": "",
+            "detalhe": "Arvore arquivada sem apagar estrutura.",
+            "criado_em": "2026-05-20 08:44:37"
+        },
+        {
+            "id": "hist_20260520084635_6246",
+            "acao": "arvore arquivada",
+            "item_id": "item_20260514195955_4232",
+            "arvore_id": "arvore_20260514195955_7579",
+            "composicao_id": "",
+            "detalhe": "Arvore arquivada sem apagar estrutura.",
+            "criado_em": "2026-05-20 08:46:35"
+        },
+        {
+            "id": "hist_20260520084743_5897",
+            "acao": "vinculo criado",
+            "item_id": "item_20260513170723_7449",
+            "arvore_id": "arvore_20260517134815_8159",
+            "composicao_id": "comp_20260520084743_4935",
+            "detalhe": "Filho adicionado a arvore.",
+            "criado_em": "2026-05-20 08:47:43"
+        },
+        {
+            "id": "hist_20260520084744_7022",
+            "acao": "vinculo criado",
+            "item_id": "item_20260513170723_7449",
+            "arvore_id": "arvore_20260517134815_8159",
+            "composicao_id": "comp_20260520084744_8576",
+            "detalhe": "Filho adicionado a arvore.",
+            "criado_em": "2026-05-20 08:47:44"
+        },
+        {
+            "id": "hist_20260520084753_9698",
+            "acao": "ramificacao excluida localmente",
+            "item_id": "item_20260513170723_7449",
+            "arvore_id": "arvore_20260517134815_8159",
+            "composicao_id": "comp_20260520084743_4935",
+            "detalhe": "Removidos 1 vinculos locais e 0 itens sem uso.",
+            "criado_em": "2026-05-20 08:47:53"
+        },
+        {
+            "id": "hist_20260520084817_6915",
+            "acao": "vinculo criado",
+            "item_id": "item_20260517134838_2479",
+            "arvore_id": "arvore_20260517134815_8159",
+            "composicao_id": "comp_20260520084817_2079",
+            "detalhe": "Filho adicionado a arvore.",
+            "criado_em": "2026-05-20 08:48:17"
+        },
+        {
+            "id": "hist_20260520084823_1623",
+            "acao": "item editado",
+            "item_id": "item_20260517134815_9340",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Item raiz atualizado.",
+            "criado_em": "2026-05-20 08:48:23"
+        },
+        {
+            "id": "hist_20260520084823_7911",
+            "acao": "arvore editada",
+            "item_id": "item_20260517134815_9340",
+            "arvore_id": "arvore_20260517134815_8159",
+            "composicao_id": "",
+            "detalhe": "Dados da arvore atualizados.",
+            "criado_em": "2026-05-20 08:48:23"
+        },
+        {
+            "id": "hist_20260520114840_7539",
+            "acao": "item arquivado",
+            "item_id": "item_20260513170823_8791",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Alterado pelo relatorio de itens. Vinculos da arvore foram preservados.",
+            "criado_em": "2026-05-20 11:48:40"
+        },
+        {
+            "id": "hist_20260520114843_7281",
+            "acao": "item arquivado",
+            "item_id": "item_20260513170822_9309",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Alterado pelo relatorio de itens. Vinculos da arvore foram preservados.",
+            "criado_em": "2026-05-20 11:48:43"
+        },
+        {
+            "id": "hist_20260520115154_9072",
+            "acao": "item arquivado",
+            "item_id": "item_20260513170824_6762",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Alterado pelo relatorio de itens. Vinculos da arvore foram preservados.",
+            "criado_em": "2026-05-20 11:51:54"
+        },
+        {
+            "id": "hist_20260520115157_3631",
+            "acao": "item arquivado",
+            "item_id": "item_20260514194817_4876",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Alterado pelo relatorio de itens. Vinculos da arvore foram preservados.",
+            "criado_em": "2026-05-20 11:51:57"
+        },
+        {
+            "id": "hist_20260520115159_9692",
+            "acao": "item arquivado",
+            "item_id": "item_20260514195955_4232",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Alterado pelo relatorio de itens. Vinculos da arvore foram preservados.",
+            "criado_em": "2026-05-20 11:51:59"
+        },
+        {
+            "id": "hist_20260520115203_5006",
+            "acao": "item arquivado",
+            "item_id": "item_20260514200023_9022",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Alterado pelo relatorio de itens. Vinculos da arvore foram preservados.",
+            "criado_em": "2026-05-20 11:52:03"
+        },
+        {
+            "id": "hist_20260520115208_2811",
+            "acao": "item arquivado",
+            "item_id": "item_20260515012807_3189",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Alterado pelo relatorio de itens. Vinculos da arvore foram preservados.",
+            "criado_em": "2026-05-20 11:52:08"
+        },
+        {
+            "id": "hist_20260520115210_7486",
+            "acao": "item arquivado",
+            "item_id": "item_20260515012816_5472",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Alterado pelo relatorio de itens. Vinculos da arvore foram preservados.",
+            "criado_em": "2026-05-20 11:52:10"
+        },
+        {
+            "id": "hist_20260520085842_6471",
+            "acao": "item arquivado",
+            "item_id": "item_20260515002539_2041",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Arquivado por duplicidade com 0 arvores\/subarvores ativas.",
+            "criado_em": "2026-05-20 08:58:42"
+        },
+        {
+            "id": "hist_20260520085842_3389",
+            "acao": "item arquivado",
+            "item_id": "item_20260515005837_3194",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Arquivado por duplicidade com 0 arvores\/subarvores ativas.",
+            "criado_em": "2026-05-20 08:58:42"
+        },
+        {
+            "id": "hist_20260520085842_3336",
+            "acao": "item arquivado",
+            "item_id": "item_20260517134506_6791",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Arquivado por duplicidade com 0 arvores\/subarvores ativas.",
+            "criado_em": "2026-05-20 08:58:42"
+        },
+        {
+            "id": "hist_20260520085842_8264",
+            "acao": "item arquivado",
+            "item_id": "item_20260520082142_7598",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Arquivado por duplicidade com 0 arvores\/subarvores ativas.",
+            "criado_em": "2026-05-20 08:58:42"
+        },
+        {
+            "id": "hist_20260520085842_3564",
+            "acao": "item arquivado",
+            "item_id": "item_20260520082142_5909",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Arquivado por duplicidade com 0 arvores\/subarvores ativas.",
+            "criado_em": "2026-05-20 08:58:42"
+        },
+        {
+            "id": "hist_20260520085842_1473",
+            "acao": "item arquivado",
+            "item_id": "item_20260520082142_7966",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Arquivado por duplicidade com 0 arvores\/subarvores ativas.",
+            "criado_em": "2026-05-20 08:58:42"
+        },
+        {
+            "id": "hist_20260520085842_7483",
+            "acao": "item arquivado",
+            "item_id": "item_20260520082142_1507",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Arquivado por duplicidade com 0 arvores\/subarvores ativas.",
+            "criado_em": "2026-05-20 08:58:42"
+        },
+        {
+            "id": "hist_20260520085842_4327",
+            "acao": "item arquivado",
+            "item_id": "item_20260520082142_8829",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Arquivado por duplicidade com 0 arvores\/subarvores ativas.",
+            "criado_em": "2026-05-20 08:58:42"
+        },
+        {
+            "id": "hist_20260520085842_2310",
+            "acao": "item arquivado",
+            "item_id": "item_20260520082142_5526",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Arquivado por duplicidade com 0 arvores\/subarvores ativas.",
+            "criado_em": "2026-05-20 08:58:42"
+        },
+        {
+            "id": "hist_20260520085842_4987",
+            "acao": "item arquivado",
+            "item_id": "item_20260520082142_9708",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Arquivado por duplicidade com 0 arvores\/subarvores ativas.",
+            "criado_em": "2026-05-20 08:58:42"
+        },
+        {
+            "id": "hist_20260520085842_1415",
+            "acao": "item arquivado",
+            "item_id": "item_20260520082142_8960",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Arquivado por duplicidade com 0 arvores\/subarvores ativas.",
+            "criado_em": "2026-05-20 08:58:42"
+        },
+        {
+            "id": "hist_20260520115922_4647",
+            "acao": "item arquivado",
+            "item_id": "item_20260518121343_2900",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Alterado pelo relatorio de itens. Vinculos da arvore foram preservados.",
+            "criado_em": "2026-05-20 11:59:22"
+        },
+        {
+            "id": "hist_20260520115928_7845",
+            "acao": "item arquivado",
+            "item_id": "item_20260518121343_8866",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Alterado pelo relatorio de itens. Vinculos da arvore foram preservados.",
+            "criado_em": "2026-05-20 11:59:28"
+        },
+        {
+            "id": "hist_20260520115941_7167",
+            "acao": "item arquivado",
+            "item_id": "item_20260518121343_3000",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Alterado pelo relatorio de itens. Vinculos da arvore foram preservados.",
+            "criado_em": "2026-05-20 11:59:41"
+        },
+        {
+            "id": "hist_20260520115947_7649",
+            "acao": "item arquivado",
+            "item_id": "item_20260518121343_1178",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Alterado pelo relatorio de itens. Vinculos da arvore foram preservados.",
+            "criado_em": "2026-05-20 11:59:47"
+        },
+        {
+            "id": "hist_20260520115959_4687",
+            "acao": "item arquivado",
+            "item_id": "item_20260518121343_9940",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Alterado pelo relatorio de itens. Vinculos da arvore foram preservados.",
+            "criado_em": "2026-05-20 11:59:59"
+        },
+        {
+            "id": "hist_20260520120009_7188",
+            "acao": "item arquivado",
+            "item_id": "item_20260518121343_9559",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Alterado pelo relatorio de itens. Vinculos da arvore foram preservados.",
+            "criado_em": "2026-05-20 12:00:09"
+        },
+        {
+            "id": "hist_20260520120010_5738",
+            "acao": "item arquivado",
+            "item_id": "item_20260518121343_1503",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Alterado pelo relatorio de itens. Vinculos da arvore foram preservados.",
+            "criado_em": "2026-05-20 12:00:10"
+        },
+        {
+            "id": "hist_20260520120012_5346",
+            "acao": "item arquivado",
+            "item_id": "item_20260513170824_3983",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Alterado pelo relatorio de itens. Vinculos da arvore foram preservados.",
+            "criado_em": "2026-05-20 12:00:12"
+        },
+        {
+            "id": "hist_20260520120014_6837",
+            "acao": "item arquivado",
+            "item_id": "item_20260513170823_5606",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Alterado pelo relatorio de itens. Vinculos da arvore foram preservados.",
+            "criado_em": "2026-05-20 12:00:14"
+        },
+        {
+            "id": "hist_20260520120016_2348",
+            "acao": "item arquivado",
+            "item_id": "item_20260513170825_5330",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Alterado pelo relatorio de itens. Vinculos da arvore foram preservados.",
+            "criado_em": "2026-05-20 12:00:16"
+        },
+        {
+            "id": "hist_20260520120017_5058",
+            "acao": "item arquivado",
+            "item_id": "item_20260513170825_8273",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Alterado pelo relatorio de itens. Vinculos da arvore foram preservados.",
+            "criado_em": "2026-05-20 12:00:17"
+        },
+        {
+            "id": "hist_20260520120018_5268",
+            "acao": "item arquivado",
+            "item_id": "item_20260513170826_9709",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Alterado pelo relatorio de itens. Vinculos da arvore foram preservados.",
+            "criado_em": "2026-05-20 12:00:18"
+        },
+        {
+            "id": "hist_20260520090305_7856",
+            "acao": "ramificacao excluida localmente",
+            "item_id": "item_20260518121343_9084",
+            "arvore_id": "arvore_20260518121657_2725",
+            "composicao_id": "comp_20260518121709_6927",
+            "detalhe": "Removidos 1 vinculos locais e 0 itens sem uso.",
+            "criado_em": "2026-05-20 09:03:05"
+        },
+        {
+            "id": "hist_20260520090326_7974",
+            "acao": "vinculo criado",
+            "item_id": "item_20260518102732_5653",
+            "arvore_id": "arvore_20260518121657_2725",
+            "composicao_id": "comp_20260520090326_9860",
+            "detalhe": "Filho adicionado a arvore.",
+            "criado_em": "2026-05-20 09:03:26"
+        },
+        {
+            "id": "hist_20260520120343_2952",
+            "acao": "item arquivado",
+            "item_id": "item_20260518121343_9084",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Alterado pelo relatorio de itens. Vinculos da arvore foram preservados.",
+            "criado_em": "2026-05-20 12:03:43"
+        },
+        {
+            "id": "hist_20260520090411_3678",
+            "acao": "item editado",
+            "item_id": "item_20260518121657_2775",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Item raiz atualizado.",
+            "criado_em": "2026-05-20 09:04:11"
+        },
+        {
+            "id": "hist_20260520090411_7740",
+            "acao": "arvore editada",
+            "item_id": "item_20260518121657_2775",
+            "arvore_id": "arvore_20260518121657_2725",
+            "composicao_id": "",
+            "detalhe": "Dados da arvore atualizados.",
+            "criado_em": "2026-05-20 09:04:11"
+        },
+        {
+            "id": "hist_20260520090421_5570",
+            "acao": "item editado",
+            "item_id": "item_20260518121657_2775",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Item raiz atualizado.",
+            "criado_em": "2026-05-20 09:04:21"
+        },
+        {
+            "id": "hist_20260520090421_8477",
+            "acao": "arvore editada",
+            "item_id": "item_20260518121657_2775",
+            "arvore_id": "arvore_20260518121657_2725",
+            "composicao_id": "",
+            "detalhe": "Dados da arvore atualizados.",
+            "criado_em": "2026-05-20 09:04:21"
+        },
+        {
+            "id": "hist_20260520121022_2099",
+            "acao": "item arquivado",
+            "item_id": "item_20260515005837_3194",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Alterado pelo relatorio de itens. Vinculos da arvore foram preservados.",
+            "criado_em": "2026-05-20 12:10:22"
+        },
+        {
+            "id": "hist_20260520121026_9233",
+            "acao": "item arquivado",
+            "item_id": "item_20260515002539_2041",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Alterado pelo relatorio de itens. Vinculos da arvore foram preservados.",
+            "criado_em": "2026-05-20 12:10:26"
+        },
+        {
+            "id": "hist_20260520091038_7671",
+            "acao": "item reativado",
+            "item_id": "item_20260517183802_9060",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Reativado automaticamente por estar em arvore\/subarvore ativa.",
+            "criado_em": "2026-05-20 09:10:38"
+        },
+        {
+            "id": "hist_20260520091038_7226",
+            "acao": "item reativado",
+            "item_id": "item_20260517184120_8590",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Reativado automaticamente por estar em arvore\/subarvore ativa.",
+            "criado_em": "2026-05-20 09:10:38"
+        },
+        {
+            "id": "hist_20260520091038_9271",
+            "acao": "item reativado",
+            "item_id": "item_20260518102428_7485",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Reativado automaticamente por estar em arvore\/subarvore ativa.",
+            "criado_em": "2026-05-20 09:10:38"
+        },
+        {
+            "id": "hist_20260520091038_4968",
+            "acao": "item reativado",
+            "item_id": "item_20260518102732_5653",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Reativado automaticamente por estar em arvore\/subarvore ativa.",
+            "criado_em": "2026-05-20 09:10:38"
+        },
+        {
+            "id": "hist_20260520091038_5864",
+            "acao": "item reativado",
+            "item_id": "item_20260518102907_1294",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Reativado automaticamente por estar em arvore\/subarvore ativa.",
+            "criado_em": "2026-05-20 09:10:38"
+        },
+        {
+            "id": "hist_20260520091038_9111",
+            "acao": "item reativado",
+            "item_id": "item_20260518103325_5144",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Reativado automaticamente por estar em arvore\/subarvore ativa.",
+            "criado_em": "2026-05-20 09:10:38"
+        },
+        {
+            "id": "hist_20260520091038_5995",
+            "acao": "item reativado",
+            "item_id": "item_20260518105013_2679",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Reativado automaticamente por estar em arvore\/subarvore ativa.",
+            "criado_em": "2026-05-20 09:10:38"
+        },
+        {
+            "id": "hist_20260520091038_9982",
+            "acao": "item reativado",
+            "item_id": "item_20260518105423_5653",
+            "arvore_id": "",
+            "composicao_id": "",
+            "detalhe": "Reativado automaticamente por estar em arvore\/subarvore ativa.",
+            "criado_em": "2026-05-20 09:10:38"
         }
     ],
     "cadastro_tipos_item": [

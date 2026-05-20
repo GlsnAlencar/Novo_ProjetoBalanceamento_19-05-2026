@@ -11,7 +11,7 @@
             "data\/memoria\/setores.json"
         ]
     },
-    "updated_at": "2026-05-19 11:10:31",
+    "updated_at": "2026-05-20 13:19:06",
     "setores": [
         {
             "id": "cod_12_05_setor_20260513041753_1674",
@@ -21,7 +21,7 @@
             "origem": "editor_bpm",
             "descricao": "cod_12_05_TESTE_BPMN_COMBINACOES",
             "created_at": "2026-05-18 10:33:09",
-            "updated_at": "2026-05-19 11:10:31",
+            "updated_at": "2026-05-20 13:19:06",
             "linhas": [
                 {
                     "id": "cod_12_05_linha_20260513041753_9066",
@@ -32,7 +32,7 @@
                     "origem": "editor_bpm",
                     "descricao": "Teste serie paralelo simetrico",
                     "created_at": "2026-05-13 04:17:53",
-                    "updated_at": "2026-05-19 11:10:07",
+                    "updated_at": "2026-05-20 12:36:47",
                     "drawflow_data": {
                         "drawflow": {
                             "Home": {
@@ -78,8 +78,8 @@
                                                 ]
                                             }
                                         },
-                                        "pos_x": -393.6666666666667,
-                                        "pos_y": -62.833333333333336
+                                        "pos_x": -311,
+                                        "pos_y": 16
                                     },
                                     "2": {
                                         "id": 2,
@@ -574,9 +574,9 @@
                             }
                         },
                         "viewport_state": {
-                            "zoom": 0.30000000000000004,
-                            "x": -103.97648901298687,
-                            "y": 60.44863366233774
+                            "zoom": 0.5,
+                            "x": -352.9465778398268,
+                            "y": -28.234016502164412
                         },
                         "module_context": {
                             "scope": "REFORMULACAO_COD_12_05",
@@ -601,7 +601,7 @@
             "codigo": "SETOR-88436",
             "descricao": "Máquina Aéreo",
             "created_at": "2026-05-17 18:01:18",
-            "updated_at": "2026-05-19 11:10:31",
+            "updated_at": "2026-05-20 13:19:06",
             "origem_reabilitacao": "backup_cadastros_basicos",
             "linhas": []
         },
@@ -613,7 +613,7 @@
             "codigo": "SETOR-51325",
             "descricao": "Máquina Coreia",
             "created_at": "2026-05-17 18:01:18",
-            "updated_at": "2026-05-19 11:10:31",
+            "updated_at": "2026-05-20 13:19:06",
             "origem_reabilitacao": "backup_cadastros_basicos",
             "linhas": []
         },
@@ -625,7 +625,7 @@
             "origem": "editor_bpm",
             "descricao": "Setor 1",
             "created_at": "2026-05-17 16:04:22",
-            "updated_at": "2026-05-19 11:10:31",
+            "updated_at": "2026-05-20 13:19:06",
             "origem_reabilitacao": "backup_cadastros_basicos",
             "linhas": [
                 {
@@ -637,7 +637,7 @@
                     "origem": "editor_bpm",
                     "descricao": "Alimentação",
                     "created_at": "2026-05-15 02:15:27",
-                    "updated_at": "2026-05-19 11:10:31",
+                    "updated_at": "2026-05-20 13:19:06",
                     "drawflow_data": {
                         "drawflow": {
                             "Home": {
@@ -650,12 +650,16 @@
                                             "name": "Puxat pallet",
                                             "type": "node",
                                             "tc": 180,
+                                            "tcContentor": 180,
+                                            "tc_contentor": 180,
                                             "icon": "fa-industry",
                                             "atividades": [
                                                 {
                                                     "id": "transp_20260518132221_9887",
                                                     "nome": "Puxar pallet fruta in natura",
                                                     "tipo": "TRANSPORTE",
+                                                    "tc": 0,
+                                                    "tcContentor": 180,
                                                     "ritmo": 180
                                                 }
                                             ],
@@ -666,7 +670,7 @@
                                             "autoPlace": false
                                         },
                                         "class": "node",
-                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Puxat pallet<\/strong>\n                    <div>TC: <span class=\"tc-value\">180<\/span>s<\/div>\n                    <div>Pessoas: 1<\/div>\n                    <div>Ritmo: 180s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_node_20260515142250_3968')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_node_20260515142250_3968')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_node_20260515142250_3968')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Puxat pallet<\/strong>\n                    <div>TC: <span class=\"tc-value\">180<\/span>s<\/div>\n                    <div>TC\/ctt: <span class=\"tc-contentor-value\">180<\/span>s<\/div>\n                    <div>Pessoas: 1<\/div>\n                    <div>Ritmo: 180s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_node_20260515142250_3968')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_node_20260515142250_3968')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_node_20260515142250_3968')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
                                         "typenode": false,
                                         "inputs": {
                                             "input_1": {
@@ -683,8 +687,8 @@
                                                 ]
                                             }
                                         },
-                                        "pos_x": 146,
-                                        "pos_y": 148.22222222222223
+                                        "pos_x": 136,
+                                        "pos_y": 134.33333333333334
                                     },
                                     "2": {
                                         "id": 2,
@@ -694,12 +698,16 @@
                                             "name": "Virar CTT",
                                             "type": "node",
                                             "tc": 3.87,
+                                            "tcContentor": 3.87,
+                                            "tc_contentor": 3.87,
                                             "icon": "fa-industry",
                                             "atividades": [
                                                 {
                                                     "id": "act_20260518175256_7691",
                                                     "nome": "Posionar Contentor no virador",
                                                     "tipo": "OPERACAO",
+                                                    "tc": 0,
+                                                    "tcContentor": 3.87,
                                                     "ritmo": 3.87
                                                 }
                                             ],
@@ -710,7 +718,7 @@
                                             "autoPlace": false
                                         },
                                         "class": "node",
-                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Virar CTT<\/strong>\n                    <div>TC: <span class=\"tc-value\">3.87<\/span>s<\/div>\n                    <div>Pessoas: 1<\/div>\n                    <div>Ritmo: 3.87s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_node_20260515142302_2748')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_node_20260515142302_2748')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_node_20260515142302_2748')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Virar CTT<\/strong>\n                    <div>TC: <span class=\"tc-value\">3.87<\/span>s<\/div>\n                    <div>TC\/ctt: <span class=\"tc-contentor-value\">3.87<\/span>s<\/div>\n                    <div>Pessoas: 1<\/div>\n                    <div>Ritmo: 3.87s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_node_20260515142302_2748')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_node_20260515142302_2748')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_node_20260515142302_2748')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
                                         "typenode": false,
                                         "inputs": {
                                             "input_1": {
@@ -732,8 +740,8 @@
                                                 ]
                                             }
                                         },
-                                        "pos_x": 443,
-                                        "pos_y": 145.11111111111111
+                                        "pos_x": 423.6666666666667,
+                                        "pos_y": 135
                                     },
                                     "3": {
                                         "id": 3,
@@ -743,6 +751,8 @@
                                             "name": "1",
                                             "type": "decision_exclusive",
                                             "tc": 0,
+                                            "tcContentor": 0,
+                                            "tc_contentor": 0,
                                             "icon": "fa-industry",
                                             "atividades": [],
                                             "pessoas": 0,
@@ -789,12 +799,16 @@
                                             "name": "Remover papel",
                                             "type": "node",
                                             "tc": 1.29,
+                                            "tcContentor": 1.29,
+                                            "tc_contentor": 1.29,
                                             "icon": "fa-industry",
                                             "atividades": [
                                                 {
                                                     "id": "act_20260518175645_3841",
                                                     "nome": "Remover papel",
                                                     "tipo": "OPERACAO",
+                                                    "tc": 0,
+                                                    "tcContentor": 1.29,
                                                     "ritmo": 1.29
                                                 }
                                             ],
@@ -805,7 +819,7 @@
                                             "autoPlace": false
                                         },
                                         "class": "node",
-                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Remover papel<\/strong>\n                    <div>TC: <span class=\"tc-value\">1.29<\/span>s<\/div>\n                    <div>Pessoas: 1<\/div>\n                    <div>Ritmo: 1.29s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_4')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_4')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_4')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Remover papel<\/strong>\n                    <div>TC: <span class=\"tc-value\">1.29<\/span>s<\/div>\n                    <div>TC\/ctt: <span class=\"tc-contentor-value\">1.29<\/span>s<\/div>\n                    <div>Pessoas: 1<\/div>\n                    <div>Ritmo: 1.29s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_4')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_4')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_4')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
                                         "typenode": false,
                                         "inputs": {
                                             "input_1": {
@@ -833,12 +847,16 @@
                                             "name": "Agrupar Contentor",
                                             "type": "node",
                                             "tc": 9.1,
+                                            "tcContentor": 9.1,
+                                            "tc_contentor": 9.1,
                                             "icon": "fa-industry",
                                             "atividades": [
                                                 {
                                                     "id": "act_20260518175454_6929",
                                                     "nome": "Agrupara contentor Vazio",
                                                     "tipo": "OPERACAO",
+                                                    "tc": 0,
+                                                    "tcContentor": 9.1,
                                                     "ritmo": 9.1
                                                 }
                                             ],
@@ -849,7 +867,7 @@
                                             "autoPlace": false
                                         },
                                         "class": "node",
-                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Agrupar Contentor<\/strong>\n                    <div>TC: <span class=\"tc-value\">9.1<\/span>s<\/div>\n                    <div>Pessoas: 1<\/div>\n                    <div>Ritmo: 9.1s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('posto_20260519015832_5740')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('posto_20260519015832_5740')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('posto_20260519015832_5740')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Agrupar Contentor<\/strong>\n                    <div>TC: <span class=\"tc-value\">9.1<\/span>s<\/div>\n                    <div>TC\/ctt: <span class=\"tc-contentor-value\">9.1<\/span>s<\/div>\n                    <div>Pessoas: 1<\/div>\n                    <div>Ritmo: 9.1s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('posto_20260519015832_5740')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('posto_20260519015832_5740')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('posto_20260519015832_5740')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
                                         "typenode": false,
                                         "inputs": {
                                             "input_1": {
@@ -882,12 +900,16 @@
                                             "name": "Paletizar Contentor",
                                             "type": "node",
                                             "tc": 8.82,
+                                            "tcContentor": 8.82,
+                                            "tc_contentor": 8.82,
                                             "icon": "fa-industry",
                                             "atividades": [
                                                 {
                                                     "id": "act_20260518175602_4685",
                                                     "nome": "Palletizar contentores de colheita Vazios",
                                                     "tipo": "OPERACAO",
+                                                    "tc": 0,
+                                                    "tcContentor": 8.82,
                                                     "ritmo": 8.82
                                                 }
                                             ],
@@ -898,7 +920,7 @@
                                             "autoPlace": true
                                         },
                                         "class": "node",
-                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Paletizar Contentor<\/strong>\n                    <div>TC: <span class=\"tc-value\">8.82<\/span>s<\/div>\n                    <div>Pessoas: 1<\/div>\n                    <div>Ritmo: 8.82s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_29')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_29')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_29')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Paletizar Contentor<\/strong>\n                    <div>TC: <span class=\"tc-value\">8.82<\/span>s<\/div>\n                    <div>TC\/ctt: <span class=\"tc-contentor-value\">8.82<\/span>s<\/div>\n                    <div>Pessoas: 1<\/div>\n                    <div>Ritmo: 8.82s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_29')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_29')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_29')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
                                         "typenode": false,
                                         "inputs": {
                                             "input_1": {
@@ -931,12 +953,16 @@
                                             "name": "Transportar Contentor Vazios",
                                             "type": "node",
                                             "tc": 80,
+                                            "tcContentor": 80,
+                                            "tc_contentor": 80,
                                             "icon": "fa-industry",
                                             "atividades": [
                                                 {
                                                     "id": "transp_20260518175845_1874",
                                                     "nome": "Trasportar palleet Ctt-Colheita Vazios",
                                                     "tipo": "TRANSPORTE",
+                                                    "tc": 0,
+                                                    "tcContentor": 80,
                                                     "ritmo": 80
                                                 }
                                             ],
@@ -947,7 +973,7 @@
                                             "autoPlace": true
                                         },
                                         "class": "node",
-                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Transportar Contentor Vazios<\/strong>\n                    <div>TC: <span class=\"tc-value\">80<\/span>s<\/div>\n                    <div>Pessoas: 1<\/div>\n                    <div>Ritmo: 80s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('posto_20260519021655_3287')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('posto_20260519021655_3287')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('posto_20260519021655_3287')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Transportar Contentor Vazios<\/strong>\n                    <div>TC: <span class=\"tc-value\">80<\/span>s<\/div>\n                    <div>TC\/ctt: <span class=\"tc-contentor-value\">80<\/span>s<\/div>\n                    <div>Pessoas: 1<\/div>\n                    <div>Ritmo: 80s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('posto_20260519021655_3287')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('posto_20260519021655_3287')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('posto_20260519021655_3287')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
                                         "typenode": false,
                                         "inputs": {
                                             "input_1": {
@@ -972,8 +998,8 @@
                         },
                         "viewport_state": {
                             "zoom": 0.6000000000000001,
-                            "x": -232.98454823529414,
-                            "y": -12.184597647058787
+                            "x": -234.17979137335743,
+                            "y": 30.853629938623094
                         },
                         "module_context": {
                             "scope": "REFORMULACAO_COD_12_05",
@@ -2239,7 +2265,7 @@
             "codigo": "SETOR-90682",
             "descricao": "Máquina Pequena",
             "created_at": "2026-05-17 18:01:18",
-            "updated_at": "2026-05-19 11:10:31",
+            "updated_at": "2026-05-20 13:19:06",
             "origem_reabilitacao": "backup_cadastros_basicos",
             "linhas": []
         },
@@ -2251,7 +2277,7 @@
             "codigo": "SETOR-54702",
             "descricao": "Máquina PP",
             "created_at": "2026-05-17 18:01:18",
-            "updated_at": "2026-05-19 11:10:31",
+            "updated_at": "2026-05-20 13:19:06",
             "origem_reabilitacao": "backup_cadastros_basicos",
             "linhas": []
         },
@@ -2263,7 +2289,7 @@
             "codigo": "SETOR-11556",
             "descricao": "Máquina Usa",
             "created_at": "2026-05-17 18:01:18",
-            "updated_at": "2026-05-19 11:10:31",
+            "updated_at": "2026-05-20 13:19:06",
             "origem_reabilitacao": "backup_cadastros_basicos",
             "linhas": []
         },
@@ -2275,7 +2301,7 @@
             "codigo": "SETOR-38463",
             "descricao": "Packing",
             "created_at": "2026-05-17 18:01:18",
-            "updated_at": "2026-05-19 11:10:31",
+            "updated_at": "2026-05-20 13:19:06",
             "origem_reabilitacao": "backup_cadastros_basicos",
             "linhas": []
         },
@@ -2287,7 +2313,7 @@
             "origem": "editor_bpm",
             "descricao": "Setor 1",
             "created_at": "2026-05-18 10:33:09",
-            "updated_at": "2026-05-19 11:10:31",
+            "updated_at": "2026-05-20 13:19:06",
             "linhas": [
                 {
                     "id": "cod_12_05_linha_20260515021527_6300",
@@ -2298,7 +2324,7 @@
                     "origem": "editor_bpm",
                     "descricao": "Alimentação",
                     "created_at": "2026-05-15 02:15:27",
-                    "updated_at": "2026-05-19 11:10:31",
+                    "updated_at": "2026-05-20 13:19:06",
                     "drawflow_data": {
                         "drawflow": {
                             "Home": {
@@ -2311,12 +2337,16 @@
                                             "name": "Puxat pallet",
                                             "type": "node",
                                             "tc": 180,
+                                            "tcContentor": 180,
+                                            "tc_contentor": 180,
                                             "icon": "fa-industry",
                                             "atividades": [
                                                 {
                                                     "id": "transp_20260518132221_9887",
                                                     "nome": "Puxar pallet fruta in natura",
                                                     "tipo": "TRANSPORTE",
+                                                    "tc": 0,
+                                                    "tcContentor": 180,
                                                     "ritmo": 180
                                                 }
                                             ],
@@ -2327,7 +2357,7 @@
                                             "autoPlace": false
                                         },
                                         "class": "node",
-                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Puxat pallet<\/strong>\n                    <div>TC: <span class=\"tc-value\">180<\/span>s<\/div>\n                    <div>Pessoas: 1<\/div>\n                    <div>Ritmo: 180s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_node_20260515142250_3968')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_node_20260515142250_3968')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_node_20260515142250_3968')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Puxat pallet<\/strong>\n                    <div>TC: <span class=\"tc-value\">180<\/span>s<\/div>\n                    <div>TC\/ctt: <span class=\"tc-contentor-value\">180<\/span>s<\/div>\n                    <div>Pessoas: 1<\/div>\n                    <div>Ritmo: 180s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_node_20260515142250_3968')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_node_20260515142250_3968')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_node_20260515142250_3968')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
                                         "typenode": false,
                                         "inputs": {
                                             "input_1": {
@@ -2344,8 +2374,8 @@
                                                 ]
                                             }
                                         },
-                                        "pos_x": 146,
-                                        "pos_y": 148.22222222222223
+                                        "pos_x": 136,
+                                        "pos_y": 134.33333333333334
                                     },
                                     "2": {
                                         "id": 2,
@@ -2355,12 +2385,16 @@
                                             "name": "Virar CTT",
                                             "type": "node",
                                             "tc": 3.87,
+                                            "tcContentor": 3.87,
+                                            "tc_contentor": 3.87,
                                             "icon": "fa-industry",
                                             "atividades": [
                                                 {
                                                     "id": "act_20260518175256_7691",
                                                     "nome": "Posionar Contentor no virador",
                                                     "tipo": "OPERACAO",
+                                                    "tc": 0,
+                                                    "tcContentor": 3.87,
                                                     "ritmo": 3.87
                                                 }
                                             ],
@@ -2371,7 +2405,7 @@
                                             "autoPlace": false
                                         },
                                         "class": "node",
-                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Virar CTT<\/strong>\n                    <div>TC: <span class=\"tc-value\">3.87<\/span>s<\/div>\n                    <div>Pessoas: 1<\/div>\n                    <div>Ritmo: 3.87s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_node_20260515142302_2748')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_node_20260515142302_2748')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_node_20260515142302_2748')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Virar CTT<\/strong>\n                    <div>TC: <span class=\"tc-value\">3.87<\/span>s<\/div>\n                    <div>TC\/ctt: <span class=\"tc-contentor-value\">3.87<\/span>s<\/div>\n                    <div>Pessoas: 1<\/div>\n                    <div>Ritmo: 3.87s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_node_20260515142302_2748')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_node_20260515142302_2748')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_node_20260515142302_2748')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
                                         "typenode": false,
                                         "inputs": {
                                             "input_1": {
@@ -2393,8 +2427,8 @@
                                                 ]
                                             }
                                         },
-                                        "pos_x": 443,
-                                        "pos_y": 145.11111111111111
+                                        "pos_x": 423.6666666666667,
+                                        "pos_y": 135
                                     },
                                     "3": {
                                         "id": 3,
@@ -2404,6 +2438,8 @@
                                             "name": "1",
                                             "type": "decision_exclusive",
                                             "tc": 0,
+                                            "tcContentor": 0,
+                                            "tc_contentor": 0,
                                             "icon": "fa-industry",
                                             "atividades": [],
                                             "pessoas": 0,
@@ -2450,12 +2486,16 @@
                                             "name": "Remover papel",
                                             "type": "node",
                                             "tc": 1.29,
+                                            "tcContentor": 1.29,
+                                            "tc_contentor": 1.29,
                                             "icon": "fa-industry",
                                             "atividades": [
                                                 {
                                                     "id": "act_20260518175645_3841",
                                                     "nome": "Remover papel",
                                                     "tipo": "OPERACAO",
+                                                    "tc": 0,
+                                                    "tcContentor": 1.29,
                                                     "ritmo": 1.29
                                                 }
                                             ],
@@ -2466,7 +2506,7 @@
                                             "autoPlace": false
                                         },
                                         "class": "node",
-                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Remover papel<\/strong>\n                    <div>TC: <span class=\"tc-value\">1.29<\/span>s<\/div>\n                    <div>Pessoas: 1<\/div>\n                    <div>Ritmo: 1.29s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_4')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_4')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_4')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Remover papel<\/strong>\n                    <div>TC: <span class=\"tc-value\">1.29<\/span>s<\/div>\n                    <div>TC\/ctt: <span class=\"tc-contentor-value\">1.29<\/span>s<\/div>\n                    <div>Pessoas: 1<\/div>\n                    <div>Ritmo: 1.29s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_4')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_4')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_4')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
                                         "typenode": false,
                                         "inputs": {
                                             "input_1": {
@@ -2494,12 +2534,16 @@
                                             "name": "Agrupar Contentor",
                                             "type": "node",
                                             "tc": 9.1,
+                                            "tcContentor": 9.1,
+                                            "tc_contentor": 9.1,
                                             "icon": "fa-industry",
                                             "atividades": [
                                                 {
                                                     "id": "act_20260518175454_6929",
                                                     "nome": "Agrupara contentor Vazio",
                                                     "tipo": "OPERACAO",
+                                                    "tc": 0,
+                                                    "tcContentor": 9.1,
                                                     "ritmo": 9.1
                                                 }
                                             ],
@@ -2510,7 +2554,7 @@
                                             "autoPlace": false
                                         },
                                         "class": "node",
-                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Agrupar Contentor<\/strong>\n                    <div>TC: <span class=\"tc-value\">9.1<\/span>s<\/div>\n                    <div>Pessoas: 1<\/div>\n                    <div>Ritmo: 9.1s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('posto_20260519015832_5740')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('posto_20260519015832_5740')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('posto_20260519015832_5740')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Agrupar Contentor<\/strong>\n                    <div>TC: <span class=\"tc-value\">9.1<\/span>s<\/div>\n                    <div>TC\/ctt: <span class=\"tc-contentor-value\">9.1<\/span>s<\/div>\n                    <div>Pessoas: 1<\/div>\n                    <div>Ritmo: 9.1s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('posto_20260519015832_5740')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('posto_20260519015832_5740')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('posto_20260519015832_5740')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
                                         "typenode": false,
                                         "inputs": {
                                             "input_1": {
@@ -2543,12 +2587,16 @@
                                             "name": "Paletizar Contentor",
                                             "type": "node",
                                             "tc": 8.82,
+                                            "tcContentor": 8.82,
+                                            "tc_contentor": 8.82,
                                             "icon": "fa-industry",
                                             "atividades": [
                                                 {
                                                     "id": "act_20260518175602_4685",
                                                     "nome": "Palletizar contentores de colheita Vazios",
                                                     "tipo": "OPERACAO",
+                                                    "tc": 0,
+                                                    "tcContentor": 8.82,
                                                     "ritmo": 8.82
                                                 }
                                             ],
@@ -2559,7 +2607,7 @@
                                             "autoPlace": true
                                         },
                                         "class": "node",
-                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Paletizar Contentor<\/strong>\n                    <div>TC: <span class=\"tc-value\">8.82<\/span>s<\/div>\n                    <div>Pessoas: 1<\/div>\n                    <div>Ritmo: 8.82s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_29')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_29')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_29')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Paletizar Contentor<\/strong>\n                    <div>TC: <span class=\"tc-value\">8.82<\/span>s<\/div>\n                    <div>TC\/ctt: <span class=\"tc-contentor-value\">8.82<\/span>s<\/div>\n                    <div>Pessoas: 1<\/div>\n                    <div>Ritmo: 8.82s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('cod_12_05_fluxo_completo_29')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('cod_12_05_fluxo_completo_29')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('cod_12_05_fluxo_completo_29')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
                                         "typenode": false,
                                         "inputs": {
                                             "input_1": {
@@ -2592,12 +2640,16 @@
                                             "name": "Transportar Contentor Vazios",
                                             "type": "node",
                                             "tc": 80,
+                                            "tcContentor": 80,
+                                            "tc_contentor": 80,
                                             "icon": "fa-industry",
                                             "atividades": [
                                                 {
                                                     "id": "transp_20260518175845_1874",
                                                     "nome": "Trasportar palleet Ctt-Colheita Vazios",
                                                     "tipo": "TRANSPORTE",
+                                                    "tc": 0,
+                                                    "tcContentor": 80,
                                                     "ritmo": 80
                                                 }
                                             ],
@@ -2608,7 +2660,7 @@
                                             "autoPlace": true
                                         },
                                         "class": "node",
-                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Transportar Contentor Vazios<\/strong>\n                    <div>TC: <span class=\"tc-value\">80<\/span>s<\/div>\n                    <div>Pessoas: 1<\/div>\n                    <div>Ritmo: 80s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('posto_20260519021655_3287')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('posto_20260519021655_3287')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('posto_20260519021655_3287')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
+                                        "html": "\n                <div class=\"node-content\">\n                    <div class=\"node-icon\"><i class=\"fa-solid fa-industry\"><\/i><\/div>\n                    <strong>Transportar Contentor Vazios<\/strong>\n                    <div>TC: <span class=\"tc-value\">80<\/span>s<\/div>\n                    <div>TC\/ctt: <span class=\"tc-contentor-value\">80<\/span>s<\/div>\n                    <div>Pessoas: 1<\/div>\n                    <div>Ritmo: 80s<\/div>\n                    <div class=\"node-actions\">\n                        <button type=\"button\" class=\"edit-btn\" onclick=\"event.stopPropagation(); editNodeInFlow('posto_20260519021655_3287')\" title=\"Editar\"><i class=\"fa-solid fa-pen\"><\/i><\/button>\n                        <button type=\"button\" class=\"add-derived-btn\" onclick=\"event.stopPropagation(); showDeriveOptions('posto_20260519021655_3287')\" title=\"Derivar\"><i class=\"fa-solid fa-plus\"><\/i><\/button>\n                        <button type=\"button\" class=\"delete-btn\" onclick=\"event.stopPropagation(); removeNodeFromFlow('posto_20260519021655_3287')\" title=\"Remover\"><i class=\"fa-solid fa-trash\"><\/i><\/button>\n                    <\/div>\n                <\/div>\n            ",
                                         "typenode": false,
                                         "inputs": {
                                             "input_1": {
@@ -2633,8 +2685,8 @@
                         },
                         "viewport_state": {
                             "zoom": 0.6000000000000001,
-                            "x": -232.98454823529414,
-                            "y": -12.184597647058787
+                            "x": -234.17979137335743,
+                            "y": 30.853629938623094
                         },
                         "module_context": {
                             "scope": "REFORMULACAO_COD_12_05",
@@ -5975,47 +6027,48 @@
         },
         {
             "id": "transp_20260518132221_9887",
-            "origem_registro": "transporte",
+            "origem_registro": "cronoanalise",
             "tipo_atividade": "transporte",
-            "atividade": "Puxar pallet fruta in natura",
-            "descricao": "Puxar pallet fruta in natura -  > ",
+            "atividade": "Puxar pallet fruta in natura -  >",
+            "descricao": "Puxar pallet fruta in natura -  >",
             "observacao": "",
             "grupo_embalagem": "Componente",
             "variacao": "",
             "calibre": "",
             "chave_tecnica": "Componente",
-            "setor": "Setor 1",
+            "setor": "Máquina Grande",
             "setor_id": "cod_12_05_setor_1",
             "linha": "Alimentação",
             "linha_id": "cod_12_05_linha_20260515021527_6300",
             "linha_ref_id": "cod_12_05_linha_20260515021527_6300",
-            "posto": "",
+            "posto": "Posto 0",
             "posto_id": "",
             "post_index": 0,
             "produto_id": "item_20260513173443_6953",
-            "item": "ITM-00001 - Pallet Fruta in natura ( 42 ctt)",
-            "item_carga": "ITM-00001 - Pallet Fruta in natura ( 42 ctt)",
+            "item": "",
+            "item_carga": "",
             "tipo_calculo": "TRANSPORTE",
             "tipo_operacao": "TRANSPORTE",
-            "unidade_base": "mov",
-            "unidade_carga": "mov",
+            "unidade_base": "un",
+            "unidade_carga": "un",
             "qtd_base": 1,
             "qtd_ref": 1,
-            "numero_frutos": 0,
-            "num_frutos": 0,
+            "numero_frutos": 1,
+            "num_frutos": 1,
             "peso_fruto_g": 0,
             "er": 0,
             "tempo_s": 180,
-            "tempo_cx_s": 0,
-            "tempo_caixa_s": 0,
-            "tempo_fruto_s": 0,
+            "tempo_cx_s": 180,
+            "tempo_caixa_s": 180,
+            "tempo_fruto_s": 180,
             "tempo_total_s": 180,
-            "tempo_deslocamento_s": 180,
-            "tempo_operacao_s": 0,
+            "tempo_deslocamento_s": 0,
+            "tempo_operacao_s": 180,
             "tempo_unitario": 180,
             "prod_h": 20,
-            "distancia_m": 42,
-            "velocidade_m_min": 14,
+            "distancia_m": 0,
+            "velocidade_m_s": 0,
+            "velocidade_m_min": 0,
             "tipo_transporte": "",
             "fluxo_bpm_id": "",
             "codigo_arvore_estrutura": "",
@@ -6026,11 +6079,42 @@
             "TR": 180,
             "TN": 180,
             "TP": 180,
-            "tolerancias": [],
+            "tolerancias": [
+                {
+                    "categoria": "Pessoal",
+                    "descricao": "Necessidades pessoais",
+                    "percentual": 0,
+                    "ativo": true
+                },
+                {
+                    "categoria": "Fadiga",
+                    "descricao": "Esforco, postura, repetitividade",
+                    "percentual": 0,
+                    "ativo": true
+                },
+                {
+                    "categoria": "Ambiente",
+                    "descricao": "Calor, ruido, umidade, iluminacao",
+                    "percentual": 0,
+                    "ativo": true
+                },
+                {
+                    "categoria": "Espera inevitavel",
+                    "descricao": "Pequenas paradas inevitaveis",
+                    "percentual": 0,
+                    "ativo": true
+                },
+                {
+                    "categoria": "Operacional especifica",
+                    "descricao": "Condicao especial da atividade",
+                    "percentual": 0,
+                    "ativo": true
+                }
+            ],
             "fator_ritmo": 1,
             "fator_tolerancia": 1,
             "criado_em": "2026-05-18 13:22:21",
-            "atualizado_em": "2026-05-18 13:22:21"
+            "atualizado_em": "2026-05-20 12:16:35"
         },
         {
             "id": "transp_20260518152038_5159",
@@ -6515,6 +6599,66 @@
             "fator_tolerancia": 1,
             "criado_em": "2026-05-18 17:58:45",
             "atualizado_em": "2026-05-18 17:58:45"
+        },
+        {
+            "id": "hib_20260520130000_0001",
+            "origem_registro": "cronoanalise",
+            "tipo_atividade": "hibrida",
+            "atividade": "Palletizar e transportar contentores de colheita Vazios",
+            "descricao": "Palletizar contentores de colheita Vazios + Trasportar palleet Ctt-Colheita Vazios",
+            "observacao": "Exemplo hibrido combinando operacao de palletizacao (8,82s) e deslocamento de transporte (80s).",
+            "grupo_embalagem": "Componente",
+            "variacao": "",
+            "calibre": "",
+            "chave_tecnica": "Componente",
+            "setor": "Maquina Grande",
+            "setor_id": "cod_12_05_setor_1",
+            "linha": "Alimentacao",
+            "linha_id": "cod_12_05_linha_20260515021527_6300",
+            "linha_ref_id": "cod_12_05_linha_20260515021527_6300",
+            "posto": "Posto 0",
+            "posto_id": "",
+            "post_index": 0,
+            "produto_id": "item_20260514165449_6806",
+            "item": "ITM-00005 - Pallet com CTT vazio - Colheita",
+            "item_carga": "ITM-00005 - Pallet com CTT vazio - Colheita",
+            "tipo_calculo": "HIBRIDA",
+            "tipo_operacao": "HIBRIDA",
+            "unidade_base": "mov",
+            "unidade_carga": "mov",
+            "qtd_base": 1,
+            "qtd_ref": 1,
+            "numero_frutos": 0,
+            "num_frutos": 0,
+            "peso_fruto_g": 0,
+            "er": 0,
+            "tempo_s": 88.82,
+            "tempo_cx_s": 8.82,
+            "tempo_caixa_s": 8.82,
+            "tempo_fruto_s": 8.82,
+            "tempo_total_s": 88.82,
+            "tempo_deslocamento_s": 80,
+            "tempo_operacao_s": 8.82,
+            "tempo_unitario": 88.82,
+            "prod_h": 40.53141184417924,
+            "distancia_m": 50,
+            "velocidade_m_s": 0.625,
+            "velocidade_m_min": 37.5,
+            "tipo_transporte": "",
+            "fluxo_bpm_id": "",
+            "codigo_arvore_estrutura": "",
+            "origem": "",
+            "destino": "",
+            "meio_transporte": "",
+            "operadores": 1,
+            "TR": 88.82,
+            "TN": 88.82,
+            "TP": 88.82,
+            "tolerancias": [],
+            "fator_ritmo": 1,
+            "fator_tolerancia": 1,
+            "criado_em": "2026-05-20 13:00:00",
+            "atualizado_em": "2026-05-20 13:00:00"
         }
     ]
 }

@@ -53,6 +53,11 @@ function ae_num($value, $default = 0) {
     return is_numeric($value) ? (float)$value : $default;
 }
 
+function ae_match_key($value) {
+    $value = function_exists('mb_strtolower') ? mb_strtolower((string)$value, 'UTF-8') : strtolower((string)$value);
+    return preg_replace('/\s+/', '', trim($value));
+}
+
 function ae_csv_value($row, $map, $field, $default = '') {
     if (!isset($map[$field])) {
         return $default;
@@ -419,53 +424,11 @@ function ae_restore_backup_inactive(&$data) {
 
 function ae_sync_shared_catalogs($data) {
     cb_import_arvore_data($data);
-    $shared = cb_load();
-
-    $shared_units = array_map(fn($row) => (string)($row['nome'] ?? ''), array_filter($shared['unidades'] ?? [], fn($row) => (int)($row['ativo'] ?? 1) === 1));
-    $shared_types = array_map(fn($row) => (string)($row['nome'] ?? ''), array_filter($shared['tipos_embalagem'] ?? [], fn($row) => (int)($row['ativo'] ?? 1) === 1));
-    $data['cadastro_unidades_base'] = ae_unique_clean(array_merge($data['cadastro_unidades_base'] ?? [], $shared_units));
-    $data['cadastro_tipos_item'] = ae_unique_clean(array_merge($data['cadastro_tipos_item'] ?? [], $shared_types));
-
-    $local_by_id = [];
-    foreach (($data['tabela_itens'] ?? []) as $idx => $item) {
-        $local_by_id[$item['id'] ?? ''] = $idx;
-    }
-
-    foreach (($shared['produtos_itens'] ?? []) as $shared_item) {
-        if ((int)($shared_item['ativo'] ?? 1) !== 1 && !isset($local_by_id[$shared_item['id'] ?? ''])) {
-            continue;
-        }
-
-        $payload = [
-            'id' => $shared_item['id'] ?? ae_id('item'),
-            'codigo' => $shared_item['codigo'] ?? '',
-            'nome' => $shared_item['nome'] ?? '',
-            'codigo_rm' => $shared_item['codigo_rm'] ?? '',
-            'produto_rm' => $shared_item['produto_rm'] ?? '',
-            'peso_tara' => $shared_item['peso_tara'] ?? null,
-            'tipo_item' => $shared_item['tipo_item'] ?? '',
-            'categoria' => $shared_item['categoria'] ?? '',
-            'grupo' => $shared_item['grupo'] ?? '',
-            'unidade_base' => $shared_item['unidade_base'] ?? '',
-            'fator_conversao_padrao' => $shared_item['fator_conversao_padrao'] ?? 1,
-            'ativo' => $shared_item['ativo'] ?? 1,
-            'observacao' => $shared_item['descricao'] ?? ($shared_item['observacao'] ?? ''),
-            'criado_em' => $shared_item['created_at'] ?? ae_now(),
-            'atualizado_em' => $shared_item['updated_at'] ?? ae_now()
-        ];
-
-        $idx = $local_by_id[$payload['id']] ?? -1;
-        if ($idx >= 0) {
-            $data['tabela_itens'][$idx] = array_merge($data['tabela_itens'][$idx], $payload);
-        } else {
-            $data['tabela_itens'][] = $payload;
-        }
-    }
-
     $data['module_context']['shared_catalogs'] = [
         'produtos_itens' => 'cadastros_basicos.produtos_itens',
         'unidades' => 'cadastros_basicos.unidades',
-        'tipos_embalagem' => 'cadastros_basicos.tipos_embalagem'
+        'tipos_embalagem' => 'cadastros_basicos.tipos_embalagem',
+        'direction' => 'arvore_estrutura_exporta_para_cadastros_basicos'
     ];
     return $data;
 }
@@ -496,14 +459,37 @@ function ae_find_item($data, $id) {
     return $idx >= 0 ? $data['tabela_itens'][$idx] : null;
 }
 
-function ae_find_item_by_code($data, $codigo, $active_only = false) {
-    $codigo = strtolower(trim($codigo));
+function ae_find_item_by_code($data, $codigo, $active_only = false, $ignore_id = '') {
+    $codigo = ae_match_key($codigo);
     foreach ($data['tabela_itens'] as $item) {
+        if ($ignore_id !== '' && (string)($item['id'] ?? '') === (string)$ignore_id) {
+            continue;
+        }
         if ($active_only && (int)($item['ativo'] ?? 1) !== 1) {
             continue;
         }
-        if (strtolower(trim($item['codigo'] ?? '')) === $codigo) {
+        if (ae_match_key($item['codigo'] ?? '') === $codigo) {
             return $item;
+        }
+    }
+    return null;
+}
+
+function ae_find_item_duplicate($data, $codigo, $nome, $ignore_id = '', $active_only = true) {
+    $codigo_key = ae_match_key($codigo);
+    $nome_key = ae_match_key($nome);
+    foreach ($data['tabela_itens'] as $item) {
+        if ($ignore_id !== '' && (string)($item['id'] ?? '') === (string)$ignore_id) {
+            continue;
+        }
+        if ($active_only && (int)($item['ativo'] ?? 1) !== 1) {
+            continue;
+        }
+        if ($codigo_key !== '' && ae_match_key($item['codigo'] ?? '') === $codigo_key) {
+            return ['field' => 'codigo', 'item' => $item];
+        }
+        if ($nome_key !== '' && ae_match_key($item['nome'] ?? '') === $nome_key) {
+            return ['field' => 'descricao', 'item' => $item];
         }
     }
     return null;
@@ -1085,6 +1071,7 @@ function ae_clone_tree_links(&$data, $source_tree_id, $target_tree_id, $source_p
 }
 
 function ae_upsert_item(&$data, $prefix = '') {
+    $item_id = trim($_POST[$prefix . 'id'] ?? '');
     $codigo = trim($_POST[$prefix . 'codigo'] ?? '');
     $nome = trim($_POST[$prefix . 'nome'] ?? '');
     $auto_codigo = $codigo === '';
@@ -1104,13 +1091,17 @@ function ae_upsert_item(&$data, $prefix = '') {
     if ($unidade_base !== '') {
         $data['cadastro_unidades_base'] = ae_unique_clean(array_merge($data['cadastro_unidades_base'] ?? [], [$unidade_base]));
     }
-    $existing = $auto_codigo ? null : ae_find_item_by_code($data, $codigo, true);
-    if ($existing) {
-        return [null, 'Ja existe outro item ativo com este codigo.'];
+    $duplicate = ae_find_item_duplicate($data, $codigo, $nome, $item_id, true);
+    if ($duplicate) {
+        return [
+            null,
+            $duplicate['field'] === 'codigo'
+                ? 'Ja existe outro item ativo com este codigo, ignorando espacos e maiusculas/minusculas.'
+                : 'Ja existe outro item ativo com esta descricao, ignorando espacos e maiusculas/minusculas.'
+        ];
     }
 
-    $item = [
-        'id' => ae_id('item'),
+    $payload = [
         'codigo' => $codigo,
         'nome' => $nome,
         'codigo_rm' => trim($_POST[$prefix . 'codigo_rm'] ?? ''),
@@ -1123,9 +1114,22 @@ function ae_upsert_item(&$data, $prefix = '') {
         'fator_conversao_padrao' => ae_num($_POST[$prefix . 'fator_conversao_padrao'] ?? 1, 1),
         'ativo' => isset($_POST[$prefix . 'ativo']) ? 1 : 0,
         'observacao' => trim($_POST[$prefix . 'observacao'] ?? ''),
-        'criado_em' => ae_now(),
         'atualizado_em' => ae_now()
     ];
+
+    if ($item_id !== '') {
+        $idx = ae_find_item_index($data, $item_id);
+        if ($idx >= 0) {
+            $data['tabela_itens'][$idx] = array_merge($data['tabela_itens'][$idx], $payload);
+            ae_log($data, 'item editado', $item_id, '', '', 'Item raiz atualizado.');
+            return [$data['tabela_itens'][$idx], null];
+        }
+    }
+
+    $item = [
+        'id' => ae_id('item'),
+        'criado_em' => ae_now(),
+    ] + $payload;
     $data['tabela_itens'][] = $item;
     ae_log($data, 'item criado', $item['id'], '', '', 'Item cadastrado.');
     return [$item, null];
@@ -1315,6 +1319,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($codigo === '') {
                 $codigo = ae_item_code($data);
             }
+            $duplicate = isset($_POST['edit_ativo'])
+                ? ae_find_item_duplicate($data, $codigo, trim($_POST['edit_nome'] ?? ''), $item_id, true)
+                : null;
+            if ($duplicate) {
+                $message = $duplicate['field'] === 'codigo'
+                    ? 'Ja existe outro item ativo com este codigo, ignorando espacos e maiusculas/minusculas.'
+                    : 'Ja existe outro item ativo com esta descricao, ignorando espacos e maiusculas/minusculas.';
+                $message_type = 'error';
+            } else {
             $old_unidade_base = $data['tabela_itens'][$idx]['unidade_base'] ?? '';
             $data['tabela_itens'][$idx]['codigo'] = $codigo;
                 $data['tabela_itens'][$idx]['nome'] = trim($_POST['edit_nome'] ?? '');
@@ -1372,6 +1385,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
                 ae_save($data);
                 ae_redirect(['arvore_id' => $selected_tree_id, 'selected_item_id' => $item_id, 'selected_comp_id' => $comp_id, 'msg' => 'editado']);
+            }
         }
     }
 
@@ -1974,6 +1988,7 @@ $backup_recovery_preview = ae_backup_recovery_preview($data);
                 <input type="hidden" name="action" id="rootFormAction" value="save_root">
                 <input type="hidden" name="arvore_id" value="<?php echo ae_h($selected_tree_id); ?>">
                 <input type="hidden" name="tree_id" value="<?php echo ae_h($tree['id'] ?? ''); ?>">
+                <input type="hidden" name="root_id" value="<?php echo ae_h($root_form_item['id'] ?? ''); ?>">
                 <input type="hidden" name="root_codigo" value="<?php echo ae_h($root_form_item['codigo'] ?? ''); ?>">
                 <div class="ae-grid">
                     <div class="ae-field">

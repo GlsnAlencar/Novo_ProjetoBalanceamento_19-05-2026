@@ -10,6 +10,7 @@
  */
 require_once __DIR__ . '/safe_storage.php';
 require_once __DIR__ . '/module_routes.php';
+require_once rf_route_path('arvore_estrutura', 'api');
 require_once __DIR__ . '/shared/CadastrosBasicosRepository.php';
 require_once __DIR__ . '/cronoanalise/repositories/CronoanaliseRepository.php';
 
@@ -113,6 +114,342 @@ function cod_12_05_fluxo_teste02_num($value) {
     return is_numeric($value) ? (float)$value : 0.0;
 }
 
+function cod_12_05_fluxo_teste02_norm($value): string {
+    $value = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', (string)$value);
+    return strtolower(preg_replace('/[^a-z0-9]+/i', ' ', (string)$value));
+}
+
+function cod_12_05_fluxo_teste02_fruta_codes(): array {
+    return ['FR-001', 'PF-001'];
+}
+
+function cod_12_05_fluxo_teste02_arvore_children(array $data): array {
+    $children = [];
+    foreach (($data['tabela_arvore_composicao'] ?? []) as $comp) {
+        if ((int)($comp['ativo'] ?? 1) !== 1) {
+            continue;
+        }
+        $key = (string)($comp['arvore_id'] ?? '') . '|' . (string)($comp['item_pai_id'] ?? '');
+        $children[$key][] = $comp;
+    }
+    return $children;
+}
+
+function cod_12_05_fluxo_teste02_sum_target(string $treeId, string $parentId, array $targetCodes, float $factor, array $visited, array $children, array $itemsById): float {
+    $key = $treeId . '|' . $parentId;
+    $total = 0.0;
+    foreach (($children[$key] ?? []) as $comp) {
+        $childId = (string)($comp['item_filho_id'] ?? '');
+        if ($childId === '' || isset($visited[$childId])) {
+            continue;
+        }
+        $qty = max(0.000001, cod_12_05_fluxo_teste02_num($comp['quantidade'] ?? 1));
+        $nextFactor = $factor * $qty;
+        $code = (string)($itemsById[$childId]['codigo'] ?? '');
+        if (in_array($code, $targetCodes, true)) {
+            $total += $nextFactor;
+            continue;
+        }
+        $nextVisited = $visited;
+        $nextVisited[$childId] = true;
+        $total += cod_12_05_fluxo_teste02_sum_target($treeId, $childId, $targetCodes, $nextFactor, $nextVisited, $children, $itemsById);
+    }
+    return $total;
+}
+
+function cod_12_05_fluxo_teste02_contentor_padrao_kg(array $data, array $itemsById, array $children): float {
+    foreach (($data['tabela_arvores'] ?? []) as $tree) {
+        $rootId = (string)($tree['item_raiz_id'] ?? '');
+        if ((int)($tree['ativo'] ?? 1) !== 1 || (string)($itemsById[$rootId]['codigo'] ?? '') !== 'ITM-00002') {
+            continue;
+        }
+        $kg = cod_12_05_fluxo_teste02_sum_target(
+            (string)($tree['id'] ?? ''),
+            $rootId,
+            cod_12_05_fluxo_teste02_fruta_codes(),
+            1.0,
+            [$rootId => true],
+            $children,
+            $itemsById
+        );
+        if ($kg > 0) {
+            return $kg;
+        }
+    }
+
+    foreach (($data['tabela_arvore_composicao'] ?? []) as $comp) {
+        $parent = $itemsById[(string)($comp['item_pai_id'] ?? '')] ?? [];
+        $child = $itemsById[(string)($comp['item_filho_id'] ?? '')] ?? [];
+        if (($parent['codigo'] ?? '') === 'ITM-00002' && in_array((string)($child['codigo'] ?? ''), cod_12_05_fluxo_teste02_fruta_codes(), true)) {
+            return max(0.000001, cod_12_05_fluxo_teste02_num($comp['quantidade'] ?? 0));
+        }
+    }
+
+    return 20.0;
+}
+
+function cod_12_05_fluxo_teste02_nominal_kg_item(array $data, array $itemsById, array $children, string $itemId): float {
+    if ($itemId === '') {
+        return 0.0;
+    }
+
+    $activeTrees = [];
+    foreach (($data['tabela_arvores'] ?? []) as $tree) {
+        if ((int)($tree['ativo'] ?? 1) === 1) {
+            $activeTrees[(string)($tree['id'] ?? '')] = true;
+        }
+    }
+
+    $best = 0.0;
+    foreach (($data['tabela_arvore_composicao'] ?? []) as $comp) {
+        $treeId = (string)($comp['arvore_id'] ?? '');
+        if ((int)($comp['ativo'] ?? 1) !== 1 || !isset($activeTrees[$treeId]) || (string)($comp['item_pai_id'] ?? '') !== $itemId) {
+            continue;
+        }
+        $child = $itemsById[(string)($comp['item_filho_id'] ?? '')] ?? [];
+        if (in_array((string)($child['codigo'] ?? ''), cod_12_05_fluxo_teste02_fruta_codes(), true)) {
+            $best = max($best, max(0.000001, cod_12_05_fluxo_teste02_num($comp['quantidade'] ?? 0)));
+        }
+    }
+    return $best;
+}
+
+function cod_12_05_fluxo_teste02_nominal_kg_tree(string $treeId, string $parentId, float $factor, array $visited, array $children, array $itemsById, array $data): float {
+    $total = 0.0;
+    foreach (($children[$treeId . '|' . $parentId] ?? []) as $comp) {
+        $childId = (string)($comp['item_filho_id'] ?? '');
+        if ($childId === '' || isset($visited[$childId])) {
+            continue;
+        }
+        $qty = max(0.000001, cod_12_05_fluxo_teste02_num($comp['quantidade'] ?? 1));
+        $nextFactor = $factor * $qty;
+        $nominalKg = cod_12_05_fluxo_teste02_nominal_kg_item($data, $itemsById, $children, $childId);
+        if ($nominalKg > 0) {
+            $total += $nextFactor * $nominalKg;
+            continue;
+        }
+        $nextVisited = $visited;
+        $nextVisited[$childId] = true;
+        $total += cod_12_05_fluxo_teste02_nominal_kg_tree($treeId, $childId, $nextFactor, $nextVisited, $children, $itemsById, $data);
+    }
+    return $total;
+}
+
+function cod_12_05_fluxo_teste02_equivalente_subarvore(string $treeId, string $rootId, array $data, array $itemsById, array $children): array {
+    foreach (['ITM-00002', 'ITM-00015'] as $targetCode) {
+        $total = cod_12_05_fluxo_teste02_sum_target($treeId, $rootId, [$targetCode], 1.0, [$rootId => true], $children, $itemsById);
+        if ($total > 0) {
+            return ['quantidade' => $total, 'codigo' => $targetCode];
+        }
+    }
+
+    $kgPorContentor = cod_12_05_fluxo_teste02_contentor_padrao_kg($data, $itemsById, $children);
+    $kgManga = cod_12_05_fluxo_teste02_sum_target($treeId, $rootId, cod_12_05_fluxo_teste02_fruta_codes(), 1.0, [$rootId => true], $children, $itemsById);
+    if ($kgManga > 0 && $kgPorContentor > 0) {
+        return ['quantidade' => $kgManga / $kgPorContentor, 'codigo' => 'FRUTA-IN-NATURA'];
+    }
+
+    return ['quantidade' => 0.0, 'codigo' => ''];
+}
+
+function cod_12_05_fluxo_teste02_equivalente_contexto_item(array $data, array $itemsById, array $children, string $itemId): array {
+    if ($itemId === '') {
+        return ['quantidade' => 0.0, 'codigo' => ''];
+    }
+
+    $activeTrees = [];
+    foreach (($data['tabela_arvores'] ?? []) as $tree) {
+        if ((int)($tree['ativo'] ?? 1) === 1) {
+            $activeTrees[(string)($tree['id'] ?? '')] = true;
+        }
+    }
+
+    $parentsByTreeChild = [];
+    foreach (($data['tabela_arvore_composicao'] ?? []) as $comp) {
+        $treeId = (string)($comp['arvore_id'] ?? '');
+        if (!isset($activeTrees[$treeId])) {
+            continue;
+        }
+        $childId = (string)($comp['item_filho_id'] ?? '');
+        $parentId = (string)($comp['item_pai_id'] ?? '');
+        if ($childId !== '' && $parentId !== '') {
+            $parentsByTreeChild[$treeId . '|' . $childId][] = $parentId;
+        }
+    }
+
+    foreach (array_keys($activeTrees) as $treeId) {
+        $frontier = $parentsByTreeChild[$treeId . '|' . $itemId] ?? [];
+        $visited = [$itemId => true];
+        while (!empty($frontier)) {
+            $parentId = array_shift($frontier);
+            if ($parentId === '' || isset($visited[$parentId])) {
+                continue;
+            }
+            $visited[$parentId] = true;
+
+            $base = cod_12_05_fluxo_teste02_equivalente_subarvore($treeId, $parentId, $data, $itemsById, $children);
+            if (cod_12_05_fluxo_teste02_num($base['quantidade'] ?? 0) > 0) {
+                return $base;
+            }
+
+            foreach (($parentsByTreeChild[$treeId . '|' . $parentId] ?? []) as $nextParentId) {
+                if (!isset($visited[$nextParentId])) {
+                    $frontier[] = $nextParentId;
+                }
+            }
+        }
+    }
+
+    return ['quantidade' => 0.0, 'codigo' => ''];
+}
+
+function cod_12_05_fluxo_teste02_equivalente_item(array $data, array $itemsById, array $children, string $itemId): array {
+    $itemCode = (string)($itemsById[$itemId]['codigo'] ?? '');
+    if (in_array($itemCode, ['ITM-00002', 'ITM-00015'], true)) {
+        return ['quantidade' => 1.0, 'codigo' => $itemCode];
+    }
+
+    $trees = array_values(array_filter(
+        $data['tabela_arvores'] ?? [],
+        fn($tree) => (int)($tree['ativo'] ?? 1) === 1 && (string)($tree['item_raiz_id'] ?? '') === $itemId
+    ));
+
+    if (empty($trees)) {
+        return cod_12_05_fluxo_teste02_equivalente_contexto_item($data, $itemsById, $children, $itemId);
+    }
+
+    foreach (['ITM-00002', 'ITM-00015'] as $targetCode) {
+        $total = 0.0;
+        foreach ($trees as $tree) {
+            $rootId = (string)($tree['item_raiz_id'] ?? '');
+            $total += cod_12_05_fluxo_teste02_sum_target((string)($tree['id'] ?? ''), $rootId, [$targetCode], 1.0, [$rootId => true], $children, $itemsById);
+        }
+        if ($total > 0) {
+            return ['quantidade' => $total, 'codigo' => $targetCode];
+        }
+    }
+
+    $kgPorContentor = cod_12_05_fluxo_teste02_contentor_padrao_kg($data, $itemsById, $children);
+    $kgManga = 0.0;
+    $kgNominal = 0.0;
+    foreach ($trees as $tree) {
+        $treeId = (string)($tree['id'] ?? '');
+        $rootId = (string)($tree['item_raiz_id'] ?? '');
+        $kgManga += cod_12_05_fluxo_teste02_sum_target($treeId, $rootId, cod_12_05_fluxo_teste02_fruta_codes(), 1.0, [$rootId => true], $children, $itemsById);
+        $kgNominal += cod_12_05_fluxo_teste02_nominal_kg_tree($treeId, $rootId, 1.0, [$rootId => true], $children, $itemsById, $data);
+    }
+    $kgBase = $kgManga > 0 ? $kgManga : $kgNominal;
+    if ($kgBase > 0 && $kgPorContentor > 0) {
+        return ['quantidade' => $kgBase / $kgPorContentor, 'codigo' => $kgManga > 0 ? 'FRUTA-IN-NATURA' : 'FRUTA-IN-NATURA-NOMINAL'];
+    }
+
+    return ['quantidade' => 0.0, 'codigo' => ''];
+}
+
+function cod_12_05_fluxo_teste02_item_ids_equivalencia(array $row, array $itemsById): array {
+    $ids = preg_split('/\s*,\s*/', (string)($row['produto_id'] ?? ''), -1, PREG_SPLIT_NO_EMPTY) ?: [];
+    $ids = array_values(array_filter(array_map('trim', $ids)));
+    if (!empty($ids)) {
+        return $ids;
+    }
+
+    $terms = array_filter(array_map('trim', [
+        (string)($row['codigo_arvore_estrutura'] ?? $row['codigo_arvore'] ?? ''),
+        (string)($row['grupo_embalagem'] ?? ''),
+        (string)($row['item'] ?? $row['item_embalagem'] ?? $row['item_carga'] ?? $row['produto'] ?? ''),
+    ]));
+
+    $matches = [];
+    foreach ($terms as $term) {
+        $termNorm = cod_12_05_fluxo_teste02_norm($term);
+        if ($termNorm === '' || in_array($termNorm, ['embalagem', 'componente', 'vazio'], true)) {
+            continue;
+        }
+        foreach ($itemsById as $id => $item) {
+            if ($termNorm === cod_12_05_fluxo_teste02_norm($item['codigo'] ?? '') || $termNorm === cod_12_05_fluxo_teste02_norm($item['nome'] ?? '')) {
+                $matches[] = (string)$id;
+            }
+        }
+    }
+    return array_values(array_unique($matches));
+}
+
+function cod_12_05_fluxo_teste02_peso_nominal_kg(array $row): float {
+    foreach ([$row['grupo_embalagem'] ?? '', $row['item'] ?? $row['item_embalagem'] ?? $row['item_carga'] ?? $row['produto'] ?? '', $row['observacao'] ?? ''] as $term) {
+        if (str_contains(cod_12_05_fluxo_teste02_norm($term), 'caixa') && preg_match('/(\d+(?:[,.]\d+)?)\s*kg/i', (string)$term, $match)) {
+            return cod_12_05_fluxo_teste02_num($match[1]);
+        }
+    }
+    return 0.0;
+}
+
+function cod_12_05_fluxo_teste02_contentores_equivalentes(array $row): float {
+    static $data = null;
+    static $itemsById = null;
+    static $children = null;
+
+    if ($data === null) {
+        $data = ae_api_load_data();
+        $itemsById = [];
+        foreach (($data['tabela_itens'] ?? []) as $item) {
+            $itemsById[(string)($item['id'] ?? '')] = $item;
+        }
+        $children = cod_12_05_fluxo_teste02_arvore_children($data);
+    }
+
+    $ids = cod_12_05_fluxo_teste02_item_ids_equivalencia($row, $itemsById);
+    if (empty($ids)) {
+        $kgPorContentor = cod_12_05_fluxo_teste02_contentor_padrao_kg($data, $itemsById, $children);
+        $kgNominal = cod_12_05_fluxo_teste02_peso_nominal_kg($row);
+        return ($kgNominal > 0 && $kgPorContentor > 0) ? $kgNominal / $kgPorContentor : 0.0;
+    }
+
+    foreach (['ITM-00002', 'ITM-00015', 'FRUTA-IN-NATURA', 'FRUTA-IN-NATURA-NOMINAL'] as $codigo) {
+        $quantidade = 0.0;
+        foreach ($ids as $id) {
+            $base = cod_12_05_fluxo_teste02_equivalente_item($data, $itemsById, $children, (string)$id);
+            if (($base['codigo'] ?? '') === $codigo) {
+                $quantidade += cod_12_05_fluxo_teste02_num($base['quantidade'] ?? 0);
+            }
+        }
+        if ($quantidade > 0) {
+            return $quantidade;
+        }
+    }
+
+    return 0.0;
+}
+
+function cod_12_05_fluxo_teste02_crono_tempos(array $row): array {
+    $tempoTotal = cod_12_05_fluxo_teste02_num($row['tempo_total_s'] ?? $row['tempo_total'] ?? $row['tempo_s'] ?? 0);
+    $tempoUnitario = cod_12_05_fluxo_teste02_num($row['tempo_unitario'] ?? $row['tempo_unitario_utilizado'] ?? $row['TP'] ?? $row['tp'] ?? 0);
+    $tr = cod_12_05_fluxo_teste02_num($row['tr_s'] ?? $row['TR'] ?? $row['tr'] ?? $tempoUnitario);
+    $tn = cod_12_05_fluxo_teste02_num($row['tn_s'] ?? $row['TN'] ?? $row['tn'] ?? $tr);
+    $tp = cod_12_05_fluxo_teste02_num($row['tp_s'] ?? $row['TP'] ?? $row['tp'] ?? $tempoUnitario);
+    $tempoBase = strtoupper(trim((string)($row['tempo_base_utilizado'] ?? 'TP')));
+    if (!in_array($tempoBase, ['TR', 'TN', 'TP'], true)) {
+        $tempoBase = 'TP';
+    }
+
+    $atividadeNorm = trim(cod_12_05_fluxo_teste02_norm($row['atividade'] ?? $row['descricao'] ?? ''));
+    if ($atividadeNorm === 'embalar' && $tempoTotal > 0) {
+        $tr = $tempoTotal;
+        $tn = $tempoTotal;
+        $tp = $tempoTotal;
+    }
+
+    $tcOperacao = $tp > 0 ? $tp : ($tempoUnitario > 0 ? $tempoUnitario : $tempoTotal);
+    $tempoAtivo = $tempoBase === 'TR' ? $tr : ($tempoBase === 'TN' ? $tn : $tp);
+    $equivalentes = cod_12_05_fluxo_teste02_contentores_equivalentes($row);
+    $tcContentor = $equivalentes > 0 && $tempoAtivo > 0 ? $tempoAtivo / $equivalentes : cod_12_05_fluxo_teste02_num($row['ritmo_contentor'] ?? 0);
+
+    return [
+        'tc' => $tcOperacao,
+        'tc_contentor' => $tcContentor,
+        'contentores_equivalentes' => $equivalentes,
+    ];
+}
+
 function cod_12_05_fluxo_teste02_crono_atividades() {
     $repository = new CronoanaliseRepository(rf_route('editor_bpm', 'storage'));
     $rows = $repository->listarCronoanalises([]);
@@ -126,17 +463,10 @@ function cod_12_05_fluxo_teste02_crono_atividades() {
         }
 
         $tipo = trim((string)($row['tipo_operacao'] ?? $row['tipo_atividade'] ?? $row['tipo_calculo'] ?? ''));
-        $ritmo = cod_12_05_fluxo_teste02_num(
-            $row['ritmo_contentor'] ??
-            $row['tempo_unitario_utilizado'] ??
-            $row['tempo_unitario'] ??
-            $row['TP'] ??
-            $row['tp'] ??
-            $row['tempo_total_s'] ??
-            $row['tempo_s'] ??
-            0
-        );
-        $key = strtolower($nome . '|' . $tipo . '|' . $ritmo);
+        $tempos = cod_12_05_fluxo_teste02_crono_tempos($row);
+        $tc = cod_12_05_fluxo_teste02_num($tempos['tc'] ?? 0);
+        $tcContentor = cod_12_05_fluxo_teste02_num($tempos['tc_contentor'] ?? 0);
+        $key = strtolower($nome . '|' . $tipo . '|' . $tc . '|' . $tcContentor);
         if (isset($seen[$key])) {
             continue;
         }
@@ -146,7 +476,10 @@ function cod_12_05_fluxo_teste02_crono_atividades() {
             'id' => (string)($row['id'] ?? $key),
             'nome' => $nome,
             'tipo' => $tipo,
-            'ritmo' => $ritmo,
+            'tc' => $tc,
+            'tcContentor' => $tcContentor,
+            'ritmo' => $tcContentor,
+            'contentoresEquivalentes' => cod_12_05_fluxo_teste02_num($tempos['contentores_equivalentes'] ?? 0),
             'posto' => (string)($row['posto'] ?? ''),
             'linha' => (string)($row['linha'] ?? ''),
         ];
@@ -813,7 +1146,7 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
         }
         .posto-editor-metrics {
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: 10px;
         }
         .posto-editor-actions {
@@ -1113,6 +1446,10 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
                                 <input id="postoEditorTc" type="text" readonly>
                             </div>
                             <div class="posto-editor-field">
+                                <label for="postoEditorTcContentor">TC/ctt</label>
+                                <input id="postoEditorTcContentor" type="text" readonly>
+                            </div>
+                            <div class="posto-editor-field">
                                 <label for="postoEditorRitmo">Ritmo do posto</label>
                                 <input id="postoEditorRitmo" type="text" readonly>
                             </div>
@@ -1344,6 +1681,7 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
                     name: data.name || node.name || 'No sem nome',
                     type: data.type || node.class || node.name || 'node',
                     tc: parseLocalNumber(data.tc || 0, 0),
+                    tcContentor: parseLocalNumber(data.tcContentor || data.tc_contentor || data.ritmo || data.tc || 0, 0),
                     icon: data.icon || 'fa-industry',
                     atividades: normalizeNodeAtividades(data.atividades || []),
                     pessoas: parseInt(data.pessoas || 0, 10) || 0,
@@ -1405,7 +1743,7 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
 
         async function addSimpleNode(name, tc, x, y, saveAfter = true) {
             const uniqueId = await requestId('cod_12_05_node');
-            const nodeData = { id: uniqueId, name, tc, type: 'node', atividades: [], pessoas: 0, ritmo: 0, autoPlace: true };
+            const nodeData = { id: uniqueId, name, tc, tcContentor: tc, type: 'node', atividades: [], pessoas: 0, ritmo: 0, autoPlace: true };
             const htmlContent = generateNodeHtml(nodeData);
             const drawflowId = editor.addNode('node', 1, 1, x, y, 'node', nodeData, htmlContent);
 
@@ -1469,6 +1807,7 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
                 name: nodeName.trim(),
                 type,
                 tc,
+                tcContentor: intrinsic.tcContentor || tc,
                 atividades: intrinsic.atividades,
                 pessoas: intrinsic.pessoas,
                 ritmo: intrinsic.ritmo,
@@ -1587,6 +1926,7 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
             const id = escapeJsString(node.id);
             const safeName = escapeHtml(node.name || 'No sem nome');
             const tc = Number.isFinite(parseLocalNumber(node.tc, NaN)) ? parseLocalNumber(node.tc, 0) : 0;
+            const tcContentor = Number.isFinite(parseLocalNumber(node.tcContentor || node.tc_contentor, NaN)) ? parseLocalNumber(node.tcContentor || node.tc_contentor, 0) : tc;
             const icon = escapeHtml(node.icon || 'fa-industry');
             const pessoas = parseInt(node.pessoas || 0, 10) || 0;
             const ritmo = Number.isFinite(parseLocalNumber(node.ritmo, NaN)) ? parseLocalNumber(node.ritmo, 0) : 0;
@@ -1611,6 +1951,7 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
                     <div class="node-icon"><i class="fa-solid ${icon}"></i></div>
                     <strong>${safeName}</strong>
                     <div>TC: <span class="tc-value">${tc}</span>s</div>
+                    <div>TC/ctt: <span class="tc-contentor-value">${tcContentor}</span>s</div>
                     <div>Pessoas: ${pessoas || '-'}</div>
                     <div>Ritmo: ${ritmo || '-'}s</div>
                     <div class="node-actions">
@@ -1646,7 +1987,9 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
                         id: String(item.id || item.nome || ''),
                         nome: String(item.nome || item.atividade || item.descricao || ''),
                         tipo: String(item.tipo || item.tipo_operacao || item.tipo_atividade || ''),
-                        ritmo: parseLocalNumber(item.ritmo || item.tempo_unitario || item.tempo_total_s || 0, 0)
+                        tc: parseLocalNumber(item.tc || item.tempo_operacao_principal || item.tempo_unitario || item.tempo_total_s || 0, 0),
+                        tcContentor: parseLocalNumber(item.tcContentor || item.tc_contentor || item.ritmo || item.ritmo_contentor || 0, 0),
+                        ritmo: parseLocalNumber(item.ritmo || item.tcContentor || item.tc_contentor || item.ritmo_contentor || 0, 0)
                     };
                 })
                 .filter(item => item.nome !== '');
@@ -1654,8 +1997,9 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
 
         function formatAtividadeOption(atividade, index) {
             const tipo = atividade.tipo ? ' / ' + atividade.tipo : '';
-            const ritmo = atividade.ritmo > 0 ? ' / Ritmo/contentor ' + formatSeconds(atividade.ritmo) : '';
-            return `${index + 1} - ${atividade.nome}${tipo}${ritmo}`;
+            const tc = atividade.tc > 0 ? ' / TC ' + formatSeconds(atividade.tc) : '';
+            const ritmo = atividade.tcContentor > 0 ? ' / TC/ctt ' + formatSeconds(atividade.tcContentor) : '';
+            return `${index + 1} - ${atividade.nome}${tipo}${tc}${ritmo}`;
         }
 
         function formatSeconds(value) {
@@ -1664,12 +2008,20 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
         }
 
         function calcTcFromAtividades(atividades) {
-            return normalizeNodeAtividades(atividades).reduce((sum, item) => sum + parseLocalNumber(item.ritmo || 0, 0), 0);
+            return normalizeNodeAtividades(atividades).reduce((sum, item) => sum + parseLocalNumber(item.tc || 0, 0), 0);
         }
 
-        function calcRitmoPosto(tc, pessoas) {
+        function calcTcContentorFromAtividades(atividades) {
+            return normalizeNodeAtividades(atividades).reduce((sum, item) => {
+                const tcContentor = parseLocalNumber(item.tcContentor || item.ritmo || 0, 0);
+                const tc = parseLocalNumber(item.tc || 0, 0);
+                return sum + (tcContentor > 0 ? tcContentor : tc);
+            }, 0);
+        }
+
+        function calcRitmoPosto(tcContentor, pessoas) {
             const qtd = parseInt(pessoas || 0, 10) || 0;
-            return qtd > 0 ? parseLocalNumber(tc, 0) / qtd : 0;
+            return qtd > 0 ? parseLocalNumber(tcContentor, 0) / qtd : 0;
         }
 
         function normalizeSearchText(value) {
@@ -1769,7 +2121,7 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
             dropdown.innerHTML = rows.length ? rows.map(item => `
                 <button class="atividade-option" type="button" onclick="addPostoEditorAtividade('${escapeJsString(item.id)}')">
                     <strong>${escapeHtml(item.nome)}</strong>
-                    <span>${escapeHtml(item.tipo || 'Cronoanalise')} | Ritmo/contentor: ${escapeHtml(formatSeconds(item.ritmo || 0))}</span>
+                    <span>${escapeHtml(item.tipo || 'Cronoanalise')} | TC: ${escapeHtml(formatSeconds(item.tc || 0))} | TC/ctt: ${escapeHtml(formatSeconds(item.tcContentor || item.ritmo || 0))}</span>
                 </button>
             `).join('') : '<div class="atividade-option"><strong>Nenhuma atividade encontrada</strong><span>Ajuste a busca ou cadastre na cronoanalise.</span></div>';
         }
@@ -1805,10 +2157,12 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
             const pessoas = Math.max(1, parseInt(pessoasInput?.value || posto.pessoas || 1, 10) || 1);
             const atividades = normalizeNodeAtividades(postoEditorState.selected || []);
             const tc = calcTcFromAtividades(atividades);
-            const ritmo = calcRitmoPosto(tc, pessoas);
+            const tcContentor = calcTcContentorFromAtividades(atividades);
+            const ritmo = calcRitmoPosto(tcContentor, pessoas);
 
             posto.name = nextName || posto.name;
             posto.tc = tc;
+            posto.tcContentor = tcContentor;
             posto.atividades = atividades;
             posto.pessoas = pessoas;
             posto.ritmo = ritmo;
@@ -1825,6 +2179,8 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
                 name: posto.name,
                 type: posto.type,
                 tc: posto.tc,
+                tcContentor: posto.tcContentor,
+                tc_contentor: posto.tcContentor,
                 icon: posto.icon || 'fa-industry',
                 atividades: posto.atividades,
                 pessoas: posto.pessoas,
@@ -1846,11 +2202,14 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
         function updatePostoEditorMetrics() {
             const pessoasInput = document.getElementById('postoEditorPessoas');
             const tcInput = document.getElementById('postoEditorTc');
+            const tcContentorInput = document.getElementById('postoEditorTcContentor');
             const ritmoInput = document.getElementById('postoEditorRitmo');
             const pessoas = parseInt(pessoasInput?.value || 0, 10) || 0;
             const tc = calcTcFromAtividades(postoEditorState.selected || []);
-            const ritmo = calcRitmoPosto(tc, pessoas);
+            const tcContentor = calcTcContentorFromAtividades(postoEditorState.selected || []);
+            const ritmo = calcRitmoPosto(tcContentor, pessoas);
             if (tcInput) tcInput.value = formatSeconds(tc);
+            if (tcContentorInput) tcContentorInput.value = formatSeconds(tcContentor);
             if (ritmoInput) ritmoInput.value = formatSeconds(ritmo);
         }
 
@@ -1867,9 +2226,10 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
             const pessoas = Math.max(1, parseInt(pessoasInput?.value || 1, 10) || 1);
             const atividades = normalizeNodeAtividades(postoEditorState.selected || []);
             const tc = calcTcFromAtividades(atividades);
-            const ritmo = calcRitmoPosto(tc, pessoas);
+            const tcContentor = calcTcContentorFromAtividades(atividades);
+            const ritmo = calcRitmoPosto(tcContentor, pessoas);
             closePostoEditorModal();
-            postoEditorResolver({ name, atividades, pessoas, tc, ritmo });
+            postoEditorResolver({ name, atividades, pessoas, tc, tcContentor, ritmo });
             postoEditorResolver = null;
         }
 
@@ -1927,6 +2287,7 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
 
             posto.name = newName;
             posto.tc = newTc;
+            posto.tcContentor = posto.type === 'node' ? (intrinsic.tcContentor || intrinsic.tc_contentor || newTc) : 0;
             posto.atividades = intrinsic.atividades;
             posto.pessoas = intrinsic.pessoas;
             posto.ritmo = intrinsic.ritmo;
@@ -2075,6 +2436,8 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
                         name: posto.name,
                         type: posto.type || 'node',
                         tc: posto.tc || 0,
+                        tcContentor: posto.tcContentor || posto.tc_contentor || posto.tc || 0,
+                        tc_contentor: posto.tcContentor || posto.tc_contentor || posto.tc || 0,
                         icon: posto.icon || 'fa-industry',
                         atividades: normalizeNodeAtividades(posto.atividades || []),
                         pessoas: parseInt(posto.pessoas || 0, 10) || 0,
@@ -2199,6 +2562,7 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
                                 <input type="number" min="1" step="1" value="${escapeHtml(posto.pessoas || 1)}" onchange="updatePostoResumoPessoas('${escapeJsString(posto.id)}', this.value)">
                             </td>
                             <td>${escapeHtml(formatSeconds(posto.tc || 0))}</td>
+                            <td>${escapeHtml(formatSeconds(posto.tcContentor || posto.tc_contentor || posto.ritmo || posto.tc || 0))}</td>
                             <td id="postoResumoRitmo-${escapeHtml(String(posto.id))}">${escapeHtml(formatSeconds(posto.ritmo || 0))}</td>
                             <td class="posto-activities-cell">${atividadeLabel}</td>
                         </tr>
@@ -2212,6 +2576,7 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
                                 <th>Posto</th>
                                 <th>Pessoas</th>
                                 <th>TC</th>
+                                <th>TC/ctt</th>
                                 <th>Ritmo</th>
                                 <th>Atividades</th>
                             </tr>
@@ -2228,7 +2593,7 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
 
             const pessoas = Math.max(1, parseInt(value || 1, 10) || 1);
             posto.pessoas = pessoas;
-            posto.ritmo = calcRitmoPosto(posto.tc || 0, pessoas);
+            posto.ritmo = calcRitmoPosto(posto.tcContentor || posto.tc_contentor || posto.tc || 0, pessoas);
             syncPostoNodeData(posto);
 
             const ritmoCell = document.getElementById('postoResumoRitmo-' + id);
@@ -2336,8 +2701,12 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
                     <input type="text" value="${escapeHtml(posto.pessoas || 0)}" readonly>
                 </div>
                 <div class="property-row">
+                    <label>TC/ctt</label>
+                    <input type="text" value="${escapeHtml(formatSeconds(posto.tcContentor || posto.tc_contentor || posto.tc || 0))}" readonly>
+                </div>
+                <div class="property-row">
                     <label>Ritmo do posto</label>
-                    <input type="text" value="${escapeHtml((posto.ritmo || 0) + 's')}" readonly>
+                    <input type="text" value="${escapeHtml(formatSeconds(posto.ritmo || 0))}" readonly>
                 </div>
             ` : '';
 
@@ -2355,8 +2724,8 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
                     <input type="text" value="${escapeHtml(posto.id)}" readonly>
                 </div>
                 <div class="property-row">
-                    <label>Tempo de ciclo</label>
-                    <input type="text" value="${escapeHtml(posto.type === 'node' ? String(posto.tc || 0) + 's' : 'Nao aplicavel')}" readonly>
+                    <label>TC</label>
+                    <input type="text" value="${escapeHtml(posto.type === 'node' ? formatSeconds(posto.tc || 0) : 'Nao aplicavel')}" readonly>
                 </div>
                 ${intrinsicHtml}
                 <div class="property-row">

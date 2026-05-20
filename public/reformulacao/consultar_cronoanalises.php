@@ -576,7 +576,7 @@ function cc_normalizar(array $row): array {
 
     $taxaBase = ['quantidade' => 0.0, 'kg_manga' => 0.0, 'kg_por_contentor' => 0.0, 'codigo' => ''];
     $taxaBaseAplicada = false;
-    if (in_array($tipo, ['operacao', 'transporte'], true)) {
+    if (in_array($tipo, ['operacao', 'transporte', 'hibrida'], true)) {
         $taxaBase = cc_contentores_equivalentes($row);
         $taxaQuantidade = cc_num($taxaBase['quantidade'] ?? 0);
         if ($tipo === 'transporte' && $taxaQuantidade > 0 && $tempoTotal > 0) {
@@ -589,6 +589,9 @@ function cc_normalizar(array $row): array {
 
     $taxaQuantidade = cc_num($taxaBase['quantidade'] ?? 0);
     $tempoAtivo = $tempoBaseUtilizado === 'TR' ? $tr : ($tempoBaseUtilizado === 'TN' ? $tn : $tp);
+    if ($tipo === 'hibrida' && $tempoHibrido > 0) {
+        $tempoAtivo = $tempoHibrido;
+    }
     $ritmoContentor = $taxaQuantidade > 0 && $tempoAtivo > 0 ? $tempoAtivo / $taxaQuantidade : 0.0;
 
     $tempoOperacaoPrincipal = $tp > 0 ? $tp : ($tempoUnitario > 0 ? $tempoUnitario : $tempoTotal);
@@ -869,7 +872,7 @@ include __DIR__ . '/menu.php';
             <div class="crono-group-title" role="button" tabindex="0" aria-expanded="true" aria-controls="cc_group_transporte" onclick="ccToggleGroup(this)" onkeydown="ccToggleGroupKey(event, this)"><strong>TRANSPORTE / MOVIMENTACAO</strong><span><?php echo cc_count_label(count($groups['transporte'])); ?></span></div>
             <div class="crono-table-wrap" id="cc_group_transporte">
                 <table class="crono-table">
-                    <thead><tr><th>Atividade</th><th>Setor</th><th>Item/Carga</th><th>Calibre</th><th>Distancia (m)</th><th>Tempo (s)</th><th>TR</th><th>TN</th><th>TP</th><th>Qtdd Eq. CTT</th><th>Taxa producao</th><th>Velocidade (m/s)</th><th>Unidade carga</th><th>Qtd Ref</th><th>Origem</th><th>Destino</th><th>Meio transporte</th><th>Observacao</th><th>Acoes</th></tr></thead>
+                    <thead><tr><th>Atividade</th><th>Setor</th><th>Item/Carga</th><th>Calibre</th><th>Distancia (m)</th><th>Tempo (s)</th><th>TR</th><th>TN</th><th>TP</th><th>Qtdd Eq. CTT</th><th>Ritmo/contentor</th><th>Velocidade (m/s)</th><th>Unidade carga</th><th>Qtd Ref</th><th>Origem</th><th>Destino</th><th>Meio transporte</th><th>Observacao</th><th>Acoes</th></tr></thead>
                     <tbody>
                         <?php foreach ($groups['transporte'] as $row): ?>
                             <tr><td><?php echo cc_h($row['atividade']); ?></td><td><?php echo cc_h($row['setor']); ?></td><td><?php echo cc_h($row['item']); ?></td><td><?php echo cc_h($row['calibre']); ?></td><td><?php echo cc_fmt($row['distancia']); ?></td><td><?php echo cc_fmt($row['tempo_total']); ?></td><td><?php echo cc_fmt($row['tr']); ?></td><td><?php echo cc_fmt($row['tn']); ?></td><td><?php echo cc_fmt($row['tp']); ?></td><td><?php echo cc_fmt($row['capacidade'], 0); ?></td><td><?php echo cc_h(cc_taxa_label($row)); ?></td><td><?php echo cc_fmt($row['velocidade']); ?></td><td><?php echo cc_h($row['unidade_carga']); ?></td><td><?php echo cc_fmt($row['qtd_ref']); ?></td><td><?php echo cc_h($row['origem']); ?></td><td><?php echo cc_h($row['destino']); ?></td><td><?php echo cc_h($row['meio_transporte']); ?></td><td><?php echo cc_h($row['observacao']); ?></td><td><?php echo cc_actions($row); ?></td></tr>
@@ -884,12 +887,12 @@ include __DIR__ . '/menu.php';
             <div class="crono-group-title" role="button" tabindex="0" aria-expanded="true" aria-controls="cc_group_hibrida" onclick="ccToggleGroup(this)" onkeydown="ccToggleGroupKey(event, this)"><strong>HIBRIDA / OPERACAO + DESLOCAMENTO</strong><span><?php echo cc_count_label(count($groups['hibrida'])); ?></span></div>
             <div class="crono-table-wrap" id="cc_group_hibrida">
                 <table class="crono-table">
-                    <thead><tr><th>Atividade</th><th>Setor</th><th>Item/Embalagem</th><th>Calibre</th><th>Distancia (m)</th><th>Tempo desloc. (s)</th><th>Tempo operacao (s)</th><th>Tempo total (s)</th><th>Unidade</th><th>Qtd Ref</th><th>Capacidade</th><th>Posto</th><th>Observacao</th><th>Acoes</th></tr></thead>
+                    <thead><tr><th>Atividade</th><th>Setor</th><th>Item/Embalagem</th><th>Calibre</th><th>Distancia (m)</th><th>Tempo desloc. (s)</th><th>Tempo operacao (s)</th><th>Tempo total (s)</th><th>Unidade</th><th>Qtd Ref</th><th>Qtdd Eq. CTT</th><th>Ritmo/contentor</th><th>Capacidade</th><th>Posto</th><th>Observacao</th><th>Acoes</th></tr></thead>
                     <tbody>
                         <?php foreach ($groups['hibrida'] as $row): ?>
-                            <tr><td><?php echo cc_h($row['atividade']); ?></td><td><?php echo cc_h($row['setor']); ?></td><td><?php echo cc_h($row['item']); ?></td><td><?php echo cc_h($row['calibre']); ?></td><td><?php echo cc_fmt($row['distancia']); ?></td><td><?php echo cc_fmt($row['tempo_deslocamento']); ?></td><td><?php echo cc_fmt($row['tempo_operacao']); ?></td><td><?php echo cc_fmt($row['tempo_hibrido']); ?></td><td><?php echo cc_h($row['unidade']); ?></td><td><?php echo cc_fmt($row['qtd_ref']); ?></td><td><?php echo cc_fmt($row['capacidade'], 0); ?></td><td><?php echo cc_h($row['posto']); ?></td><td><?php echo cc_h($row['observacao']); ?></td><td><?php echo cc_actions($row); ?></td></tr>
+                            <tr><td><?php echo cc_h($row['atividade']); ?></td><td><?php echo cc_h($row['setor']); ?></td><td><?php echo cc_h($row['item']); ?></td><td><?php echo cc_h($row['calibre']); ?></td><td><?php echo cc_fmt($row['distancia']); ?></td><td><?php echo cc_fmt($row['tempo_deslocamento']); ?></td><td><?php echo cc_fmt($row['tempo_operacao']); ?></td><td><?php echo cc_fmt($row['tempo_hibrido']); ?></td><td><?php echo cc_h($row['unidade']); ?></td><td><?php echo cc_fmt($row['qtd_ref']); ?></td><td><?php echo cc_fmt($row['taxa_base_quantidade'], 0); ?></td><td><?php echo cc_fmt($row['ritmo_contentor']); ?></td><td><?php echo cc_fmt($row['capacidade'], 0); ?></td><td><?php echo cc_h($row['posto']); ?></td><td><?php echo cc_h($row['observacao']); ?></td><td><?php echo cc_actions($row); ?></td></tr>
                         <?php endforeach; ?>
-                        <?php if (empty($groups['hibrida'])): ?><tr><td colspan="14" class="crono-empty">Nenhum registro hibrido encontrado.</td></tr><?php endif; ?>
+                        <?php if (empty($groups['hibrida'])): ?><tr><td colspan="16" class="crono-empty">Nenhum registro hibrido encontrado.</td></tr><?php endif; ?>
                     </tbody>
                 </table>
             </div>

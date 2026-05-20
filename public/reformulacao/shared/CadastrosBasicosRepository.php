@@ -130,7 +130,8 @@ function cb_upsert($catalog, $payload) {
 function cb_upsert_in_data($data, $catalog, $payload) {
     $incoming_id = trim((string)($payload['id'] ?? ''));
     $idx = $incoming_id !== '' ? cb_find_index($data, $catalog, $incoming_id) : -1;
-    if ($idx < 0 && trim((string)($payload['nome'] ?? '')) !== '') {
+    $allow_name_match = $catalog !== 'produtos_itens' || $incoming_id === '';
+    if ($idx < 0 && $allow_name_match && trim((string)($payload['nome'] ?? '')) !== '') {
         $existing = cb_find_by_name($data, $catalog, $payload['nome']);
         if ($existing) {
             $idx = cb_find_index($data, $catalog, $existing['id']);
