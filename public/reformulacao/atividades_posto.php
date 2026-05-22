@@ -214,7 +214,7 @@ include __DIR__ . '/menu.php';
                                 <td><?php echo crono_h($act['tempo_base_utilizado'] ?? 'TP'); ?></td>
                                 <td class="crono-actions-cell">
                                     <button type="button" class="crono-icon-btn" onclick='editarAtividade(<?php echo json_encode($act, JSON_UNESCAPED_UNICODE | JSON_HEX_APOS | JSON_HEX_QUOT); ?>)' title="Editar">Editar</button>
-                                    <button type="button" class="crono-icon-btn danger" onclick="excluirAtividade('<?php echo crono_h($act['id'] ?? ''); ?>')" title="Excluir">Excluir</button>
+                                    <button type="button" class="crono-icon-btn danger" onclick="excluirAtividade('<?php echo crono_h($act['id'] ?? ''); ?>')" title="Arquivar">Arquivar</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -744,7 +744,7 @@ async function persistirCadastrosBasicosDigitados() {
 }
 
 async function excluirAtividade(id) {
-    if (!id || !confirm('Deseja excluir esta cronoanalise?')) return;
+    if (!id || !confirm('Deseja arquivar esta cronoanalise? Ela so sera arquivada se nao estiver vinculada a nenhum posto.')) return;
     const formData = new FormData();
     formData.append('action', 'delete_atividade');
     formData.append('id', id);
@@ -752,7 +752,12 @@ async function excluirAtividade(id) {
     formData.append('post_index', '<?php echo crono_h($post_index); ?>');
 
     const response = await fetch('api_cronoanalise.php', { method: 'POST', body: formData });
-    if (response.ok) location.reload();
+    const result = await response.json().catch(() => ({ status: 'error', message: 'Resposta invalida do servidor.' }));
+    if (response.ok && result.status === 'success') {
+        location.reload();
+        return;
+    }
+    showFeedback(result.message || 'Erro ao arquivar cronoanalise.');
 }
 
 function editarAtividade(act) {

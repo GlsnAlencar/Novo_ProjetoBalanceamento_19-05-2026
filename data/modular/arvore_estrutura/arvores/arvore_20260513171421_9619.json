@@ -1,0 +1,12 @@
+{
+    "id": "arvore_20260513171421_9619",
+    "criado_em": "2026-05-13 17:14:21",
+    "codigo": "CTT-001",
+    "nome": "CTT fruta in natura",
+    "item_raiz_id": "item_20260513170822_9309",
+    "descricao": "",
+    "ativo": 0,
+    "atualizado_em": "2026-05-18 21:50:53",
+    "updated_at": "2026-05-19 02:47:48",
+    "schema_version": 1
+}

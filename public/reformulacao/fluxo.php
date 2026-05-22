@@ -81,6 +81,25 @@ function cod_12_05_fluxo_teste02_load_data() {
     return $data;
 }
 
+function cod_12_05_fluxo_teste02_kg_por_ctt() {
+    try {
+        $data = ae_api_load_data();
+    } catch (Throwable $e) {
+        return null;
+    }
+
+    foreach (($data['tabela_item_conversoes'] ?? []) as $row) {
+        $destino = strtolower(trim((string)($row['unidade_destino'] ?? '')));
+        $descricao = strtolower((string)($row['descricao'] ?? ''));
+        $fator = is_numeric($row['fator'] ?? null) ? (float)$row['fator'] : 0.0;
+        if ((int)($row['ativo'] ?? 1) === 1 && $destino === 'kg' && $fator > 0 && str_contains($descricao, 'ctt')) {
+            return $fator;
+        }
+    }
+
+    return null;
+}
+
 function cod_12_05_fluxo_teste02_find_setor($setores, $setor_id) {
     foreach ($setores as $setor) {
         if (($setor['id'] ?? '') === $setor_id) {
@@ -463,7 +482,8 @@ function cod_12_05_fluxo_teste02_crono_tempos(array $row): array {
     $tcOperacao = $tp > 0 ? $tp : ($tempoUnitario > 0 ? $tempoUnitario : $tempoTotal);
     $tempoAtivo = $tempoBase === 'TR' ? $tr : ($tempoBase === 'TN' ? $tn : $tp);
     $equivalentes = cod_12_05_fluxo_teste02_contentores_equivalentes($row);
-    $tcContentor = $equivalentes > 0 && $tempoAtivo > 0 ? $tempoAtivo / $equivalentes : cod_12_05_fluxo_teste02_num($row['ritmo_contentor'] ?? 0);
+    $tempoRitmoContentor = $tempoTotal > 0 ? $tempoTotal : $tempoAtivo;
+    $tcContentor = $equivalentes > 0 && $tempoRitmoContentor > 0 ? $tempoRitmoContentor / $equivalentes : cod_12_05_fluxo_teste02_num($row['ritmo_contentor'] ?? 0);
 
     return [
         'tc' => $tcOperacao,
@@ -524,10 +544,9 @@ function cod_12_05_fluxo_teste02_normalize_shared_catalogs($data) {
                 'updated_at' => $linha['updated_at'] ?? cb_now(),
                 '_timestamp' => cod_12_05_fluxo_teste02_row_timestamp($linha)
             ];
-            if (
-                !isset($drawflows_by_line[$line_id]) ||
-                ($candidate['_timestamp'] >= ($drawflows_by_line[$line_id]['_timestamp'] ?? 0) && !empty($candidate['drawflow_data']))
-            ) {
+            $candidate_nodes = count($candidate['drawflow_data']['drawflow']['Home']['data'] ?? []);
+            $current_nodes = count($drawflows_by_line[$line_id]['drawflow_data']['drawflow']['Home']['data'] ?? []);
+            if (!isset($drawflows_by_line[$line_id]) || $candidate_nodes > $current_nodes || ($candidate_nodes === $current_nodes && $candidate['_timestamp'] >= ($drawflows_by_line[$line_id]['_timestamp'] ?? 0))) {
                 $drawflows_by_line[$line_id] = $candidate;
             }
         }
@@ -560,6 +579,13 @@ $fluxo_data = cod_12_05_fluxo_teste02_normalize_shared_catalogs(cod_12_05_fluxo_
 $setores = $fluxo_data['setores'];
 $shared_postos = cb_list('postos', true);
 $crono_atividades = cod_12_05_fluxo_teste02_crono_atividades();
+$kg_por_ctt = cod_12_05_fluxo_teste02_kg_por_ctt();
+
+if (($_GET['ajax_crono_atividades'] ?? '') === '1') {
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode(['status' => 'success', 'atividades' => $crono_atividades], JSON_UNESCAPED_UNICODE);
+    exit;
+}
 
 $setor_id_ativo = $_GET['setor_id'] ?? null;
 if (!$setor_id_ativo && !empty($setores)) {
@@ -593,6 +619,7 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
     <title>cod_12_05_fluxo_teste02 - BPM Isolado</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/drawflow@0.0.59/dist/drawflow.min.css">
     <script src="https://cdn.jsdelivr.net/npm/drawflow@0.0.59/dist/drawflow.min.js"></script>
+    <script src="balanceamentoService.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1029,8 +1056,13 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
         }
         .posto-panel-table {
             width: 100%;
+            min-width: 900px;
             border-collapse: collapse;
             font-size: 12px;
+        }
+        .posto-panel-scroll {
+            overflow-x: auto;
+            padding-bottom: 2px;
         }
         .posto-panel-table th,
         .posto-panel-table td {
@@ -1062,6 +1094,128 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
             color: #475569;
             line-height: 1.35;
         }
+        .balanceamento-section {
+            margin-bottom: 12px;
+            border: 1px solid #dbe3ef;
+            border-radius: 6px;
+            background: #fff;
+            overflow: hidden;
+        }
+        .balanceamento-section summary {
+            padding: 9px 10px;
+            cursor: pointer;
+            color: #17202a;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+        .balanceamento-form {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+            padding: 0 10px 10px;
+        }
+        .balanceamento-field {
+            display: grid;
+            gap: 4px;
+        }
+        .balanceamento-field label {
+            color: #64748b;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+        .balanceamento-field input {
+            min-height: 30px;
+            padding: 5px 7px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            color: #17202a;
+            font: inherit;
+            font-size: 12px;
+        }
+        .balanceamento-summary {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 7px;
+            margin-bottom: 10px;
+        }
+        .balanceamento-metric {
+            padding: 8px;
+            border: 1px solid #dbe3ef;
+            border-radius: 6px;
+            background: #fff;
+            min-width: 0;
+        }
+        .balanceamento-metric span {
+            display: block;
+            color: #64748b;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+        .balanceamento-metric strong {
+            display: block;
+            margin-top: 3px;
+            color: #17202a;
+            font-size: 13px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .balanceamento-badge {
+            display: inline-flex;
+            align-items: center;
+            min-height: 22px;
+            padding: 3px 7px;
+            border-radius: 999px;
+            font-size: 10px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+        .balanceamento-badge.sem_dados { background: #e5e7eb; color: #374151; }
+        .balanceamento-badge.balanceado { background: #dcfce7; color: #166534; }
+        .balanceamento-badge.atencao { background: #fef3c7; color: #92400e; }
+        .balanceamento-badge.gargalo { background: #fee2e2; color: #991b1b; }
+        .balanceamento-badge.ocioso { background: #e0f2fe; color: #075985; }
+        .balanceamento-delta {
+            font-weight: 800;
+            white-space: nowrap;
+        }
+        .drawflow-node.balanceamento-status-balanceado {
+            border-color: #16a34a !important;
+            box-shadow: 0 0 0 2px rgba(22, 163, 74, .18) !important;
+        }
+        .drawflow-node.balanceamento-status-atencao {
+            border-color: #f59e0b !important;
+            box-shadow: 0 0 0 2px rgba(245, 158, 11, .18) !important;
+        }
+        .drawflow-node.balanceamento-status-gargalo {
+            border-color: #dc2626 !important;
+            box-shadow: 0 0 0 2px rgba(220, 38, 38, .2) !important;
+        }
+        .drawflow-node.balanceamento-status-ocioso {
+            border-color: #0ea5e9 !important;
+            box-shadow: 0 0 0 2px rgba(14, 165, 233, .18) !important;
+        }
+        .drawflow-node.balanceamento-status-sem_dados {
+            border-color: #9ca3af !important;
+        }
+        .node-balanceamento-status {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: #9ca3af;
+            border: 1px solid rgba(255,255,255,.9);
+        }
+        .node-balanceamento-status.balanceado { background: #16a34a; }
+        .node-balanceamento-status.atencao { background: #f59e0b; }
+        .node-balanceamento-status.gargalo { background: #dc2626; }
+        .node-balanceamento-status.ocioso { background: #0ea5e9; }
+        .node-balanceamento-status.sem_dados { background: #9ca3af; }
         .posto-editor-grid {
             display: grid;
             gap: 14px;
@@ -1495,7 +1649,8 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
         const currentSetorId = <?php echo json_encode($setor_id_ativo ?? ''); ?>;
         const currentLinhaId = <?php echo json_encode($linha_id_ativo ?? ''); ?>;
         const sharedPostos = <?php echo json_encode($shared_postos, JSON_UNESCAPED_UNICODE); ?>;
-        const cronoAtividades = <?php echo json_encode($crono_atividades, JSON_UNESCAPED_UNICODE); ?>;
+        const kgPorCtt = <?php echo json_encode($kg_por_ctt); ?>;
+        let cronoAtividades = <?php echo json_encode($crono_atividades, JSON_UNESCAPED_UNICODE); ?>;
 
         let editor = null;
         let mockPostos = [];
@@ -1506,6 +1661,9 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
         let saveTimer = null;
         let currentSavePromise = null;
         let pendingSaveAfterCurrent = false;
+        let allowNextEmptyFlowSave = false;
+        let balanceamentoParams = BalanceamentoService.normalizeParams({});
+        let balanceamentoSnapshot = null;
         let postoEditorResolver = null;
         let postoEditorState = { selected: [] };
 
@@ -1610,6 +1768,7 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
                 const response = await fetch(apiUrl + '?action=load_drawflow_data&setor_id=' + encodeURIComponent(currentSetorId) + '&linha_id=' + encodeURIComponent(currentLinhaId));
                 const data = await response.json();
                 if (data.status === 'success' && data.drawflow_data && isValidDrawflowData(data.drawflow_data)) {
+                    balanceamentoParams = BalanceamentoService.normalizeParams(data.drawflow_data.balanceamento_params || {});
                     editor.import(data.drawflow_data);
                     rebuildLocalStateFromEditor();
                     refreshImportedNodes();
@@ -1627,6 +1786,7 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
             setupDrawflowEvents();
             updateNodeCount();
             updateZoomDisplay();
+            refreshBalanceamentoStatus();
         }
 
         function isValidDrawflowData(flowData) {
@@ -1698,16 +1858,22 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
             Object.keys(nodes).forEach(drawflowId => {
                 const node = nodes[drawflowId];
                 const data = node.data || {};
+                const atividades = normalizeNodeAtividades(data.atividades || []);
+                const pessoas = parseInt(data.pessoas || 0, 10) || 0;
+                const tc = atividades.length ? calcTcFromAtividades(atividades) : parseLocalNumber(data.tc || 0, 0);
+                const tcContentor = atividades.length
+                    ? calcTcContentorFromAtividades(atividades)
+                    : parseLocalNumber(data.tcContentor || data.tc_contentor || data.ritmo || data.tc || 0, 0);
                 mockPostos.push({
                     id: data.id || 'node_' + drawflowId,
                     name: data.name || node.name || 'No sem nome',
                     type: data.type || node.class || node.name || 'node',
-                    tc: parseLocalNumber(data.tc || 0, 0),
-                    tcContentor: parseLocalNumber(data.tcContentor || data.tc_contentor || data.ritmo || data.tc || 0, 0),
+                    tc,
+                    tcContentor,
                     icon: data.icon || 'fa-industry',
-                    atividades: normalizeNodeAtividades(data.atividades || []),
-                    pessoas: parseInt(data.pessoas || 0, 10) || 0,
-                    ritmo: parseLocalNumber(data.ritmo || 0, 0),
+                    atividades,
+                    pessoas,
+                    ritmo: atividades.length ? calcRitmoPosto(tcContentor, pessoas) : parseLocalNumber(data.ritmo || 0, 0),
                     drawflow_id: parseInt(drawflowId, 10),
                     x: normalizePosition(node.pos_x, 100),
                     y: normalizePosition(node.pos_y, 160),
@@ -1970,12 +2136,13 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
 
             return `
                 <div class="node-content">
+                    ${balanceamentoStatusDot(node)}
                     <div class="node-icon"><i class="fa-solid ${icon}"></i></div>
                     <strong>${safeName}</strong>
-                    <div>TC: <span class="tc-value">${tc}</span>s</div>
-                    <div>TC/ctt: <span class="tc-contentor-value">${tcContentor}</span>s</div>
+                    <div>TC: <span class="tc-value">${formatSeconds(tc)}</span></div>
+                    <div>TC/ctt: <span class="tc-contentor-value">${formatSeconds(tcContentor)}</span></div>
                     <div>Pessoas: ${pessoas || '-'}</div>
-                    <div>Ritmo: ${ritmo || '-'}s</div>
+                    <div>Ritmo: ${ritmo > 0 ? formatSeconds(ritmo) : '-'}</div>
                     <div class="node-actions">
                         <button type="button" class="edit-btn" onclick="event.stopPropagation(); editNodeInFlow('${id}')" title="Editar"><i class="fa-solid fa-pen"></i></button>
                         <button type="button" class="add-derived-btn" onclick="event.stopPropagation(); showDeriveOptions('${id}')" title="Derivar"><i class="fa-solid fa-plus"></i></button>
@@ -1983,6 +2150,12 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
                     </div>
                 </div>
             `;
+        }
+
+        function balanceamentoStatusDot(node) {
+            const status = getPostoBalanceamento(node.id)?.status || 'sem_dados';
+            const label = getPostoBalanceamento(node.id)?.statusLabel || 'Sem dados';
+            return `<span class="node-balanceamento-status ${escapeHtml(status)}" title="${escapeHtml(label)}"></span>`;
         }
 
         function escapeJsString(value) {
@@ -2002,19 +2175,44 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
             if (!Array.isArray(atividades)) return [];
             return atividades
                 .map(item => {
+                    let normalized = null;
                     if (typeof item === 'string') {
-                        return { id: item, nome: item, tipo: '', ritmo: 0 };
+                        normalized = { id: item, nome: item, tipo: '', tc: 0, tcContentor: 0, ritmo: 0 };
+                    } else {
+                        normalized = {
+                            id: String(item.id || item.nome || ''),
+                            nome: String(item.nome || item.atividade || item.descricao || ''),
+                            tipo: String(item.tipo || item.tipo_operacao || item.tipo_atividade || ''),
+                            tc: parseLocalNumber(item.tc || item.tempo_operacao_principal || item.tempo_unitario || item.tempo_total_s || 0, 0),
+                            tcContentor: parseLocalNumber(item.tcContentor || item.tc_contentor || item.ritmo || item.ritmo_contentor || 0, 0),
+                            ritmo: parseLocalNumber(item.ritmo || item.tcContentor || item.tc_contentor || item.ritmo_contentor || 0, 0)
+                        };
                     }
-                    return {
-                        id: String(item.id || item.nome || ''),
-                        nome: String(item.nome || item.atividade || item.descricao || ''),
-                        tipo: String(item.tipo || item.tipo_operacao || item.tipo_atividade || ''),
-                        tc: parseLocalNumber(item.tc || item.tempo_operacao_principal || item.tempo_unitario || item.tempo_total_s || 0, 0),
-                        tcContentor: parseLocalNumber(item.tcContentor || item.tc_contentor || item.ritmo || item.ritmo_contentor || 0, 0),
-                        ritmo: parseLocalNumber(item.ritmo || item.tcContentor || item.tc_contentor || item.ritmo_contentor || 0, 0)
-                    };
+
+                    const current = findCronoAtividadeAtualizada(normalized);
+                    return current ? { ...normalized, ...current } : normalized;
                 })
                 .filter(item => item.nome !== '');
+        }
+
+        function findCronoAtividadeAtualizada(item) {
+            if (!Array.isArray(cronoAtividades) || !item) return null;
+
+            const id = String(item.id || '');
+            if (id !== '') {
+                const byId = cronoAtividades.find(current => String(current.id || '') === id);
+                if (byId) return byId;
+            }
+
+            const nome = normalizeSearchText(item.nome || '');
+            const tipo = normalizeSearchText(item.tipo || '');
+            if (nome === '') return null;
+
+            return cronoAtividades.find(current => {
+                const sameName = normalizeSearchText(current.nome || current.atividade || current.descricao || '') === nome;
+                const currentTipo = normalizeSearchText(current.tipo || current.tipo_operacao || current.tipo_atividade || '');
+                return sameName && (tipo === '' || currentTipo === tipo);
+            }) || null;
         }
 
         function formatAtividadeOption(atividade, index) {
@@ -2026,7 +2224,12 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
 
         function formatSeconds(value) {
             const num = parseLocalNumber(value, 0);
-            return num > 0 ? num.toLocaleString('pt-BR', { maximumFractionDigits: 2 }) + 's' : '0s';
+            return num > 0 ? num.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + 's' : '0,00s';
+        }
+
+        function formatNumber(value) {
+            const num = parseLocalNumber(value, 0);
+            return num > 0 ? num.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '0,00';
         }
 
         function calcTcFromAtividades(atividades) {
@@ -2053,7 +2256,24 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
                 .toLowerCase();
         }
 
-        function editPostoIntrinsics(posto = {}, nodeName = '') {
+        async function refreshCronoAtividades() {
+            try {
+                const url = new URL(window.location.href);
+                url.searchParams.set('ajax_crono_atividades', '1');
+                const response = await fetch(url.toString(), { cache: 'no-store' });
+                const result = await response.json();
+                if (result && result.status === 'success' && Array.isArray(result.atividades)) {
+                    cronoAtividades = result.atividades;
+                    return true;
+                }
+            } catch (error) {
+                console.warn('Nao foi possivel atualizar as cronoanalises.', error);
+            }
+            return false;
+        }
+
+        async function editPostoIntrinsics(posto = {}, nodeName = '') {
+            await refreshCronoAtividades();
             return new Promise(resolve => {
                 const modal = document.getElementById('postoEditorModal');
                 const nomeInput = document.getElementById('postoEditorNome');
@@ -2219,6 +2439,8 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
                     content.innerHTML = generateNodeHtml(posto);
                 }
             }
+            balanceamentoSnapshot = null;
+            refreshBalanceamentoStatus();
         }
 
         function updatePostoEditorMetrics() {
@@ -2340,6 +2562,7 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
             mockPostos = [];
             mockConnections = [];
             isDirty = true;
+            allowNextEmptyFlowSave = true;
             updateNodeCount();
             saveFlowState();
         }
@@ -2365,6 +2588,10 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
                         const data = await postFlowSave();
                         if (!data || data.status !== 'success') {
                             console.error('Erro ao salvar fluxo isolado:', data?.message || 'resposta invalida');
+                            if (data?.recovered_from) {
+                                alert(data.message || 'Salvamento vazio bloqueado. O fluxo foi restaurado.');
+                                window.location.reload();
+                            }
                             return saved;
                         }
 
@@ -2388,20 +2615,28 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
 
         async function postFlowSave() {
             const formData = buildFlowSaveFormData();
-            const response = await fetch(apiUrl, { method: 'POST', body: formData });
-            return response.json();
+            try {
+                const response = await fetch(apiUrl, { method: 'POST', body: formData });
+                return response.json();
+            } finally {
+                allowNextEmptyFlowSave = false;
+            }
         }
 
         function buildFlowSaveFormData() {
             const exportData = editor.export();
             sanitizeExportData(exportData);
             exportData.viewport_state = getCurrentViewport();
+            exportData.balanceamento_params = BalanceamentoService.normalizeParams(balanceamentoParams);
             const formData = new FormData();
             formData.append('action', 'save_drawflow_data');
             formData.append('module_scope', moduleScope);
             formData.append('setor_id', currentSetorId);
             formData.append('linha_id', currentLinhaId);
             formData.append('drawflow_data', JSON.stringify(exportData));
+            if (allowNextEmptyFlowSave) {
+                formData.append('allow_empty_drawflow', '1');
+            }
             return formData;
         }
 
@@ -2558,6 +2793,46 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
             document.getElementById('nodeCount').textContent = count;
         }
 
+        function getBalanceamentoSnapshot() {
+            balanceamentoSnapshot = BalanceamentoService.analyze({
+                fluxo: editor ? editor.export() : null,
+                postos: mockPostos,
+                atividadesPorPosto: mockPostos.map(posto => ({ postoId: posto.id, atividades: posto.atividades || [] })),
+                cronoanalises: cronoAtividades,
+                equivalenciasArvore: [],
+                pessoasAlocadas: mockPostos.map(posto => ({ postoId: posto.id, pessoas: posto.pessoas || 0 })),
+                parametrosLinha: balanceamentoParams,
+                params: balanceamentoParams,
+                kgPorCtt
+            });
+            return balanceamentoSnapshot;
+        }
+
+        function getPostoBalanceamento(postoId) {
+            const snapshot = balanceamentoSnapshot || getBalanceamentoSnapshot();
+            return (snapshot.postos || []).find(row => String(row.id) === String(postoId)) || null;
+        }
+
+        function refreshBalanceamentoStatus() {
+            if (!editor) return;
+            const snapshot = getBalanceamentoSnapshot();
+            const statusClasses = ['balanceamento-status-sem_dados', 'balanceamento-status-balanceado', 'balanceamento-status-atencao', 'balanceamento-status-gargalo', 'balanceamento-status-ocioso'];
+            mockPostos.forEach(posto => {
+                if ((posto.type || 'node') !== 'node') return;
+                const nodeEl = document.getElementById('node-' + posto.drawflow_id);
+                if (!nodeEl) return;
+                const row = (snapshot.postos || []).find(item => String(item.id) === String(posto.id));
+                const status = row ? row.status : 'sem_dados';
+                nodeEl.classList.remove(...statusClasses);
+                nodeEl.classList.add('balanceamento-status-' + status);
+                const dot = nodeEl.querySelector('.node-balanceamento-status');
+                if (dot) {
+                    dot.className = 'node-balanceamento-status ' + status;
+                    dot.title = row ? row.statusLabel : 'Sem dados';
+                }
+            });
+        }
+
         function openPostoResumo() {
             const title = document.getElementById('propertiesTitle');
             const body = document.getElementById('propertiesContent');
@@ -2570,13 +2845,17 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
 
             const postos = mockPostos.filter(posto => (posto.type || 'node') === 'node');
             if (!postos.length) {
-                body.innerHTML = '<div class="property-help">Nenhum posto no fluxo atual.</div>';
+                body.innerHTML = balanceamentoParamsHtml() + '<div class="property-help">Nenhum posto no fluxo atual.</div>';
             } else {
+                const snapshot = getBalanceamentoSnapshot();
+                refreshBalanceamentoStatus();
                 const rows = postos.map(posto => {
+                    const analisado = (snapshot.postos || []).find(row => String(row.id) === String(posto.id)) || {};
                     const atividades = normalizeNodeAtividades(posto.atividades || []);
                     const atividadeLabel = atividades.length
                         ? atividades.map(item => `${escapeHtml(item.nome)}${item.tipo ? ' / ' + escapeHtml(item.tipo) : ''}`).join('<br>')
                         : '-';
+                    const delta = balanceamentoDeltaLabel(analisado);
                     return `
                         <tr>
                             <td class="posto-name-cell">${escapeHtml(posto.name)}</td>
@@ -2586,27 +2865,101 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
                             <td>${escapeHtml(formatSeconds(posto.tc || 0))}</td>
                             <td>${escapeHtml(formatSeconds(posto.tcContentor || posto.tc_contentor || posto.ritmo || posto.tc || 0))}</td>
                             <td id="postoResumoRitmo-${escapeHtml(String(posto.id))}">${escapeHtml(formatSeconds(posto.ritmo || 0))}</td>
+                            <td>${analisado.takt ? escapeHtml(formatSeconds(analisado.takt)) : '-'}</td>
+                            <td>${analisado.capacidadeHora ? escapeHtml(formatNumber(analisado.capacidadeHora)) : '-'}</td>
+                            <td>${analisado.capacidadeKgHora ? escapeHtml(formatNumber(analisado.capacidadeKgHora)) : '-'}</td>
+                            <td><span class="balanceamento-badge ${escapeHtml(analisado.status || 'sem_dados')}">${escapeHtml(analisado.statusLabel || 'Sem dados')}</span></td>
+                            <td><span class="balanceamento-delta">${escapeHtml(delta)}</span></td>
                             <td class="posto-activities-cell">${atividadeLabel}</td>
                         </tr>
                     `;
                 }).join('');
 
                 body.innerHTML = `
-                    <table class="posto-panel-table">
-                        <thead>
-                            <tr>
-                                <th>Posto</th>
-                                <th>Pessoas</th>
-                                <th>TC</th>
-                                <th>TC/ctt</th>
-                                <th>Ritmo</th>
-                                <th>Atividades</th>
-                            </tr>
-                        </thead>
-                        <tbody>${rows}</tbody>
-                    </table>
+                    ${balanceamentoParamsHtml()}
+                    ${balanceamentoResumoHtml(snapshot)}
+                    <div class="posto-panel-scroll">
+                        <table class="posto-panel-table">
+                            <thead>
+                                <tr>
+                                    <th>Posto</th>
+                                    <th>Pessoas</th>
+                                    <th>TC</th>
+                                    <th>TC/ctt</th>
+                                    <th>Ritmo</th>
+                                    <th>Takt</th>
+                                    <th>Capacidade CTT/h</th>
+                                    <th>Capacidade Kg/h</th>
+                                    <th>Status</th>
+                                    <th>Ociosidade/Sobrecarga</th>
+                                    <th>Atividades</th>
+                                </tr>
+                            </thead>
+                            <tbody>${rows}</tbody>
+                        </table>
+                    </div>
                 `;
             }
+        }
+
+        function balanceamentoParamsHtml() {
+            return `
+                <details class="balanceamento-section" open>
+                    <summary>Parâmetros de balanceamento</summary>
+                    <div class="balanceamento-form">
+                        <div class="balanceamento-field">
+                            <label>Tempo disponível do turno (min)</label>
+                            <input type="number" min="0" step="0.01" value="${escapeHtml(balanceamentoParams.tempoDisponivelTurnoMin || '')}" onchange="updateBalanceamentoParam('tempoDisponivelTurnoMin', this.value)">
+                        </div>
+                        <div class="balanceamento-field">
+                            <label>Demanda planejada</label>
+                            <input type="number" min="0" step="0.01" value="${escapeHtml(balanceamentoParams.demandaPlanejada || '')}" onchange="updateBalanceamentoParam('demandaPlanejada', this.value)">
+                        </div>
+                        <div class="balanceamento-field">
+                            <label>Unidade da demanda</label>
+                            <input type="text" value="${escapeHtml(balanceamentoParams.unidadeDemanda || '')}" onchange="updateBalanceamentoParam('unidadeDemanda', this.value)">
+                        </div>
+                        <div class="balanceamento-field">
+                            <label>Meta de eficiência (%)</label>
+                            <input type="number" min="0" max="100" step="0.01" value="${escapeHtml(balanceamentoParams.metaEficiencia || '')}" onchange="updateBalanceamentoParam('metaEficiencia', this.value)">
+                        </div>
+                        <div class="balanceamento-field">
+                            <label>Tolerância (%)</label>
+                            <input type="number" min="0" max="100" step="0.01" value="${escapeHtml(balanceamentoParams.toleranciaBalanceamento || '')}" onchange="updateBalanceamentoParam('toleranciaBalanceamento', this.value)">
+                        </div>
+                    </div>
+                </details>
+            `;
+        }
+
+        function balanceamentoResumoHtml(snapshot) {
+            const resumo = snapshot.resumo || {};
+            return `
+                <div class="balanceamento-summary">
+                    <div class="balanceamento-metric"><span>Takt time</span><strong>${resumo.takt ? escapeHtml(formatSeconds(resumo.takt)) : '-'}</strong></div>
+                    <div class="balanceamento-metric"><span>Gargalo atual</span><strong title="${escapeHtml(resumo.gargalo || '-')}">${escapeHtml(resumo.gargalo || '-')}</strong></div>
+                    <div class="balanceamento-metric"><span>Capacidade estimada CTT/h</span><strong>${resumo.capacidadeLinhaHora ? escapeHtml(formatNumber(resumo.capacidadeLinhaHora)) : '-'}</strong></div>
+                    <div class="balanceamento-metric"><span>Capacidade estimada Kg/h</span><strong>${resumo.capacidadeLinhaKgHora ? escapeHtml(formatNumber(resumo.capacidadeLinhaKgHora)) : '-'}</strong></div>
+                    <div class="balanceamento-metric"><span>Eficiência estimada</span><strong>${resumo.eficienciaEstimativa ? escapeHtml(formatNumber(resumo.eficienciaEstimativa)) + '%' : '-'}</strong></div>
+                    <div class="balanceamento-metric"><span>Postos analisados</span><strong>${escapeHtml(resumo.postosAnalisados || 0)}</strong></div>
+                    <div class="balanceamento-metric"><span>Postos sem dados</span><strong>${escapeHtml(resumo.postosSemDados || 0)}</strong></div>
+                </div>
+            `;
+        }
+
+        function balanceamentoDeltaLabel(row) {
+            if (!row || !row.status || row.status === 'sem_dados' || !row.takt || !row.ritmo) return '-';
+            if (row.sobrecarga) return '+' + formatSeconds(row.sobrecarga);
+            if (row.ociosidade) return '-' + formatSeconds(row.ociosidade);
+            return '0,00s';
+        }
+
+        function updateBalanceamentoParam(key, value) {
+            balanceamentoParams = BalanceamentoService.normalizeParams({ ...balanceamentoParams, [key]: value });
+            balanceamentoSnapshot = null;
+            openPostoResumo();
+            isDirty = true;
+            scheduleFlowSave(600);
         }
 
         function updatePostoResumoPessoas(id, value) {
@@ -2618,8 +2971,8 @@ if (!$linha_ativa && !empty($linhas_do_setor)) {
             posto.ritmo = calcRitmoPosto(posto.tcContentor || posto.tc_contentor || posto.tc || 0, pessoas);
             syncPostoNodeData(posto);
 
-            const ritmoCell = document.getElementById('postoResumoRitmo-' + id);
-            if (ritmoCell) ritmoCell.textContent = formatSeconds(posto.ritmo || 0);
+            balanceamentoSnapshot = null;
+            openPostoResumo();
 
             isDirty = true;
             saveFlowState();

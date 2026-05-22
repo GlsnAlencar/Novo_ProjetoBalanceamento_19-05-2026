@@ -1,0 +1,11 @@
+{
+    "nome": "Agrupara contentor Vazio",
+    "ativo": 1,
+    "origem": "cronoanalise",
+    "id": "ativ_20260518175454_1938",
+    "codigo": "ATIV-81307",
+    "descricao": "Agrupara contentor Vazio",
+    "created_at": "2026-05-18 17:54:54",
+    "updated_at": "2026-05-22 13:17:07",
+    "schema_version": 1
+}

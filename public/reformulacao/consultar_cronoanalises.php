@@ -572,10 +572,11 @@ function cc_hibrida_ritmo_componentes(array $row): array {
     foreach ($componentes as $componente) {
         $tipo = cc_tipo_atividade($componente);
         $tempo = 0.0;
-        if ($tipo === 'transporte') {
-            $tempo = cc_num($componente['tempo_total_s'] ?? $componente['tempo_total'] ?? $componente['tempo_s'] ?? $componente['tempo_deslocamento_s'] ?? 0);
-        } else {
-            $tempo = cc_num($componente['tempo_unitario_utilizado'] ?? $componente['tp'] ?? $componente['TP'] ?? $componente['tempo_operacao_s'] ?? $componente['tempo_total_s'] ?? $componente['tempo_total'] ?? 0);
+        $tempo = cc_num($componente['tempo_total_s'] ?? $componente['tempo_total'] ?? $componente['tempo_s'] ?? 0);
+        if ($tempo <= 0 && $tipo === 'transporte') {
+            $tempo = cc_num($componente['tempo_deslocamento_s'] ?? 0);
+        } elseif ($tempo <= 0) {
+            $tempo = cc_num($componente['tempo_unitario_utilizado'] ?? $componente['tp'] ?? $componente['TP'] ?? $componente['tempo_operacao_s'] ?? 0);
         }
 
         $base = cc_contentores_equivalentes($componente);
@@ -667,7 +668,15 @@ function cc_normalizar(array $row): array {
     if ($tipo === 'hibrida' && $tempoHibrido > 0) {
         $tempoAtivo = $tempoHibrido;
     }
-    $ritmoContentor = $taxaQuantidade > 0 && $tempoAtivo > 0 ? $tempoAtivo / $taxaQuantidade : 0.0;
+    $tempoRitmoContentor = $tempoAtivo;
+    if ($tipo === 'operacao' && $tempoTotal > 0) {
+        $tempoRitmoContentor = $tempoTotal;
+    } elseif ($tipo === 'transporte' && $tempoTotal > 0) {
+        $tempoRitmoContentor = $tempoTotal;
+    } elseif ($tipo === 'hibrida' && $tempoHibrido > 0) {
+        $tempoRitmoContentor = $tempoHibrido;
+    }
+    $ritmoContentor = $taxaQuantidade > 0 && $tempoRitmoContentor > 0 ? $tempoRitmoContentor / $taxaQuantidade : 0.0;
     $taxaBaseMemoria = '';
     if ($tipo === 'hibrida') {
         $ritmoComponentes = cc_hibrida_ritmo_componentes($row);
@@ -739,6 +748,7 @@ function cc_normalizar(array $row): array {
         'taxa_producao_unidade' => $taxaBaseAplicada ? 's/contentor' : '',
         'tempo_base_utilizado' => $tempoBaseUtilizado,
         'tempo_ativo' => $tempoAtivo,
+        'tempo_ritmo_contentor' => $tempoRitmoContentor,
         'ritmo_contentor' => $ritmoContentor,
         'tr' => $tr,
         'tn' => $tn,
@@ -811,7 +821,7 @@ function cc_actions(array $row): string {
     return '<div class="crono-row-actions">'
         . '<a class="crono-action-btn" href="' . cc_h($editUrl) . '">' . $editLabel . '</a>'
         . $detach
-        . '<button type="button" class="crono-action-btn danger" onclick="ccDelete(this)" data-row="' . $json . '">Excluir</button>'
+        . '<button type="button" class="crono-action-btn danger" onclick="ccDelete(this)" data-row="' . $json . '">Arquivar</button>'
         . '</div>';
 }
 
@@ -865,11 +875,11 @@ if (($_GET['export'] ?? '') === 'excel') {
     header('Content-Disposition: attachment; filename="consultar_cronoanalises.csv"');
     echo "\xEF\xBB\xBF";
     $out = fopen('php://output', 'w');
-    fputcsv($out, ['Tipo', 'Atividade', 'Setor', 'Linha', 'Item/Embalagem', 'Calibre', 'Tempo (s)', 'Unidade', 'Qtd Ref', 'TR', 'TN', 'TP', 'Capacidade', 'Taxa producao', 'Contentores equivalentes', 'Ritmo/contentor', 'Distancia (m)', 'Tempo desloc. (s)', 'Tempo operacao (s)', 'Velocidade (m/s)', 'Origem', 'Destino', 'Meio transporte', 'Posto', 'Status', 'Observacao'], ';');
+    fputcsv($out, ['Tipo', 'Atividade', 'Setor', 'Linha', 'Item/Embalagem', 'Calibre', 'Tempo total (s)', 'Tempo(s)/quantidade', 'Unidade', 'Qtd Ref', 'TR', 'TN', 'TP', 'Capacidade', 'Taxa producao', 'Contentores equivalentes', 'Ritmo/contentor', 'Distancia (m)', 'Tempo desloc. (s)', 'Tempo operacao (s)', 'Velocidade (m/s)', 'Origem', 'Destino', 'Meio transporte', 'Posto', 'Status', 'Observacao'], ';');
     foreach ($rows as $row) {
         fputcsv($out, [
             $row['tipo_label'], $row['atividade'], $row['setor'], $row['linha'], $row['item'], $row['calibre'],
-            cc_fmt($row['tempo_operacao_principal']), $row['unidade'], cc_fmt($row['qtd_ref']), cc_fmt($row['tr']), cc_fmt($row['tn']), cc_fmt($row['tp']),
+            cc_fmt($row['tempo_total']), cc_fmt($row['tempo_operacao_principal']), $row['unidade'], cc_fmt($row['qtd_ref']), cc_fmt($row['tr']), cc_fmt($row['tn']), cc_fmt($row['tp']),
             cc_fmt($row['capacidade']), cc_taxa_label($row), cc_taxa_memoria_label($row), cc_fmt($row['ritmo_contentor']), cc_fmt($row['distancia']), cc_fmt($row['tempo_deslocamento']), cc_fmt($row['tempo_operacao']),
             cc_fmt($row['velocidade']), $row['origem'], $row['destino'], $row['meio_transporte'], $row['posto'], $row['status'], $row['observacao']
         ], ';');
@@ -942,12 +952,12 @@ include __DIR__ . '/menu.php';
             <div class="crono-group-title" role="button" tabindex="0" aria-expanded="true" aria-controls="cc_group_operacao" onclick="ccToggleGroup(this)" onkeydown="ccToggleGroupKey(event, this)"><strong>OPERACAO / POSTO FIXO</strong><span><?php echo cc_count_label(count($groups['operacao'])); ?></span></div>
             <div class="crono-table-wrap" id="cc_group_operacao">
                 <table class="crono-table">
-                    <thead><tr><th>Atividade</th><th>Setor</th><th>Item/Embalagem</th><th>Calibre</th><th>Tempo (s)</th><th>Unidade</th><th>Total de caixa</th><th>Qtdd Eq. CTT</th><th>Ritmo/contentor</th><th>TR</th><th>TN</th><th>TP</th><th>Capacidade</th><th>Posto</th><th>Observacao</th><th>Acoes</th></tr></thead>
+                    <thead><tr><th>Atividade</th><th>Setor</th><th>Item/Embalagem</th><th>Calibre</th><th>Tempo total (s)</th><th>Tempo(s)/quantidade</th><th>Unidade</th><th>Total de caixa</th><th>Qtdd Eq. CTT</th><th>Ritmo/contentor</th><th>TR</th><th>TN</th><th>TP</th><th>Capacidade</th><th>Posto</th><th>Observacao</th><th>Acoes</th></tr></thead>
                     <tbody>
                         <?php foreach ($groups['operacao'] as $row): ?>
-                            <tr><td><?php echo cc_h($row['atividade']); ?></td><td><?php echo cc_h($row['setor']); ?></td><td><?php echo cc_h($row['item']); ?></td><td><?php echo cc_h($row['calibre']); ?></td><td><?php echo cc_fmt($row['tempo_operacao_principal']); ?></td><td><?php echo cc_h($row['unidade']); ?></td><td><?php echo cc_fmt($row['qtd_ref']); ?></td><td><?php echo cc_fmt($row['taxa_base_quantidade']); ?></td><td><?php echo cc_fmt($row['ritmo_contentor']); ?></td><td><?php echo cc_fmt($row['tr']); ?></td><td><?php echo cc_fmt($row['tn']); ?></td><td><?php echo cc_fmt($row['tp']); ?></td><td><?php echo cc_fmt($row['capacidade'], 0); ?></td><td><?php echo cc_h($row['posto']); ?></td><td><?php echo cc_h($row['observacao']); ?></td><td><?php echo cc_actions($row); ?></td></tr>
+                            <tr><td><?php echo cc_h($row['atividade']); ?></td><td><?php echo cc_h($row['setor']); ?></td><td><?php echo cc_h($row['item']); ?></td><td><?php echo cc_h($row['calibre']); ?></td><td><?php echo cc_fmt($row['tempo_total']); ?></td><td><?php echo cc_fmt($row['tempo_operacao_principal']); ?></td><td><?php echo cc_h($row['unidade']); ?></td><td><?php echo cc_fmt($row['qtd_ref']); ?></td><td><?php echo cc_fmt($row['taxa_base_quantidade']); ?></td><td><?php echo cc_fmt($row['ritmo_contentor']); ?></td><td><?php echo cc_fmt($row['tr']); ?></td><td><?php echo cc_fmt($row['tn']); ?></td><td><?php echo cc_fmt($row['tp']); ?></td><td><?php echo cc_fmt($row['capacidade'], 0); ?></td><td><?php echo cc_h($row['posto']); ?></td><td><?php echo cc_h($row['observacao']); ?></td><td><?php echo cc_actions($row); ?></td></tr>
                         <?php endforeach; ?>
-                        <?php if (empty($groups['operacao'])): ?><tr><td colspan="16" class="crono-empty">Nenhum registro de operacao encontrado.</td></tr><?php endif; ?>
+                        <?php if (empty($groups['operacao'])): ?><tr><td colspan="17" class="crono-empty">Nenhum registro de operacao encontrado.</td></tr><?php endif; ?>
                     </tbody>
                 </table>
             </div>
@@ -1112,7 +1122,7 @@ function ccCloseEdit() {
 
 async function ccDelete(button) {
     const row = ccParseRow(button);
-    if (!row.id || !confirm('Deseja excluir esta cronoanalise?')) return;
+    if (!row.id || !confirm('Deseja arquivar esta cronoanalise? Ela so sera arquivada se nao estiver vinculada a nenhum posto.')) return;
     const formData = new FormData();
     formData.append('action', 'delete_atividade');
     formData.append('id', row.id);
@@ -1125,7 +1135,7 @@ async function ccDelete(button) {
         location.reload();
         return;
     }
-    alert(result.message || 'Erro ao excluir cronoanalise.');
+    alert(result.message || 'Erro ao arquivar cronoanalise.');
 }
 
 async function ccDetach(button) {

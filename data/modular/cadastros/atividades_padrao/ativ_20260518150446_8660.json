@@ -1,0 +1,11 @@
+{
+    "nome": "Transportar pallet para túnel - Pallet Acabado",
+    "ativo": 1,
+    "origem": "cronoanalise",
+    "id": "ativ_20260518150446_8660",
+    "codigo": "ATIV-96876",
+    "descricao": "Transportar pallet para túnel - Pallet Acabado",
+    "created_at": "2026-05-18 15:04:46",
+    "updated_at": "2026-05-22 13:17:07",
+    "schema_version": 1
+}

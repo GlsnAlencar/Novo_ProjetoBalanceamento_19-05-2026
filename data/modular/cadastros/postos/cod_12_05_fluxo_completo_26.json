@@ -1,0 +1,13 @@
+{
+    "id": "cod_12_05_fluxo_completo_26",
+    "nome": "Arquear palete",
+    "tempo_ciclo": 0,
+    "icone": "fa-compress",
+    "ativo": 1,
+    "origem": "editor_bpm",
+    "codigo": "POSTO-27085",
+    "descricao": "Arquear palete",
+    "created_at": "2026-05-18 10:33:09",
+    "updated_at": "2026-05-22 13:17:07",
+    "schema_version": 1
+}

@@ -1,0 +1,19 @@
+{
+    "id": "item_20260515012816_5472",
+    "codigo": "ITM-00013",
+    "nome": "teste01",
+    "codigo_rm": "",
+    "produto_rm": "",
+    "peso_tara": null,
+    "tipo_item": "Componente",
+    "categoria": "",
+    "grupo": "",
+    "unidade_base": "un",
+    "fator_conversao_padrao": 1,
+    "ativo": 0,
+    "observacao": "",
+    "criado_em": "2026-05-17 11:04:22",
+    "atualizado_em": "2026-05-20 11:52:10",
+    "updated_at": "2026-05-19 02:47:48",
+    "schema_version": 1
+}

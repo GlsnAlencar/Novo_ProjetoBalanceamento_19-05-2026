@@ -9,6 +9,8 @@
  * - validar o JSON gravado antes de substituir o arquivo oficial.
  */
 
+require_once __DIR__ . '/storage_modular.php';
+
 function cod_12_05_safe_backup_path($path) {
     $dir = dirname($path);
     $parent = dirname($dir);
@@ -132,6 +134,12 @@ function cod_12_05_safe_write_json($path, $data) {
         if (!rename($tmp, $path)) {
             @unlink($tmp);
             throw new RuntimeException('Falha ao substituir arquivo oficial.');
+        }
+
+        try {
+            rf_modular_after_json_write($path, $data);
+        } catch (Throwable $error) {
+            error_log('Falha no espelho modular: ' . $error->getMessage());
         }
     } finally {
         flock($lock, LOCK_UN);

@@ -1,0 +1,20 @@
+{
+    "id": "comp_20260518110753_6472",
+    "arvore_id": "arvore_20260518110629_4467",
+    "item_pai_id": "item_20260518110629_6789",
+    "item_filho_id": "item_20260517181452_4205",
+    "quantidade": 160,
+    "unidade": "un",
+    "fator_conversao": 1,
+    "percentual": null,
+    "nivel": 1,
+    "ordem_exibicao": 2,
+    "observacao": "",
+    "ativo": 1,
+    "criado_em": "2026-05-18 11:07:53",
+    "atualizado_em": "2026-05-18 11:07:53",
+    "reuso_arvore_id": "arvore_20260517181452_1046",
+    "reuso_lote_id": "reuso_20260518110753_2798",
+    "reuso_modo": "vinculado",
+    "schema_version": 1
+}

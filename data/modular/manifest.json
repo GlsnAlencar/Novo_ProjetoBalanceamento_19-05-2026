@@ -1,0 +1,34 @@
+{
+    "schema_version": 1,
+    "updated_at": "2026-05-22T13:17:07+00:00",
+    "sources": {
+        "cadastros_basicos": {
+            "updated_at": "2026-05-22T13:17:07+00:00",
+            "counts": {
+                "setores": 8,
+                "linhas": 3,
+                "postos": 36,
+                "atividades_padrao": 19,
+                "unidades": 10,
+                "tipos_embalagem": 6
+            }
+        },
+        "fluxo": {
+            "updated_at": "2026-05-22T13:06:18+00:00",
+            "counts": {
+                "setores": 8,
+                "cronoanalises": 44,
+                "fluxos": 3
+            }
+        },
+        "arvore_estrutura": {
+            "updated_at": "2026-05-22T11:46:11+00:00",
+            "counts": {
+                "tabela_itens": 72,
+                "tabela_arvores": 25,
+                "tabela_arvore_composicao": 125,
+                "tabela_item_conversoes": 1
+            }
+        }
+    }
+}

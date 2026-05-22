@@ -1,0 +1,18 @@
+{
+    "id": "item_20260515002539_2041",
+    "codigo": "ITM-00010",
+    "nome": "Caminhão 14 pallets",
+    "codigo_rm": "",
+    "produto_rm": "",
+    "peso_tara": null,
+    "tipo_item": "Componente",
+    "categoria": "",
+    "grupo": "",
+    "unidade_base": "un",
+    "fator_conversao_padrao": 1,
+    "ativo": 0,
+    "observacao": "",
+    "criado_em": "2026-05-18 12:41:17",
+    "atualizado_em": "2026-05-20 12:10:26",
+    "schema_version": 1
+}

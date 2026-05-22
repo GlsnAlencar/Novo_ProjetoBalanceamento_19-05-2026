@@ -1,0 +1,13 @@
+{
+    "id": "posto_20260519015832_5740",
+    "nome": "Agrupar Contentor",
+    "tempo_ciclo": 9.1,
+    "ativo": 1,
+    "origem": "editor_bpm",
+    "codigo": "POSTO-11561",
+    "descricao": "Agrupar contentor",
+    "created_at": "2026-05-19 01:58:32",
+    "updated_at": "2026-05-22 13:17:07",
+    "icone": "fa-industry",
+    "schema_version": 1
+}

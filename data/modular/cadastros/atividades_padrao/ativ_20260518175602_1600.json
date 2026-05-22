@@ -1,0 +1,11 @@
+{
+    "nome": "Palletizar contentores de colheita Vazios",
+    "ativo": 1,
+    "origem": "cronoanalise",
+    "id": "ativ_20260518175602_1600",
+    "codigo": "ATIV-16718",
+    "descricao": "Palletizar contentores de colheita Vazios",
+    "created_at": "2026-05-18 17:56:02",
+    "updated_at": "2026-05-22 13:17:07",
+    "schema_version": 1
+}

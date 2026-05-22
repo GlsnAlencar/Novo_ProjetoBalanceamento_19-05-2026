@@ -1,0 +1,18 @@
+{
+    "id": "item_20260518110053_5523",
+    "codigo": "ITM-00039",
+    "nome": "CANTONEIRA MI (2,10M)",
+    "codigo_rm": "",
+    "produto_rm": "",
+    "peso_tara": null,
+    "tipo_item": "Componente",
+    "categoria": "",
+    "grupo": "",
+    "unidade_base": "un",
+    "fator_conversao_padrao": 1,
+    "ativo": 1,
+    "observacao": "",
+    "criado_em": "2026-05-18 11:00:53",
+    "atualizado_em": "2026-05-18 11:00:53",
+    "schema_version": 1
+}

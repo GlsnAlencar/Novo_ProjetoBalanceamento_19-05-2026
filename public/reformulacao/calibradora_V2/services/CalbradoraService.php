@@ -10,22 +10,26 @@ namespace CalbradoraModule\Services;
 
 use CalbradoraModule\Models\FaixaPeso;
 use CalbradoraModule\Models\ConfiguracaoEmbalamento;
+use CalbradoraModule\Models\ConfiguracaoCalibrador;
 use CalbradoraModule\Models\RegistroLote;
 use CalbradoraModule\Models\DistribuicaoLote;
 use CalbradoraModule\Repositories\FaixaPesoRepository;
 use CalbradoraModule\Repositories\ConfiguracaoEmbalamentoRepository;
+use CalbradoraModule\Repositories\ConfiguracaoCalibradorRepository;
 use CalbradoraModule\Repositories\RegistroLoteRepository;
 use CalbradoraModule\Repositories\DistribuicaoLoteRepository;
 
 class CalbradoraService {
     private FaixaPesoRepository $faixa_repo;
     private ConfiguracaoEmbalamentoRepository $config_repo;
+    private ConfiguracaoCalibradorRepository $config_calibrador_repo;
     private RegistroLoteRepository $lote_repo;
     private DistribuicaoLoteRepository $dist_repo;
 
     public function __construct(string $data_dir) {
         $this->faixa_repo = new FaixaPesoRepository($data_dir);
         $this->config_repo = new ConfiguracaoEmbalamentoRepository($data_dir);
+        $this->config_calibrador_repo = new ConfiguracaoCalibradorRepository($data_dir);
         $this->lote_repo = new RegistroLoteRepository($data_dir);
         $this->dist_repo = new DistribuicaoLoteRepository($data_dir);
     }
@@ -184,6 +188,96 @@ class CalbradoraService {
      */
     public function deletarConfiguracao(int $id): bool {
         return $this->config_repo->delete($id);
+    }
+
+    /**
+     * ========== CONFIGURAÇÃO CALIBRADOR ==========
+     */
+
+    /**
+     * Obter todas as configurações da calibradora
+     */
+    public function getConfiguracoesCalibradora(): array {
+        return $this->config_calibrador_repo->getAll();
+    }
+
+    /**
+     * Obter todas as configurações ativas da calibradora
+     */
+    public function getConfiguracoesCalibradoraAtivas(): array {
+        return $this->config_calibrador_repo->getAllAtivas();
+    }
+
+    /**
+     * Obter configuração da calibradora por ID
+     */
+    public function getConfiguracaoCalibradoraPorId(int $id): ?ConfiguracaoCalibrador {
+        return $this->config_calibrador_repo->getById($id);
+    }
+
+    /**
+     * Obter configuração da calibradora por nome
+     */
+    public function getConfiguracaoCalibradoraPorNome(string $nome): ?ConfiguracaoCalibrador {
+        return $this->config_calibrador_repo->getByNome($nome);
+    }
+
+    /**
+     * Criar nova configuração da calibradora
+     */
+    public function criarConfiguracaoCalibrador(string $nome, string $descricao = '', bool $ativo = true): ?ConfiguracaoCalibrador {
+        $erros = [];
+
+        if (empty(trim($nome))) {
+            $erros[] = 'Nome da configuração é obrigatório';
+        }
+
+        if ($this->config_calibrador_repo->nomeJaExiste($nome)) {
+            $erros[] = 'Já existe uma configuração com este nome';
+        }
+
+        if (!empty($erros)) {
+            return null;
+        }
+
+        $config = new ConfiguracaoCalibrador(
+            null,
+            $nome,
+            $descricao,
+            $ativo
+        );
+
+        return $this->config_calibrador_repo->create($config);
+    }
+
+    /**
+     * Atualizar configuração da calibradora
+     */
+    public function atualizarConfiguracaoCalibrador(ConfiguracaoCalibrador $config): bool {
+        if (empty(trim($config->nome))) {
+            return false;
+        }
+
+        if ($this->config_calibrador_repo->nomeJaExiste($config->nome, $config->id)) {
+            return false;
+        }
+
+        return $this->config_calibrador_repo->update($config);
+    }
+
+    /**
+     * Deletar configuração da calibradora
+     * Remove também todas as faixas associadas
+     */
+    public function deletarConfiguracaoCalibrador(int $id): bool {
+        $config = $this->config_calibrador_repo->getById($id);
+        if (!$config) {
+            return false;
+        }
+
+        // Remover faixas associadas (se houver necessidade)
+        // Por enquanto apenas deletar a configuração
+        return $this->config_calibrador_repo->delete($id);
     }
 
     /**

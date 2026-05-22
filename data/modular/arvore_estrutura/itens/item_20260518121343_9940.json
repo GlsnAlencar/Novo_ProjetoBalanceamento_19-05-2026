@@ -1,0 +1,18 @@
+{
+    "id": "item_20260518121343_9940",
+    "codigo": "ITM-00043",
+    "nome": "Pallet acabado -  Caixa 4kg - Marítimo - (1)",
+    "codigo_rm": "",
+    "produto_rm": "",
+    "peso_tara": null,
+    "tipo_item": "Componente",
+    "categoria": "Produto acabado",
+    "grupo": "",
+    "unidade_base": "un",
+    "fator_conversao_padrao": 1,
+    "ativo": 0,
+    "observacao": "",
+    "criado_em": "2026-05-20 08:43:59",
+    "atualizado_em": "2026-05-20 09:04:21",
+    "schema_version": 1
+}

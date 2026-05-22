@@ -1,0 +1,11 @@
+{
+    "codigo": "Insumo",
+    "nome": "Insumo",
+    "ativo": 1,
+    "origem": "arvore_estrutura",
+    "id": "emb_20260517194512_1502",
+    "descricao": "Insumo",
+    "created_at": "2026-05-17 19:45:12",
+    "updated_at": "2026-05-22 13:17:07",
+    "schema_version": 1
+}

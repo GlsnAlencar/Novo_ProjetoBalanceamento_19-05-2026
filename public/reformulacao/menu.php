@@ -116,6 +116,7 @@ function rf_menu_href($path) {
             <button class="rf-menu-toggle" type="button" aria-expanded="true">Editor BPM</button>
             <ul class="rf-menu-items">
                 <li><a href="<?php echo rf_menu_href(rf_route('editor_bpm', 'page')); ?>" style="color: #1f6feb; font-weight: 700;">Fluxos de Processo</a></li>
+                <li><a href="<?php echo rf_menu_href(rf_route('editor_bpm', 'post_table')); ?>" style="color: #1f6feb; font-weight: 700;">Tabela de postos</a></li>
             </ul>
         </li>
 

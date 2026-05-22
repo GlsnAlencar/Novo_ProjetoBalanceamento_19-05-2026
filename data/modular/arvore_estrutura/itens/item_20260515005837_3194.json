@@ -1,0 +1,18 @@
+{
+    "id": "item_20260515005837_3194",
+    "codigo": "ITM-00016",
+    "nome": "Pallet Colheita Caminhão",
+    "codigo_rm": "",
+    "produto_rm": "",
+    "peso_tara": null,
+    "tipo_item": "Componente",
+    "categoria": "",
+    "grupo": "",
+    "unidade_base": "un",
+    "fator_conversao_padrao": 1,
+    "ativo": 0,
+    "observacao": "",
+    "criado_em": "2026-05-18 12:41:17",
+    "atualizado_em": "2026-05-20 12:10:22",
+    "schema_version": 1
+}

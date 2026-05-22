@@ -1,0 +1,18 @@
+{
+    "id": "item_20260518102732_5653",
+    "codigo": "ITM-00056",
+    "nome": "PALLET MAR EUROPA E 18KG MI - 1,02X1,10",
+    "codigo_rm": "",
+    "produto_rm": "",
+    "peso_tara": null,
+    "tipo_item": "Componente",
+    "categoria": "",
+    "grupo": "",
+    "unidade_base": "un",
+    "fator_conversao_padrao": 1,
+    "ativo": 1,
+    "observacao": "",
+    "criado_em": "2026-05-18 10:27:32",
+    "atualizado_em": "2026-05-20 09:10:38",
+    "schema_version": 1
+}

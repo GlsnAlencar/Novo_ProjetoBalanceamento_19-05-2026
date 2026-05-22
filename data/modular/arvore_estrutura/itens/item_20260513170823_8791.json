@@ -1,0 +1,18 @@
+{
+    "id": "item_20260513170823_8791",
+    "codigo": "FR-001",
+    "nome": "Fruta in natura",
+    "tipo_item": "Produto",
+    "categoria": "",
+    "grupo": "",
+    "unidade_base": "kg",
+    "fator_conversao_padrao": 1,
+    "ativo": 0,
+    "observacao": "",
+    "criado_em": "2026-05-18 12:41:17",
+    "atualizado_em": "2026-05-20 09:04:21",
+    "codigo_rm": "",
+    "produto_rm": "",
+    "peso_tara": null,
+    "schema_version": 1
+}

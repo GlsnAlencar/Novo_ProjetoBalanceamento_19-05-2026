@@ -1,0 +1,18 @@
+{
+    "id": "item_20260513175708_2948",
+    "codigo": "ITM-00004",
+    "nome": "Bisneto teste seguro",
+    "codigo_rm": "",
+    "produto_rm": "",
+    "tipo_item": "Insumo",
+    "categoria": "",
+    "grupo": "",
+    "unidade_base": "un",
+    "fator_conversao_padrao": 1,
+    "ativo": 0,
+    "observacao": "",
+    "criado_em": "2026-05-18 12:41:17",
+    "atualizado_em": "2026-05-20 09:04:21",
+    "peso_tara": null,
+    "schema_version": 1
+}

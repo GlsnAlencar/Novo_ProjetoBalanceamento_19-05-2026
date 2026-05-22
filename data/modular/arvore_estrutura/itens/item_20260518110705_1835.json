@@ -1,0 +1,18 @@
+{
+    "id": "item_20260518110705_1835",
+    "codigo": "ITM-00042",
+    "nome": "PALLET MI UVA (MI 6,0KG ABERTA MANGA) - 1,00X1,20",
+    "codigo_rm": "",
+    "produto_rm": "",
+    "peso_tara": null,
+    "tipo_item": "Componente",
+    "categoria": "",
+    "grupo": "",
+    "unidade_base": "un",
+    "fator_conversao_padrao": 1,
+    "ativo": 1,
+    "observacao": "",
+    "criado_em": "2026-05-18 11:07:05",
+    "atualizado_em": "2026-05-20 09:04:21",
+    "schema_version": 1
+}

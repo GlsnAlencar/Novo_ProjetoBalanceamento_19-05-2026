@@ -1,0 +1,19 @@
+{
+    "id": "item_20260520082142_8442",
+    "codigo": "ITM-00059",
+    "nome": "Manga in natrua",
+    "tipo_item": "Produto",
+    "categoria": "Embalagem \/ Unidade de Carga",
+    "grupo": "Pallet",
+    "unidade_base": "kg",
+    "fator_conversao_padrao": 1,
+    "ativo": 0,
+    "observacao": "Produto raiz para teste da arvore de estrutura.",
+    "criado_em": "2026-05-20 08:21:42",
+    "atualizado_em": "2026-05-20 11:39:05",
+    "codigo_rm": "",
+    "produto_rm": "",
+    "peso_tara": null,
+    "updated_at": "2026-05-19 02:47:48",
+    "schema_version": 1
+}

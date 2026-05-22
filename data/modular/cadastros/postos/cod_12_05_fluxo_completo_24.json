@@ -1,0 +1,13 @@
+{
+    "id": "cod_12_05_fluxo_completo_24",
+    "nome": "Paletizacao 3",
+    "tempo_ciclo": 312,
+    "icone": "fa-boxes-stacked",
+    "ativo": 1,
+    "origem": "editor_bpm",
+    "codigo": "POSTO-99661",
+    "descricao": "Paletizacao 3",
+    "created_at": "2026-05-18 10:33:09",
+    "updated_at": "2026-05-22 13:17:07",
+    "schema_version": 1
+}

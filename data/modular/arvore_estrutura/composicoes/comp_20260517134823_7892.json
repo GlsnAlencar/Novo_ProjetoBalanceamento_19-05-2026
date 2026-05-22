@@ -1,0 +1,17 @@
+{
+    "id": "comp_20260517134823_7892",
+    "arvore_id": "arvore_20260517134815_8159",
+    "item_pai_id": "item_20260517134815_9340",
+    "item_filho_id": "item_20260513170723_7449",
+    "quantidade": 4,
+    "unidade": "kg",
+    "fator_conversao": 1,
+    "percentual": null,
+    "nivel": 1,
+    "ordem_exibicao": 1,
+    "observacao": "",
+    "ativo": 0,
+    "criado_em": "2026-05-17 13:48:23",
+    "atualizado_em": "2026-05-20 08:17:58",
+    "schema_version": 1
+}

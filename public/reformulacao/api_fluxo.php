@@ -128,6 +128,88 @@ function cod_12_05_apply_drawflow_to_matching_lines(&$data, $linha_id, $drawflow
     return $updated;
 }
 
+function cod_12_05_drawflow_node_count($drawflow_data) {
+    $nodes = $drawflow_data['drawflow']['Home']['data'] ?? [];
+    return is_array($nodes) ? count($nodes) : 0;
+}
+
+function cod_12_05_drawflow_score($drawflow_data) {
+    return cod_12_05_drawflow_node_count($drawflow_data);
+}
+
+function cod_12_05_pick_better_drawflow_candidate($current, $candidate) {
+    if (!$candidate || cod_12_05_drawflow_score($candidate['drawflow_data'] ?? null) <= 0) {
+        return $current;
+    }
+    if (!$current) {
+        return $candidate;
+    }
+
+    $current_score = cod_12_05_drawflow_score($current['drawflow_data'] ?? null);
+    $candidate_score = cod_12_05_drawflow_score($candidate['drawflow_data'] ?? null);
+    if ($current_score <= 0 && $candidate_score > 0) {
+        return $candidate;
+    }
+    if ($candidate_score > $current_score) {
+        return $candidate;
+    }
+    if ($candidate_score === $current_score && ($candidate['_timestamp'] ?? 0) >= ($current['_timestamp'] ?? 0)) {
+        return $candidate;
+    }
+    return $current;
+}
+
+function cod_12_05_find_best_drawflow_for_line($linha_id, $data) {
+    $best = null;
+
+    foreach (($data['setores'] ?? []) as $setor) {
+        foreach (($setor['linhas'] ?? []) as $linha) {
+            if (($linha['id'] ?? '') !== $linha_id) {
+                continue;
+            }
+            $best = cod_12_05_pick_better_drawflow_candidate($best, [
+                'drawflow_data' => $linha['drawflow_data'] ?? null,
+                'source' => 'dados_ativos',
+                '_timestamp' => cod_12_05_row_timestamp($linha),
+            ]);
+        }
+    }
+
+    $modular_path = dirname(__DIR__, 2) . '/data/modular/fluxos/' . preg_replace('/[^A-Za-z0-9_.-]+/', '_', $linha_id) . '.json';
+    if (is_file($modular_path)) {
+        $modular = json_decode((string)file_get_contents($modular_path), true);
+        if (is_array($modular)) {
+            $best = cod_12_05_pick_better_drawflow_candidate($best, [
+                'drawflow_data' => $modular['drawflow_data'] ?? null,
+                'source' => 'espelho_modular',
+                '_timestamp' => strtotime((string)($modular['updated_at'] ?? '')) ?: filemtime($modular_path),
+            ]);
+        }
+    }
+
+    $backup_dir = dirname(__DIR__, 2) . '/data/backups';
+    foreach (glob($backup_dir . '/fluxo_teste02_*.json') ?: [] as $backup_path) {
+        $backup = json_decode((string)file_get_contents($backup_path), true);
+        if (!is_array($backup)) {
+            continue;
+        }
+        foreach (($backup['setores'] ?? []) as $setor) {
+            foreach (($setor['linhas'] ?? []) as $linha) {
+                if (($linha['id'] ?? '') !== $linha_id) {
+                    continue;
+                }
+                $best = cod_12_05_pick_better_drawflow_candidate($best, [
+                    'drawflow_data' => $linha['drawflow_data'] ?? null,
+                    'source' => 'backup:' . basename($backup_path),
+                    '_timestamp' => max(cod_12_05_row_timestamp($linha), filemtime($backup_path)),
+                ]);
+            }
+        }
+    }
+
+    return $best;
+}
+
 function cod_12_05_first_ids($data) {
     $setor = $data['setores'][0] ?? null;
     $linha = $setor['linhas'][0] ?? null;
@@ -150,12 +232,7 @@ function cod_12_05_normalize_shared_catalogs($data) {
                 'updated_at' => $linha['updated_at'] ?? cb_now(),
                 '_timestamp' => cod_12_05_row_timestamp($linha)
             ];
-            if (
-                !isset($drawflows_by_line[$line_id]) ||
-                ($candidate['_timestamp'] >= ($drawflows_by_line[$line_id]['_timestamp'] ?? 0) && !empty($candidate['drawflow_data']))
-            ) {
-                $drawflows_by_line[$line_id] = $candidate;
-            }
+            $drawflows_by_line[$line_id] = cod_12_05_pick_better_drawflow_candidate($drawflows_by_line[$line_id] ?? null, $candidate) ?? $candidate;
         }
     }
 
@@ -211,7 +288,17 @@ if ($method === 'GET') {
         }
 
         $flow = $data['setores'][$setor_idx]['linhas'][$linha_idx]['drawflow_data'] ?? null;
-        echo json_encode(['status' => 'success', 'drawflow_data' => $flow]);
+        $response = ['status' => 'success', 'drawflow_data' => $flow];
+        if (cod_12_05_drawflow_node_count($flow) === 0) {
+            $recovery = cod_12_05_find_best_drawflow_for_line($linha_id, $data);
+            if ($recovery && cod_12_05_drawflow_node_count($recovery['drawflow_data'] ?? null) > 0) {
+                cod_12_05_apply_drawflow_to_matching_lines($data, $linha_id, $recovery['drawflow_data']);
+                cod_12_05_save_data($data);
+                $response['drawflow_data'] = $recovery['drawflow_data'];
+                $response['recovered_from'] = $recovery['source'] ?? 'backup';
+            }
+        }
+        echo json_encode($response);
         exit;
     }
 
@@ -251,6 +338,21 @@ switch ($action) {
             break;
         }
         $drawflow_data['module_context'] = cod_12_05_module_context();
+        $allow_empty = ($_POST['allow_empty_drawflow'] ?? '') === '1';
+        if (!$allow_empty && cod_12_05_drawflow_node_count($drawflow_data) === 0) {
+            $recovery = cod_12_05_find_best_drawflow_for_line($linha_id, $data);
+            if ($recovery && cod_12_05_drawflow_node_count($recovery['drawflow_data'] ?? null) > 0) {
+                cod_12_05_apply_drawflow_to_matching_lines($data, $linha_id, $recovery['drawflow_data']);
+                cod_12_05_save_data($data);
+                echo json_encode([
+                    'status' => 'error',
+                    'message' => 'Salvamento vazio bloqueado para evitar perda do fluxo. O desenho foi restaurado a partir de ' . ($recovery['source'] ?? 'backup') . '.',
+                    'recovered_from' => $recovery['source'] ?? 'backup',
+                    'nodes' => cod_12_05_drawflow_node_count($recovery['drawflow_data'] ?? null)
+                ]);
+                break;
+            }
+        }
 
         cod_12_05_apply_drawflow_to_matching_lines($data, $linha_id, $drawflow_data);
         cod_12_05_save_data($data);

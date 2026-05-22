@@ -1,0 +1,17 @@
+{
+    "id": "comp_20260513170822_3080",
+    "arvore_id": "arvore_20260513170723_3841",
+    "item_pai_id": "item_20260513170723_7449",
+    "item_filho_id": "item_20260513170822_9309",
+    "quantidade": 42,
+    "unidade": "un",
+    "fator_conversao": 1,
+    "percentual": null,
+    "nivel": 1,
+    "ordem_exibicao": 1,
+    "observacao": "Filho direto do pallet",
+    "ativo": 1,
+    "criado_em": "2026-05-13 17:08:22",
+    "atualizado_em": "2026-05-13 17:08:22",
+    "schema_version": 1
+}

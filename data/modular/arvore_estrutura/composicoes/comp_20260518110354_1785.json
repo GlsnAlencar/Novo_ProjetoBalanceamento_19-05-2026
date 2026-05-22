@@ -1,0 +1,17 @@
+{
+    "id": "comp_20260518110354_1785",
+    "arvore_id": "arvore_20260518105450_7480",
+    "item_pai_id": "item_20260518105450_7954",
+    "item_filho_id": "item_20260518105423_5653",
+    "quantidade": 25.2,
+    "unidade": "m",
+    "fator_conversao": 1,
+    "percentual": null,
+    "nivel": 1,
+    "ordem_exibicao": 4,
+    "observacao": "",
+    "ativo": 1,
+    "criado_em": "2026-05-18 11:03:54",
+    "atualizado_em": "2026-05-18 11:03:54",
+    "schema_version": 1
+}

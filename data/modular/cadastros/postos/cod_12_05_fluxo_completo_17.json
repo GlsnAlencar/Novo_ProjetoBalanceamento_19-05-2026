@@ -1,0 +1,13 @@
+{
+    "id": "cod_12_05_fluxo_completo_17",
+    "nome": "Selo 02",
+    "tempo_ciclo": 0,
+    "icone": "fa-certificate",
+    "ativo": 1,
+    "origem": "editor_bpm",
+    "codigo": "POSTO-20903",
+    "descricao": "Selo 02",
+    "created_at": "2026-05-18 10:33:09",
+    "updated_at": "2026-05-22 13:17:07",
+    "schema_version": 1
+}

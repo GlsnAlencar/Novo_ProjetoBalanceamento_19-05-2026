@@ -1,0 +1,18 @@
+{
+    "id": "comp_20260513170826_4191",
+    "arvore_id": "arvore_20260513170723_3841",
+    "item_pai_id": "item_20260513170823_5606",
+    "item_filho_id": "item_20260513170826_9709",
+    "quantidade": 0.1,
+    "unidade": "l",
+    "fator_conversao": 1,
+    "percentual": null,
+    "nivel": 2,
+    "ordem_exibicao": 3,
+    "observacao": "Tratamento por pallet",
+    "ativo": 1,
+    "criado_em": "2026-05-13 17:08:26",
+    "atualizado_em": "2026-05-15 01:24:38",
+    "updated_at": "2026-05-19 02:47:48",
+    "schema_version": 1
+}

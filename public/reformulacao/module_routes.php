@@ -11,6 +11,7 @@ function rf_module_routes() {
         'editor_bpm' => [
             'label' => 'Editor BPM',
             'page' => 'fluxo.php',
+            'post_table' => 'tabela_postos_fluxo.php',
             'api' => 'api_fluxo.php',
             'storage' => __DIR__ . '/../../data/ativos/fluxo_teste02.json',
             'scope' => 'REFORMULACAO_COD_12_05',

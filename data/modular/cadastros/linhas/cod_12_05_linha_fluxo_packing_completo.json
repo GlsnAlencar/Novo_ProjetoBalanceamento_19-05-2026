@@ -1,0 +1,12 @@
+{
+    "id": "cod_12_05_linha_fluxo_packing_completo",
+    "codigo": "LINHA-82932",
+    "nome": "Fluxo Packing - Completo",
+    "setor_id": "cod_12_05_setor_1",
+    "ativo": 1,
+    "origem": "editor_bpm",
+    "descricao": "Fluxo Packing - Completo",
+    "created_at": "2026-05-18 10:33:09",
+    "updated_at": "2026-05-22 13:17:07",
+    "schema_version": 1
+}

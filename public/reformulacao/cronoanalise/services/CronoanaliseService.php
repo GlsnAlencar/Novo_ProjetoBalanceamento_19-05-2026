@@ -202,7 +202,7 @@ class CronoanaliseService {
         $id = trim((string)($input['id'] ?? ''));
 
         if ($id === '') {
-            return ['status' => 'error', 'message' => 'ID obrigatorio para exclusao.'];
+            return ['status' => 'error', 'message' => 'ID obrigatorio para arquivamento.'];
         }
 
         return $this->repository->excluirCronoanalise($linha_id, $post_index, $id);

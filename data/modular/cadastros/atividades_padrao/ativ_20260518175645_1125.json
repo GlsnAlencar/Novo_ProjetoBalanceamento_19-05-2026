@@ -1,0 +1,11 @@
+{
+    "nome": "Remover papel",
+    "ativo": 1,
+    "origem": "cronoanalise",
+    "id": "ativ_20260518175645_1125",
+    "codigo": "ATIV-64138",
+    "descricao": "Remover papel",
+    "created_at": "2026-05-18 17:56:45",
+    "updated_at": "2026-05-22 13:17:07",
+    "schema_version": 1
+}

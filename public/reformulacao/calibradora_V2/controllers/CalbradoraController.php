@@ -11,6 +11,7 @@ namespace CalbradoraModule\Controllers;
 use CalbradoraModule\Services\CalbradoraService;
 use CalbradoraModule\Models\FaixaPeso;
 use CalbradoraModule\Models\ConfiguracaoEmbalamento;
+use CalbradoraModule\Models\ConfiguracaoCalibrador;
 use CalbradoraModule\Models\RegistroLote;
 use CalbradoraModule\Models\DistribuicaoLote;
 
@@ -52,6 +53,18 @@ class CalbradoraController {
                     return $this->obterConfiguracoes();
                 case 'obter_configuracao':
                     return $this->obterConfiguracao($data);
+
+                // CONFIGURAÇÃO CALIBRADOR
+                case 'criar_config_calibrador':
+                    return $this->criarConfiguracaoCalibrador($data);
+                case 'atualizar_config_calibrador':
+                    return $this->atualizarConfiguracaoCalibrador($data);
+                case 'deletar_config_calibrador':
+                    return $this->deletarConfiguracaoCalibrador($data);
+                case 'obter_configs_calibrador':
+                    return $this->obterConfiguracoesCalibradora();
+                case 'obter_config_calibrador':
+                    return $this->obterConfiguracaoCalibrador($data);
 
                 // REGISTRO DE LOTE
                 case 'criar_lote':
@@ -251,6 +264,85 @@ class CalbradoraController {
         }
 
         $config = $this->service->getConfiguracaoPorId($id);
+        if (!$config) {
+            return ['sucesso' => false, 'mensagem' => 'Configuração não encontrada'];
+        }
+
+        return ['sucesso' => true, 'dados' => $config->toArray()];
+    }
+
+    /**
+     * ========== CONFIGURAÇÃO CALIBRADOR ==========
+     */
+
+    private function criarConfiguracaoCalibrador(array $data): array {
+        $nome = trim($data['nome'] ?? '');
+        $descricao = trim($data['descricao'] ?? '');
+        $ativo = isset($data['ativo']) ? (bool)$data['ativo'] : true;
+
+        if (empty($nome)) {
+            return ['sucesso' => false, 'mensagem' => 'Nome da configuração é obrigatório'];
+        }
+
+        $config = $this->service->criarConfiguracaoCalibrador($nome, $descricao, $ativo);
+        if (!$config) {
+            return ['sucesso' => false, 'mensagem' => 'Erro ao criar configuração (pode estar duplicada)'];
+        }
+
+        return ['sucesso' => true, 'mensagem' => 'Configuração criada com sucesso', 'dados' => $config->toArray()];
+    }
+
+    private function atualizarConfiguracaoCalibrador(array $data): array {
+        $id = (int)($data['id'] ?? 0);
+        if ($id <= 0) {
+            return ['sucesso' => false, 'mensagem' => 'ID inválido'];
+        }
+
+        $config = $this->service->getConfiguracaoCalibradoraPorId($id);
+        if (!$config) {
+            return ['sucesso' => false, 'mensagem' => 'Configuração não encontrada'];
+        }
+
+        $config->nome = trim($data['nome'] ?? $config->nome);
+        $config->descricao = trim($data['descricao'] ?? $config->descricao);
+        $config->ativo = isset($data['ativo']) ? (bool)$data['ativo'] : $config->ativo;
+        $config->updated_at = date('Y-m-d H:i:s');
+
+        if (!$this->service->atualizarConfiguracaoCalibrador($config)) {
+            return ['sucesso' => false, 'mensagem' => 'Erro ao atualizar configuração'];
+        }
+
+        return ['sucesso' => true, 'mensagem' => 'Configuração atualizada com sucesso', 'dados' => $config->toArray()];
+    }
+
+    private function deletarConfiguracaoCalibrador(array $data): array {
+        $id = (int)($data['id'] ?? 0);
+        if ($id <= 0) {
+            return ['sucesso' => false, 'mensagem' => 'ID inválido'];
+        }
+
+        if (!$this->service->deletarConfiguracaoCalibrador($id)) {
+            return ['sucesso' => false, 'mensagem' => 'Erro ao deletar configuração'];
+        }
+
+        return ['sucesso' => true, 'mensagem' => 'Configuração deletada com sucesso'];
+    }
+
+    private function obterConfiguracoesCalibradora(): array {
+        $configs = $this->service->getConfiguracoesCalibradora();
+        return [
+            'sucesso' => true,
+            'dados' => array_map(fn($c) => $c->toArray(), $configs)
+        ];
+    }
+
+    private function obterConfiguracaoCalibrador(array $data): array {
+        $id = (int)($data['id'] ?? 0);
+        if ($id <= 0) {
+            return ['sucesso' => false, 'mensagem' => 'ID inválido'];
+        }
+
+        $config = $this->service->getConfiguracaoCalibradoraPorId($id);
         if (!$config) {
             return ['sucesso' => false, 'mensagem' => 'Configuração não encontrada'];
         }

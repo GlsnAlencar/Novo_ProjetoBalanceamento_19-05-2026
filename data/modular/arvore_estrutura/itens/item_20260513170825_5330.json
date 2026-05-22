@@ -1,0 +1,19 @@
+{
+    "id": "item_20260513170825_5330",
+    "codigo": "PRE-001",
+    "nome": "Pregos",
+    "tipo_item": "Insumo",
+    "categoria": "",
+    "grupo": "",
+    "unidade_base": "kg",
+    "fator_conversao_padrao": 1,
+    "ativo": 0,
+    "observacao": "",
+    "criado_em": "2026-05-18 12:41:17",
+    "atualizado_em": "2026-05-20 09:04:21",
+    "codigo_rm": "",
+    "produto_rm": "",
+    "peso_tara": null,
+    "updated_at": "2026-05-19 02:47:48",
+    "schema_version": 1
+}

@@ -1,0 +1,13 @@
+{
+    "id": "cod_12_05_fluxo_completo_27",
+    "nome": "Transportar palete",
+    "tempo_ciclo": 297.43,
+    "icone": "fa-truck",
+    "ativo": 1,
+    "origem": "editor_bpm",
+    "codigo": "POSTO-06043",
+    "descricao": "Transportar palete",
+    "created_at": "2026-05-18 10:33:09",
+    "updated_at": "2026-05-22 13:17:07",
+    "schema_version": 1
+}

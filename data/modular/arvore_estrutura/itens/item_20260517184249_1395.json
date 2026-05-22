@@ -1,0 +1,18 @@
+{
+    "id": "item_20260517184249_1395",
+    "codigo": "ITM-00027",
+    "nome": "Manga - Caixa 6Kg - Com Rede",
+    "codigo_rm": "",
+    "produto_rm": "",
+    "peso_tara": null,
+    "tipo_item": "Embalagem",
+    "categoria": "",
+    "grupo": "",
+    "unidade_base": "un",
+    "fator_conversao_padrao": 1,
+    "ativo": 1,
+    "observacao": "",
+    "criado_em": "2026-05-18 12:41:17",
+    "atualizado_em": "2026-05-20 09:04:21",
+    "schema_version": 1
+}

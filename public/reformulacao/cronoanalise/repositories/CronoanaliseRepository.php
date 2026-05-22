@@ -85,52 +85,77 @@ class CronoanaliseRepository {
 
     public function excluirCronoanalise(string $linha_id, int $post_index, string $id): array {
         $data = $this->load();
-        $key = 'posto_' . $post_index;
-        $removed = false;
-
-        if (isset($data['cronoanalises']) && is_array($data['cronoanalises'])) {
-            $centralBefore = count($data['cronoanalises']);
-            $data['cronoanalises'] = array_values(array_filter(
-                $data['cronoanalises'],
-                fn($row) => ($row['id'] ?? '') !== $id
-            ));
-            $removed = count($data['cronoanalises']) !== $centralBefore;
+        $usage = $this->localizarUsoCronoanalise($data, $id);
+        if (!empty($usage)) {
+            return [
+                'status' => 'error',
+                'message' => 'Esta cronoanalise esta vinculada a um posto/fluxo e nao pode ser arquivada.',
+                'usos' => $usage,
+            ];
         }
 
-        foreach ($data['setores'] as &$setor) {
-            foreach (($setor['linhas'] ?? []) as &$linha) {
-                if ($linha_id !== '' && ($linha['id'] ?? '') !== $linha_id) {
+        $archived = false;
+        $now = date('Y-m-d H:i:s');
+
+        if (isset($data['cronoanalises']) && is_array($data['cronoanalises'])) {
+            foreach ($data['cronoanalises'] as &$row) {
+                if (($row['id'] ?? '') !== $id) {
                     continue;
                 }
+                $row['ativo'] = 0;
+                $row['status'] = 'Arquivada';
+                $row['arquivado_em'] = $now;
+                $row['atualizado_em'] = $now;
+                $archived = true;
+                break;
+            }
+            unset($row);
+        }
 
-                $postoKeys = $linha_id !== '' ? [$key] : array_keys($linha['atividades_por_posto'] ?? []);
-                foreach ($postoKeys as $postoKey) {
-                    $rows = $linha['atividades_por_posto'][$postoKey] ?? [];
-                    $before = count($rows);
-                    $linha['atividades_por_posto'][$postoKey] = array_values(array_filter(
-                        $rows,
-                        fn($row) => ($row['id'] ?? '') !== $id
-                    ));
-                    if (count($linha['atividades_por_posto'][$postoKey]) !== $before) {
-                        $removed = true;
+        if (!$archived) {
+            return ['status' => 'error', 'message' => 'Cronoanalise nao encontrada.'];
+        }
+
+        $data['updated_at'] = $now;
+        $this->save($data);
+
+        return ['status' => 'success', 'message' => 'Cronoanalise arquivada com sucesso.'];
+    }
+
+    private function localizarUsoCronoanalise(array $data, string $id): array {
+        $usage = [];
+        if ($id === '') {
+            return $usage;
+        }
+
+        foreach (($data['setores'] ?? []) as $setor) {
+            $setorNome = (string)($setor['nome'] ?? '');
+            foreach (($setor['linhas'] ?? []) as $linha) {
+                $linhaNome = (string)($linha['nome'] ?? '');
+                foreach (($linha['atividades_por_posto'] ?? []) as $postoKey => $atividades) {
+                    foreach ((array)$atividades as $atividade) {
+                        if (($atividade['id'] ?? '') === $id) {
+                            $usage[] = trim($setorNome . ' / ' . $linhaNome . ' / ' . (string)$postoKey, ' /');
+                        }
                     }
                 }
 
-                if ($removed) {
-                    $linha['updated_at'] = date('Y-m-d H:i:s');
-                    $setor['updated_at'] = date('Y-m-d H:i:s');
+                $nodes = $linha['drawflow_data']['drawflow']['Home']['data'] ?? [];
+                if (!is_array($nodes)) {
+                    continue;
+                }
+                foreach ($nodes as $node) {
+                    $nodeData = $node['data'] ?? [];
+                    foreach (($nodeData['atividades'] ?? []) as $atividade) {
+                        if (is_array($atividade) && ($atividade['id'] ?? '') === $id) {
+                            $usage[] = trim($setorNome . ' / ' . $linhaNome . ' / ' . (string)($nodeData['name'] ?? 'Fluxo'), ' /');
+                        }
+                    }
                 }
             }
         }
 
-        if (!$removed) {
-            return ['status' => 'error', 'message' => 'Cronoanalise nao encontrada.'];
-        }
-
-        $data['updated_at'] = date('Y-m-d H:i:s');
-        $this->save($data);
-
-        return ['status' => 'success'];
+        return array_values(array_unique(array_filter($usage)));
     }
 
     public function desacoplarTransporteItem(string $id, int $item_index): array {
@@ -212,13 +237,50 @@ class CronoanaliseRepository {
 
     public function listarCronoanalises(array $filtros = []): array {
         $data = $this->load();
-        $rows = $data['cronoanalises'] ?? [];
+        $rows = is_array($data['cronoanalises'] ?? null) ? $data['cronoanalises'] : [];
+        $seenIds = [];
+        foreach ($rows as $row) {
+            $id = trim((string)($row['id'] ?? ''));
+            if ($id !== '') {
+                $seenIds[$id] = true;
+            }
+        }
 
-        if (!is_array($rows) || empty($rows)) {
-            $rows = $this->migrarLegadoParaConsulta($data);
+        foreach ($this->migrarLegadoParaConsulta($data) as $legacyRow) {
+            $id = trim((string)($legacyRow['id'] ?? ''));
+            if ($id !== '' && isset($seenIds[$id])) {
+                continue;
+            }
+            if ($id !== '') {
+                $seenIds[$id] = true;
+            }
+            $rows[] = $legacyRow;
+        }
+
+        foreach ($this->migrarDrawflowParaConsulta($data) as $flowRow) {
+            $id = trim((string)($flowRow['id'] ?? ''));
+            if ($id !== '' && isset($seenIds[$id])) {
+                continue;
+            }
+            if ($id !== '') {
+                $seenIds[$id] = true;
+            }
+            $rows[] = $flowRow;
         }
 
         return array_values(array_filter($rows, function ($row) use ($filtros) {
+            $statusFilter = trim((string)($filtros['status'] ?? ''));
+            $isArchived = (int)($row['ativo'] ?? 1) !== 1 || strcasecmp((string)($row['status'] ?? ''), 'Arquivada') === 0;
+            if ($statusFilter === '' && $isArchived) {
+                return false;
+            }
+            if ($statusFilter !== '') {
+                $statusText = $isArchived ? 'Arquivada' : (string)($row['status'] ?? 'Ativa');
+                if (stripos($statusText, $statusFilter) === false) {
+                    return false;
+                }
+            }
+
             foreach (['atividade', 'setor', 'linha', 'calibre'] as $field) {
                 $filter = trim((string)($filtros[$field] ?? ''));
                 if ($filter !== '' && stripos((string)($row[$field] ?? ''), $filter) === false) {
@@ -340,6 +402,64 @@ class CronoanaliseRepository {
                         $atividade['setor'] = $atividade['setor'] ?? ($setor['nome'] ?? '');
                         $atividade['linha'] = $atividade['linha'] ?? ($linha['nome'] ?? '');
                         $rows[] = $this->normalizarRegistroCentral($atividade, $linha['id'] ?? '', $postIndex);
+                    }
+                }
+            }
+        }
+        return $rows;
+    }
+
+    private function migrarDrawflowParaConsulta(array $data): array {
+        $rows = [];
+        foreach ($data['setores'] ?? [] as $setor) {
+            foreach (($setor['linhas'] ?? []) as $linha) {
+                $nodes = $linha['drawflow_data']['drawflow']['Home']['data'] ?? [];
+                if (!is_array($nodes)) {
+                    continue;
+                }
+
+                foreach ($nodes as $node) {
+                    $nodeData = $node['data'] ?? [];
+                    $nodeName = (string)($nodeData['name'] ?? $node['name'] ?? '');
+                    foreach (($nodeData['atividades'] ?? []) as $atividade) {
+                        if (!is_array($atividade)) {
+                            continue;
+                        }
+
+                        $tempo = (float)($atividade['tc'] ?? $atividade['tempo_unitario'] ?? 0);
+                        $tempoContentor = (float)($atividade['tcContentor'] ?? $atividade['tc_contentor'] ?? $atividade['ritmo'] ?? 0);
+                        $tempoReferencia = $tempo > 0 ? $tempo : $tempoContentor;
+                        $row = [
+                            'id' => $atividade['id'] ?? '',
+                            'origem_registro' => 'cronoanalise',
+                            'tipo_atividade' => 'operacao',
+                            'tipo_operacao' => $atividade['tipo'] ?? 'OPERACAO',
+                            'atividade' => $atividade['nome'] ?? $atividade['atividade'] ?? $atividade['descricao'] ?? $nodeName,
+                            'descricao' => $atividade['nome'] ?? $atividade['atividade'] ?? $atividade['descricao'] ?? $nodeName,
+                            'setor' => $atividade['setor'] ?? ($setor['nome'] ?? ''),
+                            'linha' => $atividade['linha'] ?? ($linha['nome'] ?? ''),
+                            'posto' => $atividade['posto'] ?? $nodeName,
+                            'tempo_total' => $tempoReferencia,
+                            'tempo_total_s' => $tempoReferencia,
+                            'tempo_s' => $tempoReferencia,
+                            'tempo_unitario_utilizado' => $tempoReferencia,
+                            'tempo_unitario' => $tempoReferencia,
+                            'tempo_operacao_s' => $tempoReferencia,
+                            'tr' => $tempoReferencia,
+                            'tn' => $tempoReferencia,
+                            'tp' => $tempoReferencia,
+                            'TR' => $tempoReferencia,
+                            'TN' => $tempoReferencia,
+                            'TP' => $tempoReferencia,
+                            'qtd_ref' => 1,
+                            'quantidade_ref' => 1,
+                            'linha_id' => $linha['id'] ?? '',
+                            'linha_ref_id' => $linha['id'] ?? '',
+                            'post_index' => 0,
+                            'criado_em' => $atividade['criado_em'] ?? ($linha['created_at'] ?? date('Y-m-d H:i:s')),
+                            'atualizado_em' => $atividade['atualizado_em'] ?? ($linha['updated_at'] ?? date('Y-m-d H:i:s')),
+                        ];
+                        $rows[] = $this->normalizarRegistroCentral($row, $linha['id'] ?? '', 0);
                     }
                 }
             }

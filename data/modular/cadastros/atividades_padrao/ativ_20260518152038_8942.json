@@ -1,0 +1,11 @@
+{
+    "nome": "Tranportar Caixas Vazias para embalagem",
+    "ativo": 1,
+    "origem": "cronoanalise",
+    "id": "ativ_20260518152038_8942",
+    "codigo": "ATIV-64566",
+    "descricao": "Tranportar Caixas Vazias para embalagem",
+    "created_at": "2026-05-18 15:20:38",
+    "updated_at": "2026-05-22 13:17:07",
+    "schema_version": 1
+}

@@ -1,0 +1,11 @@
+{
+    "id": "arvore_20260517135128_8447",
+    "codigo": "ITM-00022",
+    "nome": "Rede exportação",
+    "item_raiz_id": "item_20260517134838_2479",
+    "descricao": "Arvore independente criada a partir de uma ramificacao reaproveitada.",
+    "ativo": 1,
+    "criado_em": "2026-05-17 13:51:28",
+    "atualizado_em": "2026-05-17 13:51:34",
+    "schema_version": 1
+}

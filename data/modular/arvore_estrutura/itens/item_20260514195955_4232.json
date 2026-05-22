@@ -1,0 +1,18 @@
+{
+    "id": "item_20260514195955_4232",
+    "codigo": "ITM-00007",
+    "nome": "Pallet Acabado - Aéreo",
+    "codigo_rm": "",
+    "produto_rm": "",
+    "peso_tara": null,
+    "tipo_item": "Componente",
+    "categoria": "Produto acabado",
+    "grupo": "",
+    "unidade_base": "un",
+    "fator_conversao_padrao": 1,
+    "ativo": 0,
+    "observacao": "",
+    "criado_em": "2026-05-17 11:04:22",
+    "atualizado_em": "2026-05-20 11:51:59",
+    "schema_version": 1
+}

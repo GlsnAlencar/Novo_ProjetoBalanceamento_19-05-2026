@@ -1,0 +1,11 @@
+{
+    "id": "arvore_20260518134103_9869",
+    "codigo": "ITM-00025",
+    "nome": "Caixa 4kg",
+    "item_raiz_id": "item_20260517183802_9060",
+    "descricao": "Arvore criada a partir do relatorio de itens para cadastrar descendentes.",
+    "ativo": 1,
+    "criado_em": "2026-05-18 13:41:03",
+    "atualizado_em": "2026-05-18 13:41:03",
+    "schema_version": 1
+}

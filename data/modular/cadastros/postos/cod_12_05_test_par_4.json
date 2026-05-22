@@ -1,0 +1,13 @@
+{
+    "id": "cod_12_05_test_par_4",
+    "nome": "Par 4",
+    "tempo_ciclo": 9,
+    "icone": "fa-industry",
+    "ativo": 1,
+    "origem": "editor_bpm",
+    "codigo": "POSTO-74774",
+    "descricao": "Par 4",
+    "created_at": "2026-05-18 10:33:09",
+    "updated_at": "2026-05-22 13:17:07",
+    "schema_version": 1
+}
